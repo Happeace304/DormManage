@@ -12,8 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Client.HomeLayout');
 });
-Route::get('/hi', function () {
-    dd('HI');
-});
+
