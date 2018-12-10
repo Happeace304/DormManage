@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Model\Room;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -22,22 +23,29 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+    //override form
+    public function showRegistrationForm()
+    {
+        $room = Room::where('state',0)->get();
 
+        return view('auth.register',compact('room'));
+    }
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/home';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+    // Chỉ cho phép guest đăng ký
     public function __construct()
     {
-        $this->middleware('guest');
+//        $this->middleware('guest');
     }
 
     /**
@@ -46,12 +54,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'phone'=>['required','string', 'max:20'],
+
         ]);
     }
 
@@ -67,6 +78,8 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone'=> $data['phone'],
+            'roomId'=>$data['roomId'],
         ]);
     }
 }

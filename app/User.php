@@ -15,8 +15,13 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $primaryKey = 'userId';
+    protected $table='users';
     protected $fillable = [
+
         'name', 'email', 'password',
+        'roomId','phone','gender',
+        'address','role'
     ];
 
     /**
@@ -27,4 +32,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    function room(){
+        return $this->hasOne('App\Model\Room','roomId','roomId');
+    }
 }

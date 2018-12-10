@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="{{asset('public/Client/')}}/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 </head>
 <body id="top">
 
@@ -40,7 +41,7 @@
                 <li class="active"><a href="index.html">Trang chủ</a></li>
                 <li><a href="#">Bảng giá</a></li>
                 <li><a href="#">Thông tin đang lưu trú</a></li>
-                <li><a href="#">Đăng nhập</a></li>
+                    <li><a href="{{route('login')}}">Đăng nhập</a></li>
             </ul>
         </nav>
 

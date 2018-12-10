@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCacheTable extends Migration
+class Rooms extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateCacheTable extends Migration
      */
     public function up()
     {
-        Schema::create('cache', function (Blueprint $table) {
-            $table->string('key')->unique();
-            $table->mediumText('value');
-            $table->integer('expiration');
+        Schema::create('rooms', function (Blueprint $table) {
+            $table->increments('roomId');
+            $table->string('roomName');
+            $table->tinyInteger('state')->default(0); //0:empty ; 1:full
+            $table->tinyInteger('type');
+            $table->tinyInteger('peopleCount');
+
         });
     }
 
@@ -27,6 +30,6 @@ class CreateCacheTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cache');
+        //
     }
 }
