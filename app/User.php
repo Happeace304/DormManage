@@ -15,6 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+
     protected $primaryKey = 'userId';
     protected $table='users';
     protected $fillable = [
@@ -35,4 +36,5 @@ class User extends Authenticatable
     function room(){
         return $this->hasOne('App\Model\Room','roomId','roomId');
     }
+
 }

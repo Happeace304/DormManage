@@ -23,7 +23,8 @@ class Users extends Migration
             $table->boolean('gender')->default(1);
             $table->string('password');
             $table->string('address',50)->nullable();
-            $table->tinyInteger('role')->default(1); // 0:client 1: emp
+            $table->tinyInteger('role')->default(2); // 0:admin 1: emp 2:client
+            $table->tinyInteger('state')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

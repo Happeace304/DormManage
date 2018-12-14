@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UserVehicles extends Migration
+class News extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class UserVehicles extends Migration
      */
     public function up()
     {
-        Schema::create('vehicles', function (Blueprint $table) {
-            $table->increments('vehicleId');
-            $table->integer('userId');
-            $table->string('indentifyNum');
-            $table->tinyInteger('type');    //0:bike, 1: moto
-            $table->date('expiredDate');
+        Schema::create('news', function (Blueprint $table) {
+            $table->increments('newsId');
+            $table->string('Title');
+            $table->string('Content');
+            $table->tinyInteger('userId');
+            $table->tinyInteger('state')->default(0);
             $table->timestamps();
         });
     }

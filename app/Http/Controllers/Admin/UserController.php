@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     function list(){
-        $user = User::where('role',0)->paginate(10);
+        $user = User::where('role',2)->where('state', 1)->paginate(10);
         foreach ($user as $item){
 
             $item->roomName = User::find($item->userId)->room;
@@ -24,7 +24,7 @@ class UserController extends Controller
         $room = Room::where('state',0)->get();
         return view('Admin.userEdit',compact(['user','room']));
     }
-    function SaveEdit(Request $request){
+    function Update(Request $request){
         $user = User::findorFail($request->userId);
         $user->name= $request->name;
         $user->phone= $request->phone;
@@ -35,5 +35,14 @@ class UserController extends Controller
         if($user->save()){
            return redirect(route('Admin.home'));
         }
+        function Delete(Request $request){
+            $user = User::findorFail($request->userId);
+            $user->state= 0;
+        }
+    }
+    function Delete(Request $request){
+        $user = User::findorFail($request->id);
+        $user->state= 0;
+        $user->save();
     }
 }

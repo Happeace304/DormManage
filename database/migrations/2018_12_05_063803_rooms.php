@@ -19,7 +19,6 @@ class Rooms extends Migration
             $table->tinyInteger('state')->default(0); //0:empty ; 1:full
             $table->tinyInteger('type');
             $table->tinyInteger('peopleCount');
-
         });
     }
 

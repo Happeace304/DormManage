@@ -78,8 +78,11 @@
             <div class="container">
                 <div class="row justify-content-center">
                     @if(\Illuminate\Support\Facades\Auth::check())
+
                         @include('layouts.adminSidebarLayout')
+
                     @endif
+                        {{--{{\Illuminate\Support\Facades\Auth::user()->role   }}--}} 
             @yield('content')
                 </div>
             </div>
