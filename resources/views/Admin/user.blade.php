@@ -3,7 +3,8 @@
 @section('content')
 
     <div class="col-md-8">
-        <h2  style="color: #2176BD;">Danh sách người dùng Sinh Viên</h2>
+        <h2  style="color: #2176BD;">Danh sách người dùng </h2>
+        @if($user !=null)
         <table class="table dark">
             <thead>
             <th>STT</th>
@@ -15,6 +16,7 @@
             <th>Xóa</th>
             </thead>
             @php($i=1)
+
             @foreach($user as $item)
 
             <tr>
@@ -34,7 +36,9 @@
                 @php($i++)
                 @endforeach
         </table>
-
+    @else
+        <h2>Không tìm thấy kết quả</h2>
+            @endif
     </div>
 
 

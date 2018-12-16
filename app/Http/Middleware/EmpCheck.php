@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class AdminCheck
+class EmpCheck
 {
     /**
      * Handle an incoming request.
@@ -15,9 +14,11 @@ class AdminCheck
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {   if(Auth::user() && Auth::user()->role== 0) {
+    {
+//        if (Auth::check()){
+//            if(Auth::user()->role != 1){
+//                return redirect()->route('Admin.home');
+//            }} else return redirect()->route('client');
         return $next($request);
-    }
-        return redirect('/');
     }
 }

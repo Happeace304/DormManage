@@ -13,25 +13,29 @@
 
 Route::get('/', function () {
     return view('Client.HomeLayout');
-});
+})->name('client');
 
-Route::get('/login_site', function () {
-    return view('login');
-});
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-
-Route::group(['prefix'=> 'admin'], function (){
+Auth::routes();
+//'middleware'=>['admin']
+Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
 
     Route::get('/home', 'HomeController@index')->name('Admin.home');
+
     Route::group(['prefix'=> 'user'], function (){
-        Auth::routes();
-        Route::get('/', 'Admin\UserController@list')->name('User.list');
+
+        Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+        Route::post('register', 'Auth\RegisterController@register');
+
+        Route::get('/', 'Admin\UserController@list')->name('User.List');
         Route::get('/edit/{id}', 'Admin\UserController@EditForm')->name('User.Edit');
         Route::put('/edit', 'Admin\UserController@Update')->name('User.SaveEdit');
         Route::delete('/delete/{id}', 'Admin\UserController@Delete')->name('User.Delete');
+        Route::get('search', 'Admin\UserController@Search')->name('User.Search');
     });
     Route::group(['prefix'=> 'employee'], function (){
-        Route::get('/list', 'Admin\UserController@list')->name('Emp.list');
+        Route::get('/', 'Admin\UserController@list')->name('Emp.list');
     });
 
 

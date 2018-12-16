@@ -19,6 +19,7 @@ class UserController extends Controller
 
         return view('Admin.user',compact('user'));
     }
+
     function EditForm(Request $request){
         $user = User::findorFail($request->id);
         $room = Room::where('state',0)->get();
@@ -44,5 +45,28 @@ class UserController extends Controller
         $user = User::findorFail($request->id);
         $user->state= 0;
         $user->save();
+    }
+    function Search(Request $request){
+        $find= $request->get('select');
+
+        if($find== 'name') {
+            $user = User::where('role', 2)->where('state', 1)->where('name','LIKE' ,'%'. $request->get('q').'%')->paginate(10);
+
+            foreach ($user as $item) {
+
+                $item->roomName = User::find($item->userId)->room;
+            }
+        }else if ($find == 'room') {
+            $user=null;
+            $room = Room::where('roomName', $request->get('q'))->first();
+            if ($room) {
+                $user = User::where('role', 2)->where('state', 1)->where('roomId', $room->roomId)->paginate(10);
+                foreach ($user as $item) {
+                    $item->roomName = User::find($item->userId)->room;
+                }
+            }
+        }
+        return view('Admin.user',compact('user'));
+
     }
 }

@@ -82,7 +82,7 @@
                         @include('layouts.adminSidebarLayout')
 
                     @endif
-                        {{--{{\Illuminate\Support\Facades\Auth::user()->role   }}--}} 
+                        {{--{{\Illuminate\Support\Facades\Auth::user()->role   }}--}}
             @yield('content')
                 </div>
             </div>
