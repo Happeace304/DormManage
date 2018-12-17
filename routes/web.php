@@ -33,10 +33,9 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
         Route::put('/edit', 'Admin\UserController@Update')->name('User.SaveEdit');
         Route::delete('/delete/{id}', 'Admin\UserController@Delete')->name('User.Delete');
         Route::get('search', 'Admin\UserController@Search')->name('User.Search');
+        Route::get('/detail/{id}', 'Admin\UserController@Detail')->name('User.Detail');
     });
-    Route::group(['prefix'=> 'employee'], function (){
-        Route::get('/', 'Admin\UserController@list')->name('Emp.list');
-    });
+
 
 
 });

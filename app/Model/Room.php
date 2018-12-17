@@ -11,7 +11,7 @@ class Room extends Model
     protected $table='rooms';
     protected $fillable = [
 
-       'roomName','state','type','peopleCount'
+       'roomName','state','peopleCount'
     ];
 
     /**
@@ -25,4 +25,8 @@ class Room extends Model
     function  user(){
         return $this->hasMany('App/User','roomId','roomId');
     }
+    function  bill(){
+        return $this->hasMany('App/Model/Bill','roomId','roomId');
+    }
+
 }

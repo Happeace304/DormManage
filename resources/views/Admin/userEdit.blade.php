@@ -7,7 +7,7 @@
             <div class="card-header">{{ __('Edit') }}</div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('User.SaveEdit') }}">
+                <form method="POST" action="{{route('User.SaveEdit') }}">
                     @csrf
                     @method('PUT')
                     <input  name="userId" type="text" hidden value="{{$user->userId}}">
@@ -48,7 +48,7 @@
                             </select>
                         </div>
                     </div>
-
+                    <input type="text" name='oldroom' value="{{$user->roomId}}" hidden>
                     <div class="form-group row">
                         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -67,7 +67,7 @@
                         <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                         <div class="col-md-6">
-                            <input id="address" type="text" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }} " name="address" value="{{ old('address') }}" required>
+                            <input id="address" type="text" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }} " name="address" value="{{ $errors->has('address') ? old('address'): $user->address }}" required>
 
                             @if ($errors->has('address'))
                                 <span class="invalid-feedback" role="alert">

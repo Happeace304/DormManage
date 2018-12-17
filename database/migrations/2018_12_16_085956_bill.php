@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Rooms extends Migration
+class Bill extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class Rooms extends Migration
      */
     public function up()
     {
-        Schema::create('rooms', function (Blueprint $table) {
-            $table->increments('roomId');
-            $table->string('roomName');
-            $table->tinyInteger('state')->default(0); //0:empty ; 1:full
-            $table->tinyInteger('peopleCount')->default(0);
+        Schema::create('bills', function (Blueprint $table) {
+            $table->increments('billId');
+            $table->integer('roomId');
+            $table->date('month');
+            $table->Integer('total');
+            $table->tinyInteger('state')->default(0);  //0: chưa; 1: rồi
+            $table->string('note')->nullable();
+
         });
     }
 

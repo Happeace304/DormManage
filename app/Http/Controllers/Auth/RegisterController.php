@@ -97,14 +97,12 @@ class RegisterController extends Controller
             'roomId'=>$data['roomId'],
             'address'=>$data['address'],
             'role'=> $role,
-
         ]);
             else $user= User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'phone'=> $data['phone'],
-
                 'address'=>$data['address'],
                 'role'=> $role,
 
