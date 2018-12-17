@@ -9,6 +9,7 @@ class Bill extends Model
     public $timestamps=false;
     protected $primaryKey = 'billId';
     protected $table='bills';
+
     protected $fillable = [
         'roomId','state','month','note', 'total'
     ];
@@ -21,4 +22,7 @@ class Bill extends Model
     protected $hidden = [
 
     ];
+    function room(){
+        return $this->belongsTo(Room::class,'roomId','roomId');
+    }
 }

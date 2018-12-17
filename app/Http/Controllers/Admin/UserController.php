@@ -12,10 +12,10 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    function list(){
+    function List(){
         $userrole= Auth::user()->role;
         $userrole == 0? $role= 1:$role=2;
-        $user = User::where('role',$role)->where('state', 1)->paginate(10);
+        $user = User::where('role',$role)->where('state', 1)->orderby('name')->paginate(10);
         if(Auth::user()->role == 1)
         foreach ($user as $item){
             $item->roomName = User::find($item->userId)->room;
@@ -41,6 +41,24 @@ class UserController extends Controller
             if($user->role ==2){
             $this->UpdateRoomCount($request, 'roomId');
             $this->UpdateRoomCount($request, 'oldroom');
+        }
+        //xu ly file
+        if($user->save()){
+            if($request->hasFile('image')) {
+                $filename = time() . "." . $request->file('image')->getClientOriginalExtension();
+                $up = $request->file('image')->move(public_path('image'), $filename);
+
+                if ($up) {
+                    $user->imgLink = $filename;
+                    $save = $user->save();
+                    if ($save) {
+                        if (file_exists(public_path('image') . '\\' . $request->old_image)) {
+                            unlink(public_path('image') . '\\' . $request->old_image);
+                        }
+                    }
+                }
+            }
+
         }
         return redirect()->route('Admin.home');
     }
@@ -98,6 +116,7 @@ class UserController extends Controller
     }
     function Detail(Request $request){
         $user = User::findorfail($request->id);
+        if($user->role ==2)
         $user->roomName= $user->room->roomName;
         return view('Admin.userDetail',compact('user'));
     }

@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Model\Bill;
 class Room extends Model
 {
     public $timestamps=false;
@@ -25,8 +25,8 @@ class Room extends Model
     function  user(){
         return $this->hasMany('App/User','roomId','roomId');
     }
-    function  bill(){
-        return $this->hasMany('App/Model/Bill','roomId','roomId');
+    function  bills(){
+        return $this->hasMany(Bill::class,'roomId','roomId');
     }
 
 }

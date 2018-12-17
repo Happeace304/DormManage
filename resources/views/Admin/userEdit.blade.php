@@ -7,10 +7,10 @@
             <div class="card-header">{{ __('Edit') }}</div>
 
             <div class="card-body">
-                <form method="POST" action="{{route('User.SaveEdit') }}">
+                <form method="POST" action="{{route('User.SaveEdit') }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <input  name="userId" type="text" hidden value="{{$user->userId}}">
+                    <input  name="userId" type="text" hidden value="{{$user->userId}} ">
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -78,6 +78,13 @@
                             @endif
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label text-md-right">File:</label>
+                        <div class="col-md-6" >
+                            <input class="form-control " name="image" type="file" >
+                            <input type="text" hidden name="old_image" value="{{$user->imgLink}}">
+                        </div>
+                    </div>
 
                     <div class="form-group row">
                         <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -92,7 +99,6 @@
                             @endif
                         </div>
                     </div>
-
 
 
                     <div class="form-group row mb-0">
