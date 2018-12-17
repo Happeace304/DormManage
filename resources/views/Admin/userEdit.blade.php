@@ -37,6 +37,7 @@
                             @endif
                         </div>
                     </div>
+                    @if($user->role==2)
                     <div class="form-group row">
                         <label for="roomId" class="col-md-4 col-form-label text-md-right">{{ __('Room') }}</label>
 
@@ -49,6 +50,7 @@
                         </div>
                     </div>
                     <input type="text" name='oldroom' value="{{$user->roomId}}" hidden>
+                    @endif
                     <div class="form-group row">
                         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 

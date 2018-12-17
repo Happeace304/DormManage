@@ -37,13 +37,12 @@ class UserController extends Controller
         if($request->password !=null)
             $user->password= Hash::make($request->password);
 
-        if($user->save()){
-
+        if($user->save())
+            if($user->role ==2){
             $this->UpdateRoomCount($request, 'roomId');
             $this->UpdateRoomCount($request, 'oldroom');
-           return redirect(route('Admin.home'));
         }
-
+        return redirect()->route('Admin.home');
     }
    function  UpdateRoomCount(Request $request,  $room1){
         $room= Room::find($request->$room1);
