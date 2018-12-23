@@ -17,6 +17,7 @@ class News extends Migration
             $table->increments('newsId');
             $table->string('Title');
             $table->string('Content');
+            $table->string('slug');
             $table->tinyInteger('userId');
             $table->tinyInteger('state')->default(0);
             $table->timestamps();
