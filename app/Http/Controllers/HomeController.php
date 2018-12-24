@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\News;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,7 +27,13 @@ class HomeController extends Controller
         return view('admin.home');
     }
 
-    public function ListNews(){
-
+    function List(){
+        $news= News::orderBy('created_at','DESC')->take(4)->get();
+        return view('Client.index',compact('news'));
+    }
+    function GetNews(Request $request){
+        $slug= $request->slug;
+        $news = News::where('slug',$slug)->first();
+        return view('Client.newsDetail', compact('news'));
     }
 }

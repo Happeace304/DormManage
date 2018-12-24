@@ -28,7 +28,9 @@ class Users extends Migration
             $table->tinyInteger('role')->default(2); // 0:admin 1: emp 2:client
             $table->tinyInteger('state')->default(1);
             $table->rememberToken();
+            $table->date('expire_date')->nullable();
             $table->timestamps();
+
         });
     }
 

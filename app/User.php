@@ -23,7 +23,8 @@ class User extends Authenticatable
         'name', 'email', 'password',
         'roomId','phone','gender',
         'address','role',
-        'imgLink','birthday'
+        'imgLink','birthday',
+         'expire_date'
     ];
 
     /**

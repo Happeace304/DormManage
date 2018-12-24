@@ -19,12 +19,19 @@
             <th>Sđt</th>
             <th>Sửa</th>
             <th>Xóa</th>
+            @if(\Illuminate\Support\Facades\Auth::user()->role == 1)
+            <th>Nộp</th>
+            @endif
             </thead>
             @php($i=1)
 
             @foreach($user as $index=>$item)
 
-            <tr>
+            @if($item->expire_date  < \Illuminate\Support\Carbon::now()->format('Y-m-d'))
+                    <tr style="background: #e9605c">
+                @else
+                    <tr>
+                @endif
                 <td>{{$index+$user->firstItem()}}</td>
                 <td><a href="{{route('User.Detail',['id'=>$item->userId])}}">{{$item->name}}</a></td>
                 <td>{{$item->email}}</td>
@@ -38,6 +45,14 @@
                         @csrf
                         <button class="fas fa-eraser"></button>
                     </form>
+                </td>
+                <td>
+                    <form method="post" action="{{route('User.Recharge',['id'=> $item->userId])}}">
+                        @method('put')
+                        @csrf
+                        <button class="fas fa-money-bill-alt"></button>
+                    </form>
+
                 </td>
             </tr>
                 @php($i++)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\User;
 use App\Model\Room;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -81,7 +82,7 @@ class UserController extends Controller
             else $room->state=0;
             $room->save();
         }
-        return redirect()->route('User.List');
+        return redirect()->back();
 
     }
     function Search(Request $request){
@@ -119,5 +120,12 @@ class UserController extends Controller
         if($user->role ==2)
         $user->roomName= $user->room->roomName;
         return view('Admin.userDetail',compact('user'));
+    }
+    function Recharge(Request $request){
+        $user = User::findorfail($request->id);
+        $carbon = new Carbon($user->expire_date);
+        $user->expire_date= $carbon->addMonths(3)->format('Y-m-d');
+        $user->save();
+        return redirect()->back();
     }
 }

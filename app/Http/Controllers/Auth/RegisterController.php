@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Model\Room;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -93,14 +94,18 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'birthday'=> $data['birth'],
             'phone'=> $data['phone'],
             'roomId'=>$data['roomId'],
             'address'=>$data['address'],
             'role'=> $role,
+            'expire_date'=> Carbon::now()->addMonths(3)->format('Y-m-d')  ,
+
         ]);
             else $user= User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
+                'birthday'=> $data['birth'],
                 'password' => Hash::make($data['password']),
                 'phone'=> $data['phone'],
                 'address'=>$data['address'],

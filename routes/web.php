@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('Client.HomeLayout');
 })->name('client');
+Route::get('/index','HomeController@List' );
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
@@ -34,6 +35,7 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
         Route::delete('/delete/{id}', 'Admin\UserController@Delete')->name('User.Delete');
         Route::get('search', 'Admin\UserController@Search')->name('User.Search');
         Route::get('/detail/{id}', 'Admin\UserController@Detail')->name('User.Detail');
+        Route::put('/recharge', 'Admin\UserController@Recharge')->name('User.Recharge');
     });
     Route::group(['prefix'=> 'room'], function (){
         Route::get('/', 'Admin\RoomController@List')->name('Room.List');
