@@ -23,7 +23,7 @@
             <th>Nộp</th>
             @endif
             </thead>
-            @php($i=1)
+
 
             @foreach($user as $index=>$item)
 
@@ -46,6 +46,7 @@
                         <button class="fas fa-eraser"></button>
                     </form>
                 </td>
+                        @if(\Illuminate\Support\Facades\Auth::user()->role == 1)
                 <td>
                     <form method="post" action="{{route('User.Recharge',['id'=> $item->userId])}}">
                         @method('put')
@@ -54,8 +55,9 @@
                     </form>
 
                 </td>
-            </tr>
-                @php($i++)
+                        @endif
+                    </tr>
+
                 @endforeach
         </table>
                 {{ $user->links() }}
