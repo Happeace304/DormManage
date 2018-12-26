@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Bill;
 class Room extends Model
@@ -23,7 +24,7 @@ class Room extends Model
 
     ];
     function  user(){
-        return $this->hasMany('App/User','roomId','roomId');
+        return $this->hasMany(User::class,'roomId','roomId');
     }
     function  bills(){
         return $this->hasMany(Bill::class,'roomId','roomId');
