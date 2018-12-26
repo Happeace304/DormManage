@@ -8,7 +8,7 @@
                     <h2>Điều kiện tìm kiếm</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
-                            <a class="collapse-link" tabindex="4"><i class="fa fa-chevron-up"></i></a>
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
                     </ul>
                     <div class="clearfix"></div>

@@ -42,6 +42,9 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
     Route::group(['prefix'=> 'room'], function (){
         Route::get('/DanhSachPhong', 'Admin\RoomController@List')->name('DanhSachPhong');
     });
+    Route::group(['prefix'=> 'news'], function (){
+        Route::get('/DanhSachTinTuc', 'Admin\NewsController@List')->name('DanhSachTinTuc');
+    });
     Route::group([], function () //Client link
     {
         //getlist name('News.List)

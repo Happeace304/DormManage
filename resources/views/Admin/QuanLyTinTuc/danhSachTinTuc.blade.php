@@ -18,20 +18,14 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="Email">Email</label>
+                                    <label for="TenPhong">Tiêu đề</label>
                                     <input class="form-control" name="Email" id="Email" tabindex="1"/>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="TenNhanVien">Tên nhân viên</label>
-                                    <input class="form-control" name="TenNhanVien" id="TenNhanVien" tabindex="2" />
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <button type="button" class="btn btn-primary" id="btn-search" link-search="#" tabindex="3">Tìm kiếm</button>
+                                <button type="button" class="btn btn-primary" id="btn-search" link-search="#" tabindex="2">Tìm kiếm</button>
                             </div>
                         </div>
                     </form>
@@ -41,10 +35,10 @@
         <div class="col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Danh sách nhân viên</h2>
+                    <h2>Danh sách tin tức</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
-                            <a class="collapse-link" tabindex="4"><i class="fa fa-chevron-up"></i></a>
+                            <a class="collapse-link" tabindex="3"><i class="fa fa-chevron-up"></i></a>
                         </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -59,15 +53,15 @@
                                         <input type="checkbox" id="check-all" class="flat">
                                     </th>
                                     <th class="text-center">Sửa</th>
-                                    <th class="text-center">Tên nhân viên</th>
-                                    <th class="text-center">Email</th>
-                                    <th class="text-center">Số điện thoại</th>
-                                    <th class="text-center">Địa chỉ</th>
+                                    <th class="text-center">Tiêu đề</th>
+                                    <th class="text-center">Nội dung</th>
+                                    <th class="text-center">Người viết</th>
+                                    <th class="text-center">Ngày viết</th>
                                     <th class="text-center">Xóa</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($user as $index=>$item)
+                                @foreach($news as $index=>$item)
                                     <tr>
                                         <td class="text-center middle col-checkbox">
                                             <input type="checkbox" class="flat check-item" name="check-remove" id-del="">
@@ -78,16 +72,16 @@
                                             </a>
                                         </td>
                                         <td class="text-center middle">
-                                            Tên nhân viên
+                                            Tiêu đề
                                         </td>
                                         <td class="text-center middle">
-                                            Email
+                                            Nội dung
                                         </td>
                                         <td class="text-center middle">
-                                            Số điện thoại
+                                            Người viết
                                         </td>
                                         <td class="text-center middle">
-                                            Địa chỉ
+                                            Ngày viết
                                         </td>
                                         <td class="text-center middle">
                                             <button type="button" class="btn btn-xs btn-danger btn-delete" id-del="">
@@ -105,7 +99,7 @@
                         </div>
                         <div class="col-xs-9 pr-0">
                             <div  style="float:right;">
-                                {{ $user->links() }}
+                                {{ $news->links() }}
                             </div>
                         </div>
                     </div>
