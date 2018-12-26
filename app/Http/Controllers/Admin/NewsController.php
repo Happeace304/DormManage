@@ -36,5 +36,13 @@ class NewsController extends Controller
         $news= News::findorFail($request->id);
 
         return view('',compact('news');
+use App\Model\Room;
+
+class NewsController extends Controller
+{
+    //
+    function List(){
+        $news = Room::paginate(10);
+        return view('Admin.QuanLyTinTuc.DanhSachTinTuc',compact('news'));
     }
 }

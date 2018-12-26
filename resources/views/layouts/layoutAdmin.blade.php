@@ -56,7 +56,7 @@
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> Quản lý tin tức <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="#">Danh sách tin tức</a></li>
+                                    <li><a href="{{route('DanhSachTinTuc') }}">Danh sách tin tức</a></li>
                                     <li><a href="#">Thêm tin tức</a></li>
                                 </ul>
                             </li>

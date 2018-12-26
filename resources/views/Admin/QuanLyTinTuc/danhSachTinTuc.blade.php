@@ -14,28 +14,18 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content" id="condition-search">
-                    <form class="form-horizontal input_mask" id="form-search" action="{{route('Phong.Search')}}" accept-charset="UTF-8" method="get">
+                    <form class="form-horizontal input_mask" id="form-search" action="#" accept-charset="UTF-8" method="get">
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="TenPhong">Tên phòng</label>
-                                    <input class="form-control" name="Phong" id="Phong" tabindex="1"/>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="TinhTrang">Tình trạng phòng</label>
-                                    <select class="form-control" name="TinhTrang" id="TinhTrang" tabindex="2">
-                                        <option value="">Tất cả</option>
-                                        <option value="true">Đầy</option>
-                                        <option value="false">Trống</option>
-                                    </select>
+                                    <label for="TenPhong">Tiêu đề</label>
+                                    <input class="form-control" name="Email" id="Email" tabindex="1"/>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <button type="submit" class="btn btn-primary" id="btn-search" link-search="#" tabindex="3">Tìm kiếm</button>
+                                <button type="button" class="btn btn-primary" id="btn-search" link-search="#" tabindex="2">Tìm kiếm</button>
                             </div>
                         </div>
                     </form>
@@ -45,10 +35,10 @@
         <div class="col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Danh sách phòng</h2>
+                    <h2>Danh sách tin tức</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
-                            <a class="collapse-link" tabindex="4"><i class="fa fa-chevron-up"></i></a>
+                            <a class="collapse-link" tabindex="3"><i class="fa fa-chevron-up"></i></a>
                         </li>
                     </ul>
                     <div class="clearfix"></div>
@@ -62,31 +52,41 @@
                                     <th class="text-center col-checkbox">
                                         <input type="checkbox" id="check-all" class="flat">
                                     </th>
-                                    <th class="text-center">Xem chi tiết</th>
-                                    <th class="text-center">Tên phòng</th>
-                                    <th class="text-center">Số lượng</th>
-                                    <th class="text-center">Tình trạng</th>
+                                    <th class="text-center">Sửa</th>
+                                    <th class="text-center">Tiêu đề</th>
+                                    <th class="text-center">Nội dung</th>
+                                    <th class="text-center">Người viết</th>
+                                    <th class="text-center">Ngày viết</th>
+                                    <th class="text-center">Xóa</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($room as $item)
+                                @foreach($news as $index=>$item)
                                     <tr>
                                         <td class="text-center middle col-checkbox">
                                             <input type="checkbox" class="flat check-item" name="check-remove" id-del="">
                                         </td>
                                         <td class="text-center middle">
                                             <a href="#">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
                                         </td>
                                         <td class="text-center middle">
-                                            {{$item->roomName}}
+                                            Tiêu đề
                                         </td>
                                         <td class="text-center middle">
-                                            {{$item->peopleCount}}
+                                            Nội dung
                                         </td>
                                         <td class="text-center middle">
-                                            {{$item->peopleCount <4? 'Trống':'Đầy'}}
+                                            Người viết
+                                        </td>
+                                        <td class="text-center middle">
+                                            Ngày viết
+                                        </td>
+                                        <td class="text-center middle">
+                                            <button type="button" class="btn btn-xs btn-danger btn-delete" id-del="">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -99,7 +99,7 @@
                         </div>
                         <div class="col-xs-9 pr-0">
                             <div  style="float:right;">
-                                {{ $room->links() }}
+                                {{ $news->links() }}
                             </div>
                         </div>
                     </div>
