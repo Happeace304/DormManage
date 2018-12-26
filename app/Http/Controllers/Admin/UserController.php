@@ -27,7 +27,7 @@ class UserController extends Controller
 
     function EditForm(Request $request){
         $user = User::findorFail($request->id);
-        $room = Room::where('state',0)->get();
+        $room = Room::where('peopleCount','<',4)->get();
         return view('Admin.userEdit',compact(['user','room']));
     }
     function Update(Request $request){
@@ -66,8 +66,6 @@ class UserController extends Controller
    function  UpdateRoomCount(Request $request,  $room1){
         $room= Room::find($request->$room1);
         $room->peopleCount = User::where('roomId',$request->$room1)->count();
-        if ($room->peopleCount == 4) $room->state=1;
-        else $room->state=0;
         $room->save();
     }
     function Delete(Request $request){
@@ -78,8 +76,7 @@ class UserController extends Controller
             if(Auth::user()->role ==1)
         {  $room= Room::findOrFail($user->roomId);
             $room->peopleCount = User::where('roomId', $room->roomId)->count();
-            if ($room->peopleCount >= 4) $room->state=1;
-            else $room->state=0;
+
             $room->save();
         }
         return redirect()->back();

@@ -16,7 +16,7 @@ class AdminCheck
      */
     public function handle($request, Closure $next)
     {   if(Auth::user() && (Auth::user()->role== 0 ||  Auth::user()->role== 1)) {
-        return $next($request);
+            return $next($request);
     }
         return redirect('/');
     }

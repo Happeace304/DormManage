@@ -2,7 +2,9 @@
 @section('content')
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header">{{ __('Details') }}</div>
+            <div class="card-header" @if($user->expire_date < \Illuminate\Support\Carbon::now()->format('Y-d-d'))
+            style="background-color: #e9605c" @endif>
+                <b>Chi tiết</b></div>
             <div class="card-body">
                 <div class="row">
                 <div class="col-md-4">
@@ -28,13 +30,18 @@
                    <div>
                        <label>Vị trí:</label> <span>@if($user->role == 0) {{'Admin'}}
                            @elseif($user->role == 1) {{'Nhân viên'}}
-                                                        @else {{'Sinh viên'}}
-                                                        @endif
+                           @else {{'Sinh viên'}}
+                           @endif
                        </span>
                    </div>
                    <div>
                        <label>Ngày tạo:</label> <span>{{date('h:m:s d-m-Y',strtotime($user->created_at))}}</span>
                    </div>
+                   @if(\Illuminate\Support\Facades\Auth::user()->role ==1)
+                   <div>
+                       <label>Ngày hết hạn:</label> <span>{{date('d-m-Y',strtotime($user->expire_date))}}</span>
+                   </div>
+                       @endif
                </form>
                 </div>
                     @if($user->imgLink != null)

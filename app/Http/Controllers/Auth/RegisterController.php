@@ -29,7 +29,7 @@ class RegisterController extends Controller
     //override form
     public function showRegistrationForm()
     {
-        $room = Room::where('state',0)->get();
+        $room = Room::where('peopleCount','<',4)->get();
 
         return view('auth.register',compact('room'));
     }
@@ -115,7 +115,6 @@ class RegisterController extends Controller
         if($user && $adminRole==1) {
             $room= Room::find($data['roomId']);
             $room->peopleCount = User::where('roomId',$data['roomId'])->count();
-            if ($room->peopleCount == 4) $room->state=1;
             $room->save();
         }
         return $user;

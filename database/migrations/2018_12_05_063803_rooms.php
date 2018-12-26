@@ -16,7 +16,6 @@ class Rooms extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->increments('roomId');
             $table->string('roomName');
-            $table->tinyInteger('state')->default(0); //0:empty ; 1:full
             $table->tinyInteger('peopleCount')->default(0);
         });
     }

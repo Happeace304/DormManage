@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('Client.HomeLayout');
 })->name('client');
 Route::get('/index','HomeController@List' );
+Route::get('/news/{slug}','HomeController@GetNews' );
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 

@@ -25,6 +25,20 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="birth" class="col-md-4 col-form-label text-md-right">{{ __('Birthday') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="birth" type="date" class="form-control{{ $errors->has('birth') ? ' is-invalid' : '' }}" name="birth" value="{{$errors->has('birth')? old('birth'): $user->birthday }}" required autofocus>
+
+                            @if ($errors->has('birth'))
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('birth') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                         <div class="col-md-6">
