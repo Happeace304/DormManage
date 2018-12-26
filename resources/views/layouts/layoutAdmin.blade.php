@@ -51,10 +51,10 @@
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> Quản lý User <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-home"></i> Quản lý tin tức <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="#">Danh sách User</a></li>
-                                    <li><a href="#">Thêm User</a></li>
+                                    <li><a href="#">Danh sách tin tức</a></li>
+                                    <li><a href="#">Thêm tin tức</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i> Quản lý sinh viên <span class="fa fa-chevron-down"></span></a>
@@ -114,7 +114,11 @@
             </div>
         </div>
         <!-- /top navigation -->
-    @yield('content')
+        <!-- page content -->
+        <div class="right_col" role="main">
+            @yield('content')
+        </div>
+        <!-- /page content -->
         <!-- footer content -->
         <footer>
             <div class="pull-right">
@@ -138,7 +142,6 @@
 <script src="{{ asset('public/assets/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js')}}"></script>
 <script src="{{ asset('public/assets/jquery.hotkeys/jquery.hotkeys.js')}}"></script>
 <script src="{{ asset('public/assets/google-code-prettify/src/prettify.js')}}"></script>
-
 <!-- Custom Theme Scripts -->
 <script src="{{ asset('public/js/custom.min.js')}}"></script>
 

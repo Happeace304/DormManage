@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.layoutAdmin')
 
 @section('content')
-
+    <div class="right_col" role="main">
     <div class="col-md-8">
         <div class="card-header"><h2  style="color: #2176BD;">Danh sách người dùng </h2></div>
         <div class="card-body">
@@ -66,5 +66,6 @@
             @endif
     </div>
 
+    </div>
     </div>
 @endsection
