@@ -17,4 +17,22 @@ class RoomController extends Controller
        }
        return view('Admin.QuanLyPhong.DanhSachPhong',compact('room'));
    }
+    function SearchPhong(Request $request){
+    $phong = $request->Phong;
+    $tinhtrang = $request->TinhTrang;
+
+    if($tinhtrang!=null){
+
+        if($tinhtrang == 'true') $cmp='=';
+            else if($tinhtrang == 'false') $cmp= '<';
+
+
+
+    }else $cmp= '<=';
+
+
+    $room = Room::where('roomName','like','%'.$phong.'%')->where('peopleCount', $cmp, 4)->paginate(10);
+    $room->appends(['Phong' =>$phong, 'TinhTrang'=> $tinhtrang]);
+        return view('Admin.QuanLyPhong.DanhSachPhong',compact('room'));
+    }
 }

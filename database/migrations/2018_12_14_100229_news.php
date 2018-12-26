@@ -15,11 +15,12 @@ class News extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('newsId');
-            $table->string('Title');
-            $table->string('Content');
+            $table->string('title');
+            $table->string('content');
             $table->string('slug');
+            $table->string('imgLink')->nullable();
             $table->tinyInteger('userId');
-            $table->tinyInteger('state')->default(0);
+            $table->tinyInteger('state')->default(1);
             $table->timestamps();
         });
     }

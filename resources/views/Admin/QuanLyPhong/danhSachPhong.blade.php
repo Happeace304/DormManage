@@ -14,12 +14,12 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content" id="condition-search">
-                    <form class="form-horizontal input_mask" id="form-search" action="#" accept-charset="UTF-8" method="get">
+                    <form class="form-horizontal input_mask" id="form-search" action="{{route('Phong.Search')}}" accept-charset="UTF-8" method="get">
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="TenPhong">Tên phòng</label>
-                                    <input class="form-control" name="Email" id="Email" tabindex="1"/>
+                                    <input class="form-control" name="Phong" id="Phong" tabindex="1"/>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -35,7 +35,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <button type="button" class="btn btn-primary" id="btn-search" link-search="#" tabindex="3">Tìm kiếm</button>
+                                <button type="submit" class="btn btn-primary" id="btn-search" link-search="#" tabindex="3">Tìm kiếm</button>
                             </div>
                         </div>
                     </form>
@@ -69,7 +69,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($room as $index=>$item)
+                                @foreach($room as $item)
                                     <tr>
                                         <td class="text-center middle col-checkbox">
                                             <input type="checkbox" class="flat check-item" name="check-remove" id-del="">
@@ -80,13 +80,13 @@
                                             </a>
                                         </td>
                                         <td class="text-center middle">
-                                            Tên phòng
+                                            {{$item->roomName}}
                                         </td>
                                         <td class="text-center middle">
-                                            Số lượng
+                                            {{$item->peopleCount}}
                                         </td>
                                         <td class="text-center middle">
-                                            Tình trạng
+                                            {{$item->peopleCount <4? 'Trống':'Đầy'}}
                                         </td>
                                     </tr>
                                 @endforeach

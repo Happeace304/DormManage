@@ -49,7 +49,6 @@ class UserController extends Controller
                     }
                 }
             }
-
         }
         return redirect()->route('Admin.home');
     }
@@ -72,36 +71,7 @@ class UserController extends Controller
         return redirect()->back();
 
     }
-    function Search(Request $request){
-        $userrole= Auth::user()->role;
-        $userrole == 0? $role= 1:$role=2;
-        $find= $request->get('select');
-        $user=null;
-        if($find== 'name') {
-            $user = User::where('role', $role)->where('state', 1)->where('name','LIKE' ,'%'. $request->get('q').'%')->paginate(10);
 
-            if(count($user)>0) {
-                foreach ($user as $item) {
-
-                    $item->roomName = User::find($item->userId)->room;
-                }
-            } else $user =null;
-
-        }else if ($find == 'room') {
-
-            $room = Room::where('roomName', $request->get('q'))->first();
-            if ($room) {
-
-                $user = User::where('role', $role)->where('state', 1)->where('roomId', $room->roomId)->paginate(10);
-                if(count($user)>0) {
-                foreach ($user as $item) {
-                    $item->roomName = User::find($item->userId)->room;
-                }}else $user =null;
-            }
-        }
-        return view('Admin.userList',compact('user'));
-
-    }
     function Detail(Request $request){
         $user = User::findorfail($request->id);
         if($user->role ==2)
@@ -136,7 +106,8 @@ class UserController extends Controller
         $email = $request->Email;
         $ten = $request->TenNhanVien;
 
-        $user = User::where('role', 1)->where('state', 1)->where('name','LIKE' ,'%'. $ten.'%')->where('email','LIKE' ,'%'. $email.'%')->paginate(10);
+        $user = User::where('role', 1)->where('state', 1)->where('name','LIKE' ,'%'. $ten.'%')->where('email','LIKE' ,'%'. $email.'%')->orderBy('name','asc')->paginate(10);
+        $user->appends(['Email' =>$email, 'TenNhanVien'=> $ten]);
         return view('Admin.QuanLyNhanVien.danhSachNhanVien',compact('user'));
     }
     function SearchSinhvien(Request $request){
@@ -148,12 +119,13 @@ class UserController extends Controller
 
         $user = User::where('role', 2)->where('state', 1)->where('name','LIKE' ,'%'. $ten.'%')
             ->where('email','LIKE' ,'%'. $email.'%')
-            ->whereIn('roomId',$room)->paginate(10);
+            ->whereIn('roomId',$room)->orderBy('name','asc')->paginate(10);
 
         if($user)
         foreach ($user as $item){
             $item->roomName = User::find($item->userId)->room;
         }
+        $user->appends(['Email' => $email, 'TenNhanVien'=> $ten,'TenPhong'=>$phong]);
         return view('Admin.QuanLySinhVien.danhSachSinhVien',compact('user'));
     }
 }

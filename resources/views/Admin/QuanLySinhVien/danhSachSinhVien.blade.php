@@ -101,7 +101,7 @@
                                         {{$item->address}}
                                     </td>
                                     <td class="text-center middle">
-                                        {{$item->expire_date}}
+                                        {{date('d-m-Y',strtotime($item->expire_date))}}
                                     </td>
                                     <td class="text-center middle">
                                         <button type="button" class="btn btn-xs btn-danger btn-delete" id-del="">

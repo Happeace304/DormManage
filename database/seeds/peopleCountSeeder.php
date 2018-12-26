@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use \App\Model\Room;
-use \App\User;
+use \App\Model\User;
 class peopleCountSeeder extends Seeder
 {
     /**
