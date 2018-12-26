@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
+use App\Model\User;
 use App\Model\Room;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,11 +15,16 @@ class UserController extends Controller
 {
     function List(){
         $userrole= Auth::user()->role;
-        $userrole == 0? $role= 1:$role=2;
-        $user = User::where('role',$role)->where('state', 1)->orderby('name')->paginate(10);
-        if(Auth::user()->role == 1)
-        foreach ($user as $item){
-            $item->roomName = User::find($item->userId)->room;
+        if($userrole == 1){
+            $user = User::where('role',2)->where('state', 1)->orderby('name')->paginate(10);
+            foreach ($user as $item){
+                $item->roomName = User::find($item->userId)->room;
+            }
+        }else if ($userrole ==0){
+            $user = User::where('state', 1)->orderby('name')->paginate(10);
+            foreach ($user as $item){
+                $item->roomName = User::find($item->userId)->room;
+            }
         }
 
         return view('Admin.userList',compact('user'));
