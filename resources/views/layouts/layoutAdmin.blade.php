@@ -36,7 +36,10 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="{{ asset('public/image/user.png') }}" alt="..." class="img-circle profile_img">
+                        <img @if(Auth::user()->imgLink == null) src="{{ asset('public/image/user.png') }}"
+                             @else src="{{asset('public/image').'/'.Auth::user()->imgLink}}"
+                             @endif
+                             alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Xin chào</span>
@@ -101,12 +104,20 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="{{ asset('public/image/user.png') }}" alt="">{{ Auth::user()->name }}
+                                <img @if(Auth::user()->imgLink == null) src="{{ asset('public/image/user.png') }}"
+                                     @else src="{{asset('public/image').'/'.Auth::user()->imgLink}}"
+                                     @endif
+                                        alt="">{{ Auth::user()->name }}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li><a href="#"> Trang cá nhân</a></li>
-                                <li><a href="#"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </ul>
                         </li>
                     </ul>
