@@ -13,22 +13,7 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    function List(){
-        $userrole= Auth::user()->role;
-        if($userrole == 1){
-            $user = User::where('role',2)->where('state', 1)->orderby('name')->paginate(10);
-            foreach ($user as $item){
-                $item->roomName = User::find($item->userId)->room;
-            }
-        }else if ($userrole ==0){
-            $user = User::where('state', 1)->orderby('name')->paginate(10);
-            foreach ($user as $item){
-                $item->roomName = User::find($item->userId)->room;
-            }
-        }
 
-        return view('Admin.userList',compact('user'));
-    }
 
     function EditForm(Request $request){
         $user = User::findorFail($request->id);
@@ -133,11 +118,9 @@ class UserController extends Controller
 
     function ListStudent()
     {
-        $userrole= Auth::user()->role;
-        $userrole == 0? $role= 1:$role=2;
-        $user = User::where('role',$role)->where('state', 1)->orderby('name')->paginate(10);
-        if(Auth::user()->role == 1)
-            foreach ($user as $item){
+
+        $user = User::where('role',2)->where('state', 1)->orderby('name')->paginate(10);
+        foreach ($user as $item){
                 $item->roomName = User::find($item->userId)->room;
             }
         return view('Admin.QuanLySinhVien.danhSachSinhVien',compact('user'));
@@ -145,13 +128,32 @@ class UserController extends Controller
 
     function ListNhanVien()
     {
-        $userrole= Auth::user()->role;
-        $userrole == 0? $role= 1:$role=2;
-        $user = User::where('role',$role)->where('state', 1)->orderby('name')->paginate(10);
-        if(Auth::user()->role == 1)
-            foreach ($user as $item){
-                $item->roomName = User::find($item->userId)->room;
-            }
+        $user = User::where('role',1)->where('state', 1)->orderby('name')->paginate(10);
+
         return view('Admin.QuanLyNhanVien.danhSachNhanVien',compact('user'));
+    }
+    function SearchNhanvien(Request $request){
+        $email = $request->Email;
+        $ten = $request->TenNhanVien;
+
+        $user = User::where('role', 1)->where('state', 1)->where('name','LIKE' ,'%'. $ten.'%')->where('email','LIKE' ,'%'. $email.'%')->paginate(10);
+        return view('Admin.QuanLyNhanVien.danhSachNhanVien',compact('user'));
+    }
+    function SearchSinhvien(Request $request){
+        $email = $request->Email;
+        $ten = $request->TenSinhVien;
+        $phong= $request->TenPhong;
+
+        $room= Room::select('roomId')->where('roomName','LIKE','%'.$phong.'%')->get();
+
+        $user = User::where('role', 2)->where('state', 1)->where('name','LIKE' ,'%'. $ten.'%')
+            ->where('email','LIKE' ,'%'. $email.'%')
+            ->whereIn('roomId',$room)->paginate(10);
+
+        if($user)
+        foreach ($user as $item){
+            $item->roomName = User::find($item->userId)->room;
+        }
+        return view('Admin.QuanLySinhVien.danhSachSinhVien',compact('user'));
     }
 }
