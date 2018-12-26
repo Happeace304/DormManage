@@ -14,7 +14,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content" id="condition-search">
-                    <form class="form-horizontal input_mask" id="form-search" action="#" accept-charset="UTF-8" method="get">
+                    <form class="form-horizontal input_mask" id="form-search" action="{{route('NhanVien.Search')}}" accept-charset="UTF-8" method="get">
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <button type="button" class="btn btn-primary" id="btn-search" link-search="#" tabindex="3">Tìm kiếm</button>
+                                <button type="submit" class="btn btn-primary" id="btn-search" link-search="#" tabindex="3">Tìm kiếm</button>
                             </div>
                         </div>
                     </form>
@@ -73,26 +73,30 @@
                                             <input type="checkbox" class="flat check-item" name="check-remove" id-del="">
                                         </td>
                                         <td class="text-center middle">
-                                            <a href="#">
+                                            <a href="{{route('User.Edit',['id'=>$item->userId]) }}">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
                                         </td>
                                         <td class="text-center middle">
-                                            Tên nhân viên
+                                           {{$item->name}}
                                         </td>
                                         <td class="text-center middle">
-                                            Email
+                                            {{$item->email}}
                                         </td>
                                         <td class="text-center middle">
-                                            Số điện thoại
+                                            {{$item->phone}}
                                         </td>
                                         <td class="text-center middle">
-                                            Địa chỉ
+                                            {{$item->address}}
                                         </td>
                                         <td class="text-center middle">
-                                            <button type="button" class="btn btn-xs btn-danger btn-delete" id-del="">
-                                                <i class="fa fa-times" aria-hidden="true"></i>
-                                            </button>
+                                            <form method="post" action="{{route('User.Delete',['id'=> $item->userId])}}">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-xs btn-danger btn-delete" >
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

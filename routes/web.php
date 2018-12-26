@@ -29,7 +29,7 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
 
         Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
         Route::post('register', 'Auth\RegisterController@register');
-        Route::get('/', 'Admin\UserController@List')->name('User.List');
+
         Route::get('/edit/{id}', 'Admin\UserController@EditForm')->name('User.Edit');
         Route::put('/edit', 'Admin\UserController@Update')->name('User.SaveEdit');
         Route::delete('/delete/{id}', 'Admin\UserController@Delete')->name('User.Delete');
@@ -38,6 +38,8 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
         Route::put('/recharge', 'Admin\UserController@Recharge')->name('User.Recharge');
         Route::get('/DanhSachSinhVien', 'Admin\UserController@ListStudent')->name('DanhSachSinhVien');
         Route::get('/DanhSachNhanVien', 'Admin\UserController@ListNhanVien')->name('DanhSachNhanVien');
+        Route::get('timNV', 'Admin\UserController@SearchNhanVien')->name('NhanVien.Search');
+        Route::get('timSV', 'Admin\UserController@SearchSinhVien')->name('SinhVien.Search');
     });
     Route::group(['prefix'=> 'room'], function (){
         Route::get('/DanhSachPhong', 'Admin\RoomController@List')->name('DanhSachPhong');
