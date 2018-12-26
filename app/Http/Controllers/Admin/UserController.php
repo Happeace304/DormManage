@@ -140,6 +140,18 @@ class UserController extends Controller
             foreach ($user as $item){
                 $item->roomName = User::find($item->userId)->room;
             }
-        return view('Admin.danhSachSinhVien',compact('user'));
+        return view('Admin.QuanLySinhVien.danhSachSinhVien',compact('user'));
+    }
+
+    function ListNhanVien()
+    {
+        $userrole= Auth::user()->role;
+        $userrole == 0? $role= 1:$role=2;
+        $user = User::where('role',$role)->where('state', 1)->orderby('name')->paginate(10);
+        if(Auth::user()->role == 1)
+            foreach ($user as $item){
+                $item->roomName = User::find($item->userId)->room;
+            }
+        return view('Admin.QuanLyNhanVien.danhSachNhanVien',compact('user'));
     }
 }

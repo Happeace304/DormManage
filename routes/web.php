@@ -36,10 +36,11 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
         Route::get('search', 'Admin\UserController@Search')->name('User.Search');
         Route::get('/detail/{id}', 'Admin\UserController@Detail')->name('User.Detail');
         Route::put('/recharge', 'Admin\UserController@Recharge')->name('User.Recharge');
-        Route::get('/DanhSachSinhVien', 'Admin\UserController@ListStudent')->name('User.List');
+        Route::get('/DanhSachSinhVien', 'Admin\UserController@ListStudent')->name('DanhSachSinhVien');
+        Route::get('/DanhSachNhanVien', 'Admin\UserController@ListNhanVien')->name('DanhSachNhanVien');
     });
     Route::group(['prefix'=> 'room'], function (){
-        Route::get('/', 'Admin\RoomController@List')->name('Room.List');
+        Route::get('/DanhSachPhong', 'Admin\RoomController@List')->name('DanhSachPhong');
     });
     Route::group([], function () //Client link
     {

@@ -15,8 +15,6 @@ class RoomController extends Controller
        foreach ($room as $item){
            $item->billList = Room::find($item->roomId)->bills()->count();
        }
-
-
-       return view('Admin.roomList',compact('room'));
+       return view('Admin.QuanLyPhong.DanhSachPhong',compact('room'));
    }
 }
