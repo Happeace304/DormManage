@@ -60,7 +60,7 @@
                             <li><a><i class="fa fa-edit"></i> Quản lý sinh viên <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{route('DanhSachSinhVien') }}">Danh sách sinh viên</a></li>
-                                    <li><a href="#">Thêm sinh viên</a></li>
+                                    <li><a href="{{route('ThemSinhVien') }}">Thêm sinh viên</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-desktop"></i> Quản lý phòng <span class="fa fa-chevron-down"></span></a>
@@ -71,7 +71,7 @@
                             <li><a><i class="fa fa-table"></i> Quản lý nhân viên <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{route('DanhSachNhanVien') }}">Danh sách nhân viên</a></li>
-                                    <li><a href="#">Thêm nhân viên</a></li>
+                                    <li><a href="{{route('ThemNhanVien') }}">Thêm nhân viên</a></li>
                                 </ul>
                             </li>
                         </ul>

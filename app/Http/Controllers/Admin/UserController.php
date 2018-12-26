@@ -156,4 +156,15 @@ class UserController extends Controller
         }
         return view('Admin.QuanLySinhVien.danhSachSinhVien',compact('user'));
     }
+    function AddSinhVien()
+    {
+        $room = Room::where('peopleCount','<',4)->get();
+        return view('Admin.QuanLySinhVien.addEditSinhVien',compact('room'));
+    }
+
+    function AddNhanVien()
+    {
+        return view('Admin.QuanLyNhanVien.addEditNhanVien');
+    }
+
 }
