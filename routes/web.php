@@ -42,6 +42,8 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
         Route::put('/SaveEditNhanVien', 'Admin\UserController@SaveEditNhanVien')->name('SaveEditNhanVien');
 
         Route::delete('/XoaUser/{id}', 'Admin\UserController@Delete')->name('XoaUser');
+
+        Route::put('/GiaHan/{id}','Admin\UserController@Recharge')->name('User.Recharge');
     });
     Route::group(['prefix'=> 'room'], function (){
         Route::get('/DanhSachPhong', 'Admin\RoomController@List')->name('DanhSachPhong');
