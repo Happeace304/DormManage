@@ -17,6 +17,16 @@ class RoomController extends Controller
        }
        return view('Admin.QuanLyPhong.DanhSachPhong',compact('room'));
    }
+
+    function Detail(Request $request){
+        $room = Room::paginate(10);
+
+        foreach ($room as $item){
+            $item->billList = Room::find($item->roomId)->bills()->count();
+        }
+        return view('Admin.QuanLyPhong.ChiTietPhong',compact('room'));
+    }
+
     function SearchPhong(Request $request){
     $phong = $request->Phong;
     $tinhtrang = $request->TinhTrang;

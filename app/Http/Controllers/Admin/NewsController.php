@@ -11,7 +11,7 @@ class NewsController extends Controller
 {
     function List(){
         $news= News::orderBy('created_at','ASC')->paginate(10);
-        return view('',compact('news'));
+        return view('Admin.QuanLyTinTuc.DanhSachTinTuc',compact('news'));
     }
     function NewsDetail(Request $request){
         $news= News::where('slug',$request->slug)->first();
@@ -35,14 +35,6 @@ class NewsController extends Controller
     function EditForm(Request $request){
         $news= News::findorFail($request->id);
 
-        return view('',compact('news');
-use App\Model\Room;
-
-class NewsController extends Controller
-{
-    //
-    function List(){
-        $news = Room::paginate(10);
-        return view('Admin.QuanLyTinTuc.DanhSachTinTuc',compact('news'));
+        return view('',compact('news'));
     }
 }
