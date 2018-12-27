@@ -20,9 +20,7 @@
 
     <!-- Custom styling plus plugins -->
     <link href="{{ asset('public/css/custom.min.css') }}" rel="stylesheet">
-    <!-- CKEDITOR -->
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-    <script> CKEDITOR.replace('editor1'); </script>
+
 </head>
 
 <body class="nav-md">
@@ -60,7 +58,7 @@
                             <li><a><i class="fa fa-home"></i> Quản lý tin tức <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{route('DanhSachTinTuc') }}">Danh sách tin tức</a></li>
-                                    <li><a href="#">Thêm tin tức</a></li>
+                                    <li><a href="{{route('ThemTinTuc') }}">Thêm tin tức</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i> Quản lý sinh viên <span class="fa fa-chevron-down"></span></a>
@@ -74,12 +72,14 @@
                                     <li><a href="{{route('DanhSachPhong') }}">Danh sách phòng</a></li>
                                 </ul>
                             </li>
+                            @if(\Illuminate\Support\Facades\Auth::user()->role == 0)
                             <li><a><i class="fa fa-table"></i> Quản lý nhân viên <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{route('DanhSachNhanVien') }}">Danh sách nhân viên</a></li>
                                     <li><a href="{{route('ThemNhanVien') }}">Thêm nhân viên</a></li>
                                 </ul>
                             </li>
+                                @endif
                         </ul>
                     </div>
 

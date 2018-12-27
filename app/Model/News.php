@@ -9,7 +9,7 @@ class News extends Model
     protected $primaryKey = 'newsId';
     protected $table='news';
     protected $fillable = [
-        'title','state','content','slug','imgLink'
+        'title','state','content','slug','imgLink','userId'
     ];
 
 }

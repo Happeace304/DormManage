@@ -90,7 +90,7 @@
                                             {{$item->address}}
                                         </td>
                                         <td class="text-center middle">
-                                            <form method="post" action="{{route('User.Delete',['id'=> $item->userId])}}">
+                                            <form method="post" action="{{route('XoaUser',['id'=> $item->userId])}}">
                                                 @method('delete')
                                                 @csrf
                                                 <button class="btn btn-xs btn-danger btn-delete" >

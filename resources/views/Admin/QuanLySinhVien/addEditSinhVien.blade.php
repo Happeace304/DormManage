@@ -13,8 +13,10 @@
             </div>
             <div class="x_content">
                 <br />
-                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{$action}}">
+                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{$action}}" enctype="multipart/form-data">
                     @csrf
+                   @if(isset($user)) @method('PUT') @endif
+
                     <input type="text" id="userId"  name="userId"
                            value="{{ isset($user)?$user->userId:''}}" hidden>
                     <div class="form-group">
@@ -79,7 +81,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Ảnh đại diện</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="file" id="image" name="image" class="form-control col-md-7 col-xs-12">
-                            {{--<input type="text" hidden name="old_image" value="{{$user->imgLink}}">--}}
+                            @if(isset($user))<input type="text" hidden name="old_image" value="{{$user->imgLink}}"> @endif
                         </div>
                     </div>
                     <div class="form-group">

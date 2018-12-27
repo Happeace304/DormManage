@@ -104,9 +104,13 @@
                                         {{date('d-m-Y',strtotime($item->expire_date))}}
                                     </td>
                                     <td class="text-center middle">
-                                        <button type="button" class="btn btn-xs btn-danger btn-delete" id-del="">
-                                            <i class="fa fa-times" aria-hidden="true"></i>
-                                        </button>
+                                        <form method="post" action="{{route('XoaUser',['id'=> $item->userId])}}">
+                                            @method('delete')
+                                            @csrf
+                                            <button class="btn btn-xs btn-danger btn-delete" >
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

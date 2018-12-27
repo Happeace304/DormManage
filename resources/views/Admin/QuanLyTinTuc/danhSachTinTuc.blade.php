@@ -72,21 +72,25 @@
                                             </a>
                                         </td>
                                         <td class="text-center middle">
-                                            Tiêu đề
+                                            {{$item->title}}
                                         </td>
                                         <td class="text-center middle">
-                                            Nội dung
+                                            {!! $item->content!!}
                                         </td>
                                         <td class="text-center middle">
-                                            Người viết
+                                            {{$item->userId}}
                                         </td>
                                         <td class="text-center middle">
-                                            Ngày viết
+                                            {{$item->created_at}}
                                         </td>
                                         <td class="text-center middle">
-                                            <button type="button" class="btn btn-xs btn-danger btn-delete" id-del="">
-                                                <i class="fa fa-times" aria-hidden="true"></i>
-                                            </button>
+                                            <form method="post" action="{{route('XoaTinTuc',['id'=> $item->newsId])}}">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-xs btn-danger btn-delete" >
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

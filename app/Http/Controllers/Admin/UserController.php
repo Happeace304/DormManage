@@ -20,17 +20,11 @@ class UserController extends Controller
 
     function Delete(Request $request){
         $user = User::findOrFail($request->id);
-
-
-        if($user->delete() )
-            if(Auth::user()->role ==1)
-        {  $room= Room::findOrFail($user->roomId);
-            $room->peopleCount = User::where('roomId', $room->roomId)->count();
-
-            $room->save();
+        if($user->delete())
+        {
+            $this->UpdateRoomCount();
         }
         return redirect()->back();
-
     }
 
     function Detail(Request $request){
@@ -101,6 +95,15 @@ class UserController extends Controller
         return view('Admin.QuanLyNhanVien.addEditNhanVien',compact('action'));
     }
     function SaveNhanVien(Request $request){
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if(isset($request->image)){
+            $imageName = time().'.'.request()->image->getClientOriginalExtension();
+            $request->file('image')->move(public_path('image'), $imageName);
+        }else $imageName='';
+
 
         $user = new User([
             'name' => $request->name,
@@ -110,6 +113,7 @@ class UserController extends Controller
             'phone'=> $request->phone,
             'address'=>$request->address,
             'role'=> $request->role,
+            'imgLink'=> $imageName,
             'gender'=> $request->gender == 'true'?1:0,
         ]);
 
@@ -127,7 +131,14 @@ class UserController extends Controller
 
     }
     function SaveSinhVien(Request $request){
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
+        if(isset($request->image)){
+            $imageName = time().'.'.request()->image->getClientOriginalExtension();
+            $request->file('image')->move(public_path('image'), $imageName);
+        }else $imageName='';
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
@@ -136,6 +147,7 @@ class UserController extends Controller
             'phone'=> $request->phone,
             'address'=>$request->address,
             'role'=> $request->role,
+            'imgLink'=> $imageName,
             'gender'=> $request->gender == 'true'?1:0,
             'roomId' =>$request->roomId,
             'expire_date'=> Carbon::now()->addMonths(3)->format('Y-m-d'),
@@ -154,11 +166,21 @@ class UserController extends Controller
     }
 
     function  SaveEditSinhVien(Request $request){
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if(isset($request->image)){
+            $imageName = time().'.'.request()->image->getClientOriginalExtension();
+            $request->file('image')->move(public_path('image'), $imageName);
+        }else $imageName= $request->old_image;
+
         $user= User::findOrFail ($request->userId);
         $user->name= $request->name;
         $user->phone= $request->phone;
         $user->email= $request->email;
         $user->address= $request->address;
+        $user->imgLink= $imageName;
         $user->gender= $request->gender=='true'?1:0;
         $user->birthday= date('Y-m-d',strtotime($request->birthday));
         $user->roomId= $request->roomId;
@@ -176,10 +198,21 @@ class UserController extends Controller
         return view('Admin.QuanLyNhanVien.addEditNhanVien',compact(['user','action']));
     }
     function  SaveEditNhanVien(Request $request){
+
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if(isset($request->image)){
+            $imageName = time().'.'.request()->image->getClientOriginalExtension();
+            $request->file('image')->move(public_path('image'), $imageName);
+        }else $imageName= $request->old_image;
+
         $user= User::findOrFail ($request->userId);
         $user->name= $request->name;
         $user->phone= $request->phone;
         $user->email= $request->email;
+        $user->imgLink= $imageName;
         $user->address= $request->address;
         $user->gender= $request->gender=='true'?1:0;
         $user->birthday= date('Y-m-d',strtotime($request->birthday));

@@ -27,16 +27,6 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
 
     Route::group(['prefix'=> 'user'], function (){
 
-        Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-        Route::post('register', 'Auth\RegisterController@register');
-
-        Route::get('/edit/{id}', 'Admin\UserController@EditForm')->name('User.Edit');
-        Route::put('/edit', 'Admin\UserController@Update')->name('User.SaveEdit');
-        Route::delete('/delete/{id}', 'Admin\UserController@Delete')->name('User.Delete');
-        Route::get('search', 'Admin\UserController@Search')->name('User.Search');
-        Route::get('/detail/{id}', 'Admin\UserController@Detail')->name('User.Detail');
-        Route::put('/recharge', 'Admin\UserController@Recharge')->name('User.Recharge');
-
         Route::get('/DanhSachSinhVien', 'Admin\UserController@ListStudent')->name('DanhSachSinhVien');
         Route::get('/DanhSachNhanVien', 'Admin\UserController@ListNhanVien')->name('DanhSachNhanVien');
         Route::get('/ThemSinhVien', 'Admin\UserController@AddSinhVien')->name('ThemSinhVien');
@@ -48,9 +38,10 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
 
         Route::get('/EditFormSinhVien/{id}', 'Admin\UserController@EditFormSinhVien')->name('EditFormSinhVien');
         Route::get('/EditFormNhanVien/{id}', 'Admin\UserController@EditFormNhanVien')->name('EditFormNhanVien');
-        Route::post('/SaveEditSinhVien', 'Admin\UserController@SaveEditSinhVien')->name('SaveEditSinhVien');
-        Route::post('/SaveEditNhanVien', 'Admin\UserController@SaveEditNhanVien')->name('SaveEditNhanVien');
+        Route::put('/SaveEditSinhVien', 'Admin\UserController@SaveEditSinhVien')->name('SaveEditSinhVien');
+        Route::put('/SaveEditNhanVien', 'Admin\UserController@SaveEditNhanVien')->name('SaveEditNhanVien');
 
+        Route::delete('/XoaUser/{id}', 'Admin\UserController@Delete')->name('XoaUser');
     });
     Route::group(['prefix'=> 'room'], function (){
         Route::get('/DanhSachPhong', 'Admin\RoomController@List')->name('DanhSachPhong');
@@ -58,8 +49,12 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
         Route::get('timPhong', 'Admin\RoomController@SearchPhong')->name('Phong.Search');
     });
     Route::group(['prefix'=> 'news'], function (){
+        Route::get('/ThemTinTuc', 'Admin\NewsController@AddTinTuc')->name('ThemTinTuc');
         Route::get('/DanhSachTinTuc', 'Admin\NewsController@List')->name('DanhSachTinTuc');
         Route::get('timTinTuc', 'Admin\NewsController@SearchTinTuc')->name('TinTuc.Search');
+        Route::post('SaveTinTuc', 'Admin\NewsController@SaveTinTuc')->name('SaveTinTuc');
+        Route::delete('/XoaTinTuc/{id}', 'Admin\NewsController@Delete')->name('XoaTinTuc');
+
     });
     Route::group([], function () //Client link
     {
