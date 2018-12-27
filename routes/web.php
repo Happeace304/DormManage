@@ -38,6 +38,8 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
         Route::put('/recharge', 'Admin\UserController@Recharge')->name('User.Recharge');
         Route::get('/DanhSachSinhVien', 'Admin\UserController@ListStudent')->name('DanhSachSinhVien');
         Route::get('/DanhSachNhanVien', 'Admin\UserController@ListNhanVien')->name('DanhSachNhanVien');
+        Route::get('/ThemSinhVien', 'Admin\UserController@AddSinhVien')->name('ThemSinhVien');
+        Route::get('/ThemNhanVien', 'Admin\UserController@AddNhanVien')->name('ThemNhanVien');
         Route::get('timNV', 'Admin\UserController@SearchNhanVien')->name('NhanVien.Search');
         Route::get('timSV', 'Admin\UserController@SearchSinhVien')->name('SinhVien.Search');
 

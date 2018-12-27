@@ -128,4 +128,15 @@ class UserController extends Controller
         $user->appends(['Email' => $email, 'TenNhanVien'=> $ten,'TenPhong'=>$phong]);
         return view('Admin.QuanLySinhVien.danhSachSinhVien',compact('user'));
     }
+    function AddSinhVien()
+    {
+        $room = Room::where('peopleCount','<',4)->get();
+        return view('Admin.QuanLySinhVien.addEditSinhVien',compact('room'));
+    }
+
+    function AddNhanVien()
+    {
+        return view('Admin.QuanLyNhanVien.addEditNhanVien');
+    }
+
 }
