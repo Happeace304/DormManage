@@ -36,12 +36,20 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
         Route::get('search', 'Admin\UserController@Search')->name('User.Search');
         Route::get('/detail/{id}', 'Admin\UserController@Detail')->name('User.Detail');
         Route::put('/recharge', 'Admin\UserController@Recharge')->name('User.Recharge');
+
         Route::get('/DanhSachSinhVien', 'Admin\UserController@ListStudent')->name('DanhSachSinhVien');
         Route::get('/DanhSachNhanVien', 'Admin\UserController@ListNhanVien')->name('DanhSachNhanVien');
         Route::get('/ThemSinhVien', 'Admin\UserController@AddSinhVien')->name('ThemSinhVien');
         Route::get('/ThemNhanVien', 'Admin\UserController@AddNhanVien')->name('ThemNhanVien');
         Route::get('timNV', 'Admin\UserController@SearchNhanVien')->name('NhanVien.Search');
         Route::get('timSV', 'Admin\UserController@SearchSinhVien')->name('SinhVien.Search');
+        Route::post('/SaveNhanVien', 'Admin\UserController@SaveNhanVien')->name('SaveNhanVien');
+        Route::post('/SaveSinhVien', 'Admin\UserController@SaveSinhVien')->name('SaveSinhVien');
+
+        Route::get('/EditFormSinhVien/{id}', 'Admin\UserController@EditFormSinhVien')->name('EditFormSinhVien');
+        Route::get('/EditFormNhanVien/{id}', 'Admin\UserController@EditFormNhanVien')->name('EditFormNhanVien');
+        Route::post('/SaveEditSinhVien', 'Admin\UserController@SaveEditSinhVien')->name('SaveEditSinhVien');
+        Route::post('/SaveEditNhanVien', 'Admin\UserController@SaveEditNhanVien')->name('SaveEditNhanVien');
 
     });
     Route::group(['prefix'=> 'room'], function (){

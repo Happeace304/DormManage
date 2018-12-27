@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
         $int= mt_rand(1062055681,1262055681);
         $string = date("Y-m-d ",$int);
         $lastroom=Room::orderBy('roomId', 'desc')->first()->roomId;
-        $room =rand(0,$lastroom);
+        $room =rand(1,$lastroom);
         \Illuminate\Support\Facades\DB::table('users')->insert([
             'name' => str_random(10),
             'email' => str_random(10).'@gmail.com',

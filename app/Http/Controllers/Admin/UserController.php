@@ -9,54 +9,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 
 class UserController extends Controller
 {
 
 
-    function EditForm(Request $request){
-        $user = User::findorFail($request->id);
-        $room = Room::where('peopleCount','<',4)->get();
-        return view('Admin.userEdit',compact(['user','room']));
-    }
-    function Update(Request $request){
-        $user = User::findorFail($request->userId);
-        $user->name= $request->name;
-        $user->phone= $request->phone;
-        $user->roomId=$request->roomId;
-        if($request->password !=null)
-            $user->password= Hash::make($request->password);
 
-        if($user->save())
-            if($user->role ==2){
-            $this->UpdateRoomCount($request, 'roomId');
-            $this->UpdateRoomCount($request, 'oldroom');
-        }
-        //xu ly file
-        if($user->save()){
-            if($request->hasFile('image')) {
-                $filename = time() . "." . $request->file('image')->getClientOriginalExtension();
-                $up = $request->file('image')->move(public_path('image'), $filename);
 
-                if ($up) {
-                    $user->imgLink = $filename;
-                    $save = $user->save();
-                    if ($save) {
-                        if (file_exists(public_path('image') . '\\' . $request->old_image)) {
-                            unlink(public_path('image') . '\\' . $request->old_image);
-                        }
-                    }
-                }
-            }
-        }
-        return redirect()->route('Admin.home');
-    }
-   function  UpdateRoomCount(Request $request,  $room1){
-        $room= Room::find($request->$room1);
-        $room->peopleCount = User::where('roomId',$request->$room1)->count();
-        $room->save();
-    }
     function Delete(Request $request){
         $user = User::findOrFail($request->id);
 
@@ -131,12 +92,104 @@ class UserController extends Controller
     function AddSinhVien()
     {
         $room = Room::where('peopleCount','<',4)->get();
-        return view('Admin.QuanLySinhVien.addEditSinhVien',compact('room'));
+        $action = URL::route('SaveSinhVien');
+        return view('Admin.QuanLySinhVien.addEditSinhVien',compact(['room','action']));
     }
 
     function AddNhanVien()
-    {
-        return view('Admin.QuanLyNhanVien.addEditNhanVien');
+    {    $action = URL::route('SaveNhanVien');
+        return view('Admin.QuanLyNhanVien.addEditNhanVien',compact('action'));
+    }
+    function SaveNhanVien(Request $request){
+
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'birthday'=> $request->birthday,
+            'password' => Hash::make($request->password),
+            'phone'=> $request->phone,
+            'address'=>$request->address,
+            'role'=> $request->role,
+            'gender'=> $request->gender == 'true'?1:0,
+        ]);
+
+        if($user->save()){
+            $this->UpdateRoomCount();
+        }
+        return redirect()->route('DanhSachNhanVien');
+    }
+    function  UpdateRoomCount(){
+        $room= Room::get();
+        foreach ($room as $item){
+            $item->peopleCount = User::where('roomId',$item->roomId)->count();
+            $item->save();
+        }
+
+    }
+    function SaveSinhVien(Request $request){
+
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'birthday'=> $request->birthday,
+            'password' => Hash::make($request->password),
+            'phone'=> $request->phone,
+            'address'=>$request->address,
+            'role'=> $request->role,
+            'gender'=> $request->gender == 'true'?1:0,
+            'roomId' =>$request->roomId,
+            'expire_date'=> Carbon::now()->addMonths(3)->format('Y-m-d'),
+        ]);
+
+        if($user->save()){
+            $this->UpdateRoomCount();
+        }
+        return redirect()->route('DanhSachSinhVien');
+    }
+    function EditFormSinhVien(Request $request){
+        $user = User::findorFail($request->id);
+        $room = Room::where('peopleCount','<',4)->get();
+        $action = URL::route('SaveEditSinhVien');
+        return view('Admin.QuanLySinhVien.addEditSinhVien',compact(['user','action','room']));
     }
 
+    function  SaveEditSinhVien(Request $request){
+        $user= User::findOrFail ($request->userId);
+        $user->name= $request->name;
+        $user->phone= $request->phone;
+        $user->email= $request->email;
+        $user->address= $request->address;
+        $user->gender= $request->gender=='true'?1:0;
+        $user->birthday= date('Y-m-d',strtotime($request->birthday));
+        $user->roomId= $request->roomId;
+        if(isset($request->password)){
+            $user->password= Hash::make($request->password);
+        }
+        if($user->save()){
+            $this->UpdateRoomCount();
+        }
+        return redirect()->route('DanhSachSinhVien');
+    }
+    function EditFormNhanVien(Request $request){
+        $user = User::findorFail($request->id);
+        $action = URL::route('SaveEditNhanVien');
+        return view('Admin.QuanLyNhanVien.addEditNhanVien',compact(['user','action']));
+    }
+    function  SaveEditNhanVien(Request $request){
+        $user= User::findOrFail ($request->userId);
+        $user->name= $request->name;
+        $user->phone= $request->phone;
+        $user->email= $request->email;
+        $user->address= $request->address;
+        $user->gender= $request->gender=='true'?1:0;
+        $user->birthday= date('Y-m-d',strtotime($request->birthday));
+
+        if(isset($request->password)){
+            $user->password= Hash::make($request->password);
+        }
+        if($user->save()){
+            $this->UpdateRoomCount();
+        }
+        return redirect()->route('DanhSachNhanVien');
+    }
 }

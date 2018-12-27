@@ -20,6 +20,9 @@
 
     <!-- Custom styling plus plugins -->
     <link href="{{ asset('public/css/custom.min.css') }}" rel="stylesheet">
+    <!-- CKEDITOR -->
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script> CKEDITOR.replace('editor1'); </script>
 </head>
 
 <body class="nav-md">

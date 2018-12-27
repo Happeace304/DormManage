@@ -81,7 +81,7 @@
                                         <input type="checkbox" class="flat check-item" name="check-remove" id-del="">
                                     </td>
                                     <td class="text-center middle">
-                                        <a href="{{route('User.Edit',['id'=>$item->userId]) }}">
+                                        <a href="{{route('EditFormSinhVien',['id'=>$item->userId]) }}">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
                                     </td>

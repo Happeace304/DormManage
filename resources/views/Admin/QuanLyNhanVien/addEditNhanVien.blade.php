@@ -13,45 +13,52 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{$action}}">
 
+                        @csrf
+                        <input type="text" id="userId"  name="userId"
+                               value="{{ isset($user)?$user->userId:''}}" hidden>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12"
+                                       value="{{ isset($user)?$user->name:''}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">Điện thoại <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="phone" name="phone" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="number" id="phone" name="phone" required="required" class="form-control col-md-7 col-xs-12"
+                                       value="{{ isset($user)?$user->phone:''}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="email" name="email" required="required" class="form-control col-md-7 col-xs-12"
+                                       value="{{ isset($user)?$user->email:''}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Địa chỉ <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" id="address" name="address" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" id="address" name="address" required="required" class="form-control col-md-7 col-xs-12"
+                                       value="{{ isset($user)?$user->address:''}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Giới tính</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div id="gender" class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="gender" value="true"> &nbsp; Nam &nbsp;
+                                    <label class="btn btn-default @if(isset($user)){{$user->gender==1?' active':'' }} @endif" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                        <input type="radio" name="gender" value="true" @if(isset($user)){{$user->gender==1?'checked':'' }} @endif> &nbsp; Nam &nbsp;
                                     </label>
-                                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="gender" value="false"> Nữ
+                                    <label class="btn btn-primary @if(isset($user)){{$user->gender==0?' active':'' }} @endif" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                        <input type="radio" name="gender" value="false" @if(isset($user)){{$user->gender==0?'checked':'' }} @endif> Nữ
                                     </label>
                                 </div>
                             </div>
@@ -60,7 +67,8 @@
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="date">
+                                <input id="birthday" name="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="date"
+                                       value="{{isset($user)?date('Y-m-d',strtotime($user->birthday)):''}}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -71,17 +79,18 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Mật khẩu <span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Mật khẩu @if(!isset($user))<span class="required">*</span> @endif
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="password" id="password" name="password" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="password" id="password" name="password" @if(!isset($user))required="required"@endif class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
+
                         <input type="text" hidden name="role" value="1">
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button class="btn btn-primary" type="button">Cancel</button>
+                                <button class="btn btn-primary" type="button" onclick="history.go(-1)">Cancel</button>
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </div>
