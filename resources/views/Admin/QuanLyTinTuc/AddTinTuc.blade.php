@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Nội dung</label>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Nội dung  <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
                             </div>
@@ -42,8 +42,14 @@
                          <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button class="btn btn-danger" type="button">Xóa sinh viên</button>
-                                <button type="submit" class="btn btn-success" style="float: right;">Lưu thông tin sinh viên</button>
+                                @if(isset($user))
+                                <form method="post" action="{{route('XoaTinTuc',['id'=> $item->newsId])}}">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="btn btn-danger" type="button">Xóa tin tức</button>
+                                </form>
+                                @endif
+                                <button type="submit" class="btn btn-success" style="float: right;">Lưu thông tin tin tức</button>
                             </div>
                         </div>
                     </form>
