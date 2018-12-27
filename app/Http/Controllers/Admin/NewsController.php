@@ -9,10 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
-    function List(){
-        $news= News::orderBy('created_at','ASC')->paginate(10);
-        return view('',compact('news'));
-    }
+
     function NewsDetail(Request $request){
         $news= News::where('slug',$request->slug)->first();
         return view('',compact('news'));
@@ -35,14 +32,17 @@ class NewsController extends Controller
     function EditForm(Request $request){
         $news= News::findorFail($request->id);
 
-        return view('',compact('news');
-use App\Model\Room;
-
-class NewsController extends Controller
-{
-    //
+        return view('',compact('news'));
+    }
     function List(){
-        $news = Room::paginate(10);
+        $news = News::paginate(10);
         return view('Admin.QuanLyTinTuc.DanhSachTinTuc',compact('news'));
+    }
+    function SearchNews(Request $request){
+        $title = $request->TieuDe;
+
+        $news = News::where('title','LIKE' ,'%'. $title.'%')->orderBy('created_at','desc')->paginate(10);
+        $news->appends(['TieuDe'=>$title]);
+        return view('Admin.QuanLyNhanVien.danhSachNhanVien',compact('user'));
     }
 }

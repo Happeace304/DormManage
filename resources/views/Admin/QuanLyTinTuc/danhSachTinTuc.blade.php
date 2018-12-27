@@ -14,18 +14,18 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content" id="condition-search">
-                    <form class="form-horizontal input_mask" id="form-search" action="#" accept-charset="UTF-8" method="get">
+                    <form class="form-horizontal input_mask" id="form-search" action="{{route('TinTuc.Search')}}" accept-charset="UTF-8" method="get">
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="TenPhong">Tiêu đề</label>
-                                    <input class="form-control" name="Email" id="Email" tabindex="1"/>
+                                    <label for="TieuDe">Tiêu đề</label>
+                                    <input class="form-control" name="TieuDe" id="TieuDe" tabindex="1"/>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <button type="button" class="btn btn-primary" id="btn-search" link-search="#" tabindex="2">Tìm kiếm</button>
+                                <button type="submit" class="btn btn-primary" id="btn-search" link-search="#" tabindex="2">Tìm kiếm</button>
                             </div>
                         </div>
                     </form>
@@ -61,7 +61,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($news as $index=>$item)
+                                @foreach($news as $item)
                                     <tr>
                                         <td class="text-center middle col-checkbox">
                                             <input type="checkbox" class="flat check-item" name="check-remove" id-del="">
