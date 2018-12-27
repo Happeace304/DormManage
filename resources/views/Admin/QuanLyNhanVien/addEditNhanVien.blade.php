@@ -78,6 +78,7 @@
                                 @if(isset($user))<input type="text" hidden name="old_image" value="{{$user->imgLink}}"> @endif
                             </div>
                         </div>
+                         @if(!isset($user))
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Mật khẩu @if(!isset($user))<span class="required">*</span> @endif
                             </label>
@@ -85,12 +86,18 @@
                                 <input type="password" id="password" name="password" @if(!isset($user))required="required"@endif class="form-control col-md-7 col-xs-12">
                             </div>
                         </div>
-
+                            @endif
                         <input type="text" hidden name="role" value="1">
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                <button class="btn btn-danger" type="button">Xóa nhân viên</button>
+                                @if(isset($user))
+                                    <form method="post" action="{{route('XoaUser',['id'=> $user->userId])}}">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-danger" type="button">Xóa nhân viên</button>
+                                    </form>
+                                @endif
                                 <button type="submit" class="btn btn-success" style="float: right">Lưu thông tin nhân viên</button>
                             </div>
                         </div>

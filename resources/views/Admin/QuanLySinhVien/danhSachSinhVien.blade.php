@@ -71,12 +71,17 @@
                                 <th class="text-center">Số điện thoại</th>
                                 <th class="text-center">Địa chỉ</th>
                                 <th class="text-center">Ngày hết hạn phòng</th>
+                                <th class="text-center">Gia hạn phòng</th>
                                 <th class="text-center">Xóa</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($user as $index=>$item)
-                                <tr>
+                                @if($item->expire_date  < \Illuminate\Support\Carbon::now()->format('Y-m-d'))
+                                    <tr style="background: #e9605c">
+                                @else
+                                    <tr>
+                                @endif
                                     <td class="text-center middle col-checkbox">
                                         <input type="checkbox" class="flat check-item" name="check-remove" id-del="">
                                     </td>
@@ -106,6 +111,16 @@
                                     </td>
                                     <td class="text-center middle">
                                         {{date('d-m-Y',strtotime($item->expire_date))}}
+                                    </td>
+                                    <td class="text-center middle">
+                                        <form method="post" action="{{route('User.Recharge',['id'=> $item->userId])}}">
+                                            @method('put')
+                                            @csrf
+                                            <button class="btn btn-xs btn-primary" >
+                                                <i class="fa fa-hourglass-start" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+
                                     </td>
                                     <td class="text-center middle">
                                         <form method="post" action="{{route('XoaUser',['id'=> $item->userId])}}">
