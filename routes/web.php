@@ -42,14 +42,16 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
         Route::get('/ThemNhanVien', 'Admin\UserController@AddNhanVien')->name('ThemNhanVien');
         Route::get('timNV', 'Admin\UserController@SearchNhanVien')->name('NhanVien.Search');
         Route::get('timSV', 'Admin\UserController@SearchSinhVien')->name('SinhVien.Search');
-        Route::get('timPhong', 'Admin\RoomController@SearchPhong')->name('Phong.Search');
+
     });
     Route::group(['prefix'=> 'room'], function (){
         Route::get('/DanhSachPhong', 'Admin\RoomController@List')->name('DanhSachPhong');
         Route::get('/XemChiTietPhong/{id}', 'Admin\RoomController@Detail')->name('XemChiTietPhong');
+        Route::get('timPhong', 'Admin\RoomController@SearchPhong')->name('Phong.Search');
     });
     Route::group(['prefix'=> 'news'], function (){
         Route::get('/DanhSachTinTuc', 'Admin\NewsController@List')->name('DanhSachTinTuc');
+        Route::get('timTinTuc', 'Admin\NewsController@SearchTinTuc')->name('TinTuc.Search');
     });
     Route::group([], function () //Client link
     {

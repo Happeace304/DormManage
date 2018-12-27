@@ -11,7 +11,7 @@ class NewsController extends Controller
 {
     function List(){
         $news= News::orderBy('created_at','ASC')->paginate(10);
-        return view('Admin.QuanLyTinTuc.DanhSachTinTuc',compact('news'));
+        return view('Admin.QuanLyTinTuc.danhSachTinTuc',compact('news'));
     }
     function NewsDetail(Request $request){
         $news= News::where('slug',$request->slug)->first();
@@ -36,5 +36,12 @@ class NewsController extends Controller
         $news= News::findorFail($request->id);
 
         return view('',compact('news'));
+    }
+    function SearchNews(Request $request){
+        $title = $request->TieuDe;
+
+        $news = News::where('title','LIKE' ,'%'. $title.'%')->orderBy('created_at','desc')->paginate(10);
+        $news->appends(['TieuDe'=>$title]);
+        return view('Admin.QuanLyTinTuc.danhSachTinTuc',compact('news'));
     }
 }
