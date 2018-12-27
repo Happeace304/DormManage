@@ -15,7 +15,7 @@
                 <br />
                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{$action}}">
                     @csrf
-                    <input type="text" id="userId"  name="userId""
+                    <input type="text" id="userId"  name="userId"
                            value="{{ isset($user)?$user->userId:''}}" hidden>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên <span class="required">*</span>
@@ -106,8 +106,8 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            <button class="btn btn-primary" type="button" onclick="history.go(-1)">Cancel</button>
-                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button class="btn btn-danger" type="button">Xóa sinh viên</button>
+                            <button type="submit" class="btn btn-success" style="float: right;">Lưu thông tin sinh viên</button>
                         </div>
                     </div>
                 </form>

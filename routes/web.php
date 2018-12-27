@@ -54,6 +54,7 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
     });
     Route::group(['prefix'=> 'room'], function (){
         Route::get('/DanhSachPhong', 'Admin\RoomController@List')->name('DanhSachPhong');
+        Route::get('/XemChiTietPhong/{id}', 'Admin\RoomController@Detail')->name('XemChiTietPhong');
         Route::get('timPhong', 'Admin\RoomController@SearchPhong')->name('Phong.Search');
     });
     Route::group(['prefix'=> 'news'], function (){
