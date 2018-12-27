@@ -29,7 +29,14 @@ class LoginController extends Controller
      */
         protected $redirectTo= '/';
 
+    protected function authenticated(Request $request, $user)
+    {
+        if ( Auth::user()->role !=2 ) {
+            return redirect()->route('Admin.home');
+        }
 
+        return redirect('/');
+    }
     /**
      * Create a new controller instance.
      *

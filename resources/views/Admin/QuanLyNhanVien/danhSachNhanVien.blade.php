@@ -73,9 +73,13 @@
                                             <input type="checkbox" class="flat check-item" name="check-remove" id-del="">
                                         </td>
                                         <td class="text-center middle">
-                                            <a href="{{route('EditFormNhanVien',['id'=>$item->userId]) }}">
+                                            <a href="{{route('EditFormNhanVien',['id'=>$item->userId])}}" onclick="event.preventDefault();
+                                                     document.getElementById('editform#{{$item->userId}}').submit();">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
+                                            <form id="editform#{{$item->userId}}" action="{{route('EditFormNhanVien',['id'=>$item->userId])}}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
                                         </td>
                                         <td class="text-center middle">
                                            {{$item->name}}

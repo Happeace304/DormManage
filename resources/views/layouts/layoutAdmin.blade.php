@@ -115,6 +115,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li><a href="#"> Trang cá nhân</a></li>
+
                                 <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         <i class="fa fa-sign-out pull-right"></i> Log Out</a></li>

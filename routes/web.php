@@ -36,8 +36,8 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
         Route::post('/SaveNhanVien', 'Admin\UserController@SaveNhanVien')->name('SaveNhanVien');
         Route::post('/SaveSinhVien', 'Admin\UserController@SaveSinhVien')->name('SaveSinhVien');
 
-        Route::get('/EditFormSinhVien/{id}', 'Admin\UserController@EditFormSinhVien')->name('EditFormSinhVien');
-        Route::get('/EditFormNhanVien/{id}', 'Admin\UserController@EditFormNhanVien')->name('EditFormNhanVien');
+        Route::post('/EditFormSinhVien/{id}', 'Admin\UserController@EditFormSinhVien')->name('EditFormSinhVien');
+        Route::post('/EditFormNhanVien/{id}', 'Admin\UserController@EditFormNhanVien')->name('EditFormNhanVien');
         Route::put('/SaveEditSinhVien', 'Admin\UserController@SaveEditSinhVien')->name('SaveEditSinhVien');
         Route::put('/SaveEditNhanVien', 'Admin\UserController@SaveEditNhanVien')->name('SaveEditNhanVien');
 
