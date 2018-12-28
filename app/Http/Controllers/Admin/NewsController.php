@@ -75,6 +75,9 @@ class NewsController extends Controller
         $title = $request->TieuDe;
 
         $news = News::where('title','LIKE' ,'%'. $title.'%')->orderBy('created_at','desc')->paginate(10);
+        foreach ($news as $item){
+            $item->user = User::findorfail($item->userId)->name;
+        }
         $news->appends(['TieuDe'=>$title]);
         return view('Admin.QuanLyTinTuc.danhSachTinTuc',compact('news'));
     }

@@ -185,9 +185,7 @@ class UserController extends Controller
         $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required|string|max:30',
-            'email' => 'email|required|unique:users|max:50',
             'birthday'=> 'required',
-            'password' => 'min:6|string|required',
             'phone'=> 'max:20',
             'address'=>'string|max: 50',
             'gender'=> 'required',
@@ -202,7 +200,6 @@ class UserController extends Controller
         $user= User::findOrFail ($request->userId);
         $user->name= $request->name;
         $user->phone= $request->phone;
-        $user->email= $request->email;
         $user->address= $request->address;
         $user->imgLink= $imageName;
         $user->gender= $request->gender=='true'?1:0;
@@ -226,9 +223,7 @@ class UserController extends Controller
         $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name' => 'required|string|max:30',
-            'email' => 'email|required|unique:users|max:50',
             'birthday'=> 'required',
-            'password' => 'min:6|string|required',
             'phone'=> 'max:20',
             'address'=>'string|max: 50',
             'gender'=> 'required',
@@ -243,7 +238,6 @@ class UserController extends Controller
         $user= User::findOrFail ($request->userId);
         $user->name= $request->name;
         $user->phone= $request->phone;
-        $user->email= $request->email;
         $user->imgLink= $imageName;
         $user->address= $request->address;
         $user->gender= $request->gender=='true'?1:0;
