@@ -1,6 +1,6 @@
 @extends('Client.Layout')
 @section('banner')
-    <div class="wrapper bgded overlay" style="background-image:url({{asset('public/Client/img/backgrounds/01.jpg')}});">
+    <div class="wrapper bgded overlay" style="background-image:url({{asset('1.jpg')}});">
         <div id="pageintro" class="hoc clear">
 
             <article>

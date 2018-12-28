@@ -26,11 +26,7 @@ class HomeController extends Controller
     {
         return view('Admin.dashboard');
     }
-
-    public function profile()
-    {
-        return view('Admin.ThongTinCaNhan.ChinhSuaThongTin');
-    }
+    
 
     function List(){
         $news= News::orderBy('created_at','DESC')->take(4)->get();

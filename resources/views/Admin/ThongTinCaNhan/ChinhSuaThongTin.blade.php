@@ -4,6 +4,46 @@
     <div class="col-xs-12">
         <div class="x_panel">
             <div class="x_title">
+                <h2>Avatar</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <form class="x_content" action="{{route('SaveProfile')}}" method="post">
+                @csrf
+                @method('PUT')
+                <input class="hidden" name="userId" value="{{$user->userId}}"/>
+                <div class="col-xs-12 col-md-3">
+                    <div class="form-group">
+                        <img style="margin-top: 5px; margin-bottom: 10px;" class="img-preview" @if(Auth::user()->imgLink == null) src="{{ asset('public/image/user.png') }}"
+                             @else src="{{asset('public/image').'/'.Auth::user()->imgLink}}"
+                             @endif
+                             alt="..." class="img-circle profile_img">
+                        <div class="input-group">
+                                <span class="input-group-btn">
+                                    <input class="form-control" readonly="readonly" style="width: 96%" name="imglink" id="imglink" value=""/>
+                                    <a href="javascript:void(0)" id="btn-anh" class="btn btn-primary">
+                                        <i class="fa fa-upload" aria-hidden="true"></i>
+                                    </a>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <button type="submit" class="btn-success btn btn-sm" id="btn-luu-tai-khoan" name="savebtn" value="information" />
+                        Lưu
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
                 <h2>Thông tin cá nhân</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>

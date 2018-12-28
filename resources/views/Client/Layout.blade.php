@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="">
 <head>
-    <title>Ký túc xá STN</title>
+    <title>Ký túc xá TSN</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="{{asset('public/Client/')}}/styles/layout.css" rel="stylesheet" type="text/css" media="all">

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('Client.HomeLayout');
+    return view('Client.home');
 })->name('client');
 Route::get('/index','HomeController@List' );
 Route::get('/news/{slug}','HomeController@GetNews' );
@@ -24,7 +24,6 @@ Auth::routes();
 Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
 
     Route::get('/home', 'HomeController@index')->name('Admin.home');
-    Route::get('/profile', 'HomeController@profile')->name('Admin.profile');
     Route::group(['prefix'=> 'user'], function (){
 
         Route::get('/DanhSachSinhVien', 'Admin\UserController@ListStudent')->name('DanhSachSinhVien');
