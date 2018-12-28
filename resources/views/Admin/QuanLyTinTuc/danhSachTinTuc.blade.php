@@ -50,7 +50,7 @@
                                 <thead>
                                 <tr>
                                     <th class="text-center col-checkbox">
-                                        <input type="checkbox" id="check-all" class="flat">
+                                        <input type="checkbox" id="check-all" class="flat" onclick="checkAll();">
                                     </th>
                                     <th class="text-center">Sửa</th>
                                     <th class="text-center">Tiêu đề</th>
@@ -64,10 +64,10 @@
                                 @foreach($news as $item)
                                     <tr>
                                         <td class="text-center middle col-checkbox">
-                                            <input type="checkbox" class="flat check-item" name="check-remove" id-del="">
+                                            <input type="checkbox" class="flat check-item" name="check-remove" id="{{$item->newsId}}">
                                         </td>
                                         <td class="text-center middle">
-                                            <a href="#">
+                                            <a href="{{route('EditFormTinTuc',['id'=>$item->newsId])}}">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -78,7 +78,7 @@
                                             {!! $item->content!!}
                                         </td>
                                         <td class="text-center middle">
-                                            {{$item->userId}}
+                                            {{$item->user}}
                                         </td>
                                         <td class="text-center middle">
                                             {{$item->created_at}}
@@ -99,7 +99,7 @@
 
                         </div>
                         <div class="col-xs-3 pl-0">
-                            <button type="button" class="btn btn-danger btn-delete-selected">Xóa các mục đã chọn</button>
+                            <button type="button" class="btn btn-danger btn-delete-selected" onclick="deleteSelected();">Xóa các mục đã chọn</button>
                         </div>
                         <div class="col-xs-9 pr-0">
                             <div  style="float:right;">
@@ -110,5 +110,10 @@
                 </div>
             </div>
         </div>
+        <form method="post" id="massdel" action="{{route('MassDelTinTuc')}}">
+            @csrf
+            @method('delete')
+            <input type="text" name="array" id="array" hidden>
+        </form>
     </div>
 @endsection

@@ -44,7 +44,7 @@ class UserController extends Controller
     function ListStudent()
     {
 
-        $user = User::where('role',2)->where('state', 1)->orderby('name')->paginate(10);
+        $user = User::where('role',2)->where('state', 1)->orderby('name')->orderby('roomId')->paginate(10);
         foreach ($user as $item){
                 $item->roomName = User::find($item->userId)->room;
             }
@@ -61,7 +61,8 @@ class UserController extends Controller
         $email = $request->Email;
         $ten = $request->TenNhanVien;
 
-        $user = User::where('role', 1)->where('state', 1)->where('name','LIKE' ,'%'. $ten.'%')->where('email','LIKE' ,'%'. $email.'%')->orderBy('name','asc')->paginate(10);
+        $user = User::where('role', 1)->where('state', 1)->where('name','LIKE' ,'%'. $ten.'%')
+            ->where('email','LIKE' ,'%'. $email.'%')->orderBy('name','asc')->paginate(10);
         $user->appends(['Email' =>$email, 'TenNhanVien'=> $ten]);
         return view('Admin.QuanLyNhanVien.danhSachNhanVien',compact('user'));
     }
@@ -74,7 +75,7 @@ class UserController extends Controller
 
         $user = User::where('role', 2)->where('state', 1)->where('name','LIKE' ,'%'. $ten.'%')
             ->where('email','LIKE' ,'%'. $email.'%')
-            ->whereIn('roomId',$room)->orderBy('name','asc')->paginate(10);
+            ->whereIn('roomId',$room)->orderBy('name','asc')->orderby('name')->paginate(10);
 
         if($user)
         foreach ($user as $item){
@@ -97,6 +98,13 @@ class UserController extends Controller
     function SaveNhanVien(Request $request){
         $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:30',
+            'email' => 'email|required|unique:users|max:50',
+            'birthday'=> 'required',
+            'password' => 'min:6|string|required',
+            'phone'=> 'max:20',
+           'address'=>'string|max: 50',
+           'gender'=> 'required',
         ]);
 
         if(isset($request->image)){
@@ -133,6 +141,13 @@ class UserController extends Controller
     function SaveSinhVien(Request $request){
         $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:30',
+            'email' => 'email|required|unique:users|max:50',
+            'birthday'=> 'required',
+            'password' => 'min:6|string|required',
+            'phone'=> 'max:20',
+            'address'=>'string|max: 50',
+            'gender'=> 'required',
         ]);
 
         if(isset($request->image)){
@@ -168,7 +183,15 @@ class UserController extends Controller
     function  SaveEditSinhVien(Request $request){
         $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:30',
+            'email' => 'email|required|unique:users|max:50',
+            'birthday'=> 'required',
+            'password' => 'min:6|string|required',
+            'phone'=> 'max:20',
+            'address'=>'string|max: 50',
+            'gender'=> 'required',
         ]);
+
 
         if(isset($request->image)){
             $imageName = time().'.'.request()->image->getClientOriginalExtension();
@@ -201,7 +224,15 @@ class UserController extends Controller
 
         $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:30',
+            'email' => 'email|required|unique:users|max:50',
+            'birthday'=> 'required',
+            'password' => 'min:6|string|required',
+            'phone'=> 'max:20',
+            'address'=>'string|max: 50',
+            'gender'=> 'required',
         ]);
+
 
         if(isset($request->image)){
             $imageName = time().'.'.request()->image->getClientOriginalExtension();
@@ -230,10 +261,15 @@ class UserController extends Controller
         return view('Admin.ThongTinCaNhan.ChinhSuaThongTin',compact('user'));
     }
     function SaveProfile(Request $request){
-
         $user = User::findorfail($request->userId);
         if($request->savebtn == 'information'){
-
+            $request->validate([
+                'name' => 'required|string|max:30',
+                'birthday'=> 'required',
+                'phone'=> 'max:20',
+                'address'=>'string|max: 50',
+                'gender'=> 'required',
+            ]);
             $user->name= $request->name;
             $user->birthday= $request->birthday;
             $user->gender = $request->gender==1?'1':'0';
@@ -260,6 +296,13 @@ class UserController extends Controller
 
     }
     function MassDelete(Request $request){
+        $res = explode(',', $request->array);
 
+        $user = User::whereIn('userId',$res)->get();
+        foreach ($user as $item){
+            $item->delete();
+        }
+        $this->UpdateRoomCount();
+        return redirect()->back();
     }
 }

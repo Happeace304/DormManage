@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Room;
 use App\Model\Bill;
+use App\Model\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,18 +14,18 @@ class RoomController extends Controller
        $room = Room::paginate(10);
 
        foreach ($room as $item){
-           $item->billList = Room::find($item->roomId)->bills()->count();
+           $item->total = number_format(Room::find($item->roomId)->bills()->sum('total'),0,'.',',' );
+
        }
+
        return view('Admin.QuanLyPhong.danhSachPhong',compact('room'));
    }
 
     function Detail(Request $request){
-        $room = Room::paginate(10);
-
-        foreach ($room as $item){
-            $item->billList = Room::find($item->roomId)->bills()->count();
-        }
-        return view('Admin.QuanLyPhong.ChiTietPhong',compact('room'));
+        $room = Room::findorFail($request->id);
+        $user = User::where('roomId',$request->id)->get();
+        $bill = Bill::where('roomId',$request->id)->orderBy('month','desc')->take(5)->get();
+        return view('Admin.QuanLyPhong.ChiTietPhong',compact(['user','bill','room']));
     }
 
     function SearchPhong(Request $request){
@@ -37,10 +38,9 @@ class RoomController extends Controller
             else if($tinhtrang == 'false') $cmp= '<';
 
     }else $cmp= '<=';
-
-
     $room = Room::where('roomName','like','%'.$phong.'%')->where('peopleCount', $cmp, 4)->paginate(10);
     $room->appends(['Phong' =>$phong, 'TinhTrang'=> $tinhtrang]);
         return view('Admin.QuanLyPhong.danhSachPhong',compact('room'));
     }
+
 }

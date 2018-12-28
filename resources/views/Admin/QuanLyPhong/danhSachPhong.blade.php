@@ -59,23 +59,20 @@
                             <table class="table table-striped table-bordered jambo_table">
                                 <thead>
                                 <tr>
-                                    <th class="text-center col-checkbox">
-                                        <input type="checkbox" id="check-all" class="flat">
-                                    </th>
+
                                     <th class="text-center">Xem chi tiết</th>
                                     <th class="text-center">Tên phòng</th>
                                     <th class="text-center">Số lượng</th>
+                                    <th class="text-center">Tiền điện</th>
                                     <th class="text-center">Tình trạng</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($room as $item)
                                     <tr>
-                                        <td class="text-center middle col-checkbox">
-                                            <input type="checkbox" class="flat check-item" name="check-remove" id-del="">
-                                        </td>
+
                                         <td class="text-center middle">
-                                            <a href="#">
+                                            <a href="{{route('XemChiTietPhong',['id'=>$item->roomId])}}">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -84,6 +81,9 @@
                                         </td>
                                         <td class="text-center middle">
                                             {{$item->peopleCount}}
+                                        </td>
+                                        <td class="text-center middle ">
+                                            {{$item->total}} VNĐ
                                         </td>
                                         <td class="text-center middle">
                                             {{$item->peopleCount <4? 'Trống':'Đầy'}}
@@ -95,7 +95,7 @@
 
                         </div>
                         <div class="col-xs-3 pl-0">
-                            <button type="button" class="btn btn-danger btn-delete-selected">Xóa các mục đã chọn</button>
+
                         </div>
                         <div class="col-xs-9 pr-0">
                             <div  style="float:right;">

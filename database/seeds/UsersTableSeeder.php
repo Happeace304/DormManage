@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
             'roomId'=>$room,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'expire_date' =>Carbon::now()->addMonths(3)->format('Y-m-d'),
+            'expire_date' =>Carbon::now()->subDays(3)->format('Y-m-d'),
         ]);
 
     }

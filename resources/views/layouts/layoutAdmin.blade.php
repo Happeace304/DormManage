@@ -144,7 +144,8 @@
         <!-- /footer content -->
     </div>
 </div>
-
+<!-- Xoa Nhieu-->
+<script src="{{ asset('public/js/xoaNhieu.js')}}"></script>
 <!-- jQuery -->
 <script src="{{ asset('public/assets/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap -->

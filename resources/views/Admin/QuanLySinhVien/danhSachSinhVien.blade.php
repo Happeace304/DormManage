@@ -86,13 +86,9 @@
                                         <input type="checkbox" class="flat check-item" name="check-remove" id="{{$item->userId}}">
                                     </td>
                                     <td class="text-center middle">
-                                        <a href="{{route('EditFormSinhVien',['id'=>$item->userId])}}" onclick="event.preventDefault();
-                                                document.getElementById('editform#{{$item->userId}}').submit();">
+                                        <a href="{{route('EditFormSinhVien',['id'=>$item->userId])}}">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
-                                        <form id="editform#{{$item->userId}}" action="{{route('EditFormSinhVien',['id'=>$item->userId])}}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
                                     </td>
                                     <td class="text-center middle">
                                         {{$item->name}}
@@ -150,31 +146,11 @@
                 </div>
             </div>
         </div>
-        <form method="post" id="massdel" action="{{route('MassDel}}">
-            <input type="text" id="array">
+        <form method="post" id="massdel" action="{{route('MassDel')}}">
+            @csrf
+            @method('delete')
+            <input type="text" name="array" id="array" hidden>
         </form>
     </div>
-    <script>
-        var checkboxes = document.querySelectorAll("input[type=checkbox]");
-        var result;
-        function checkAll() {
 
-            var bool = checkboxes[0].checked;
-            for(var i=1; i< checkboxes.length; i++){
-                checkboxes[i].checked=bool;
-            }
-        }
-        // function deleteSelected() {
-        //     var array=[];
-        //     for(var i=1; i< checkboxes.length; i++){
-        //        if(checkboxes[i].checked==true) {
-        //            var id= checkboxes[i].id;
-        //            array[i-1]= id;
-        //
-        //        }
-        //     }
-        //     result.join(",");
-        //     document.getElementById("array").value= result;
-        // }
-    </script>
 @endsection

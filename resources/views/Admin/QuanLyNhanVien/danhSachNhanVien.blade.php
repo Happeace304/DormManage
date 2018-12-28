@@ -56,7 +56,7 @@
                                 <thead>
                                 <tr>
                                     <th class="text-center col-checkbox">
-                                        <input type="checkbox" id="check-all" class="flat">
+                                        <input type="checkbox" id="check-all" class="flat" onclick="checkAll();">
                                     </th>
                                     <th class="text-center">Sửa</th>
                                     <th class="text-center">Tên nhân viên</th>
@@ -70,16 +70,12 @@
                                 @foreach($user as $index=>$item)
                                     <tr>
                                         <td class="text-center middle col-checkbox">
-                                            <input type="checkbox" class="flat check-item" name="check-remove" id-del="">
+                                            <input type="checkbox" class="flat check-item" name="check-remove"  id="{{$item->userId}}">
                                         </td>
                                         <td class="text-center middle">
-                                            <a href="{{route('EditFormNhanVien',['id'=>$item->userId])}}" onclick="event.preventDefault();
-                                                     document.getElementById('editform#{{$item->userId}}').submit();">
+                                            <a href="{{route('EditFormNhanVien',['id'=>$item->userId])}}">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
-                                            <form id="editform#{{$item->userId}}" action="{{route('EditFormNhanVien',['id'=>$item->userId])}}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
                                         </td>
                                         <td class="text-center middle">
                                            {{$item->name}}
@@ -109,7 +105,7 @@
 
                         </div>
                         <div class="col-xs-3 pl-0">
-                            <button type="button" class="btn btn-danger btn-delete-selected">Xóa các mục đã chọn</button>
+                            <button type="button" class="btn btn-danger btn-delete-selected" onclick="deleteSelected();">Xóa các mục đã chọn</button>
                         </div>
                         <div class="col-xs-9 pr-0">
                             <div  style="float:right;">
@@ -120,5 +116,11 @@
                 </div>
             </div>
         </div>
+        <form method="post" id="massdel" action="{{route('MassDel')}}">
+            @csrf
+            @method('delete')
+            <input type="text" name="array" id="array" hidden>
+        </form>
     </div>
+
 @endsection
