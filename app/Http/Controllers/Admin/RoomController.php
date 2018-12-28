@@ -39,6 +39,10 @@ class RoomController extends Controller
 
     }else $cmp= '<=';
     $room = Room::where('roomName','like','%'.$phong.'%')->where('peopleCount', $cmp, 4)->paginate(10);
+        foreach ($room as $item){
+            $item->total = number_format(Room::find($item->roomId)->bills()->sum('total'),0,'.',',' );
+
+        }
     $room->appends(['Phong' =>$phong, 'TinhTrang'=> $tinhtrang]);
         return view('Admin.QuanLyPhong.danhSachPhong',compact('room'));
     }

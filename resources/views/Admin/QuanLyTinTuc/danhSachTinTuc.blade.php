@@ -72,10 +72,10 @@
                                             </a>
                                         </td>
                                         <td class="text-center middle">
-                                            {{$item->title}}
+                                            {{str_limit($item->title,20)}}
                                         </td>
                                         <td class="text-center middle">
-                                            {!! $item->content!!}
+                                            {!! str_limit($item->content, 50) !!}
                                         </td>
                                         <td class="text-center middle">
                                             {{$item->user}}

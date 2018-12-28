@@ -10,15 +10,16 @@ class NewsSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   $str= str_random(20);
+    {
       for($i=0; $i<=10; $i++){
+          $str= str_random(20);
           \Illuminate\Support\Facades\DB::table('news')->insert([
               'title'=> $str,
-              'content'=> str_random(200),
+              'content'=> str_random(100),
               'slug'=> str_slug($str),
               'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
               'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-              'userId'=> 0,
+              'userId'=> 12,
 
           ]);
       }
