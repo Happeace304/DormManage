@@ -225,4 +225,41 @@ class UserController extends Controller
         }
         return redirect()->route('DanhSachNhanVien');
     }
+    function Profile (Request $request){
+        $user = Auth::user();
+        return view('Admin.ThongTinCaNhan.ChinhSuaThongTin',compact('user'));
+    }
+    function SaveProfile(Request $request){
+
+        $user = User::findorfail($request->userId);
+        if($request->savebtn == 'information'){
+
+            $user->name= $request->name;
+            $user->birthday= $request->birthday;
+            $user->gender = $request->gender==1?'1':'0';
+            $user->phone = $request->phone;
+            $user->address= $request->address;
+            $user->save();
+        }
+        else if($request->savebtn == 'password') {
+
+            $request->validate([
+                'old_pass'=> 'required',
+               'new_pass' => 'required',
+                'confirm_pass'=> 'required|same:new_pass',
+            ]);
+            if(Hash::check($request->old_pass,Auth::user()->password)){
+                $user->password= Hash::make($request->new_pass);
+                if( $user->save()){
+
+                }
+            }
+        };
+
+        return redirect()->back();
+
+    }
+    function MassDelete(Request $request){
+
+    }
 }

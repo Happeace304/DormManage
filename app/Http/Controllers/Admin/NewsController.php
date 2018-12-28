@@ -42,7 +42,7 @@ class NewsController extends Controller
 
         return view('',compact('news'));
     }
-    function SearchNews(Request $request){
+    function SearchTinTuc(Request $request){
         $title = $request->TieuDe;
 
         $news = News::where('title','LIKE' ,'%'. $title.'%')->orderBy('created_at','desc')->paginate(10);

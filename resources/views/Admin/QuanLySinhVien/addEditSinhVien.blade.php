@@ -108,13 +108,8 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            @if(isset($user))
-                                <form method="post" action="{{route('XoaUser',['id'=> $user->userId])}}">
-                                    @method('delete')
-                                    @csrf
-                                    <button class="btn btn-danger" type="button">Xóa sinh viên</button>
-                                </form>
-                            @endif
+                            <button class="btn btn-danger" type="button"
+                                    onclick="history.go(-1);">Trở lại</button>
                             <button type="submit" class="btn btn-success" style="float: right;">Lưu thông tin sinh viên</button>
                         </div>
                     </div>
