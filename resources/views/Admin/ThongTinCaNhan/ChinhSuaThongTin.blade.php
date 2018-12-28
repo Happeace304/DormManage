@@ -15,7 +15,18 @@
             <div class="x_content">
                 <div class="row">
                     <input class="hidden" id="IdTaiKhoan" value=""/>
-                        <div class="col-xs-12 col-sm-12">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label>Avatar</label>
+                            <input type="file" class="form-control" value="" />
+                            <img style="margin-top: 5px;" class="img-preview" @if(Auth::user()->imgLink == null) src="{{ asset('public/image/user.png') }}"
+                                 @else src="{{asset('public/image').'/'.Auth::user()->imgLink}}"
+                                 @endif
+                                 alt="..." class="img-circle profile_img">
+
+                        </div>
+                    </div>
+                        <div class="col-xs-12 col-md-6">
                             <div class="form-group">
                                 <label>Họ tên</label>
                                 <input type="text" class="form-control" value="" />

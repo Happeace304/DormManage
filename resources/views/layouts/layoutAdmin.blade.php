@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>KTX STN</title>
+    <title>KTX TSN</title>
 
     <!-- Bootstrap -->
     <link href="{{ asset('public/assets/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -137,7 +137,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                Ký túc xá STN by <a href="https://colorlib.com">Sơn_Trâm_Nhật</a>
+                Ký túc xá TSN by <a href="https://colorlib.com">Trâm_Sơn_Nhật</a>
             </div>
             <div class="clearfix"></div>
         </footer>

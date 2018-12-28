@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('Client.HomeLayout');
+    return view('Client.home');
 })->name('client');
 Route::get('/index','HomeController@List' );
 Route::get('/news/{slug}','HomeController@GetNews' );
