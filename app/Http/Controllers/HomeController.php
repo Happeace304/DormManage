@@ -26,7 +26,31 @@ class HomeController extends Controller
     {
         return view('Admin.dashboard');
     }
-    
+
+    public function dangnhap()
+    {
+        return view('Client.login');
+    }
+
+    public function Profile()
+    {
+        return view('Client.profile');
+    }
+
+    public function ListOfNews()
+    {
+        return view('Client.ListOfNews');
+    }
+
+    public function NewsDetail()
+    {
+        return view('Client.NewsDetail');
+    }
+
+    public function BangGia()
+    {
+        return view('Client.BangGia');
+    }
 
     function List(){
         $news= News::orderBy('created_at','DESC')->take(4)->get();

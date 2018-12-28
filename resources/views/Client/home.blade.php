@@ -83,7 +83,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="section-title-wrapper" style="margin-bottom: 80px;">
+                <div class="section-title-wrapper" style="margin-bottom: 80px; margin-top: 20px;">
                     <div class="section-title">
                         <h3>Tin tức</h3>
                     </div>

@@ -14,7 +14,12 @@
 Route::get('/', function () {
     return view('Client.home');
 })->name('client');
-Route::get('/index','HomeController@List' );
+//Route::get('/index','HomeController@List' );
+Route::get('/DangNhap','HomeController@Dangnhap' );
+Route::get('/Profile','HomeController@Profile' );
+Route::get('/DanhSachTinTuc','HomeController@ListOfNews' );
+Route::get('/ChiTietTinTuc','HomeController@NewsDetail' );
+Route::get('/BangGia','HomeController@BangGia' );
 Route::get('/news/{slug}','HomeController@GetNews' );
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

@@ -12,10 +12,6 @@
     ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/favicon.ico') }}">
 
-    <!-- Google Fonts
-    ============================================ -->
-    {{--<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,800' rel='stylesheet' type='text/css'>--}}
-
     <!-- Bootstrap CSS
     ============================================ -->
     <link rel="stylesheet" href="{{ asset('public/assets/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -56,13 +52,14 @@
 
     <!-- Style CSS
     ============================================ -->
-    <link rel="stylesheet" href="{{ asset('public/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/montserrat/css/style.css') }}">
 
     <!-- Responsive CSS
     ============================================ -->
     <link rel="stylesheet" href="{{ asset('public/assets/css/responsive.css') }}">
 
     <link rel="stylesheet" href="{{ asset('public/assets/montserrat/css/material-design-iconic-font.css') }}">
+
 
     <!-- Modernizr JS
     ============================================ -->
@@ -98,7 +95,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-12">
                     <div class="logo">
-                        <a href="index-2.html"><img src="{{ asset('public/image/logo.png') }}"alt="KTX STN"></a>
+                        <a href="#"><img src="{{ asset('public/image/logo.png') }}"alt="KTX STN"></a>
                     </div>
                 </div>
                 <div class="col-md-9 hidden-sm hidden-xs">
@@ -146,6 +143,7 @@
             <div class="col-md-5 col-sm-5">
                 <div class="newsletter-content">
                     <h2>Ký túc xá TSN</h2>
+                    <h6>An ninh - Trật tự - Đảm bảo</h6>
                 </div>
             </div>
         </div>
@@ -155,7 +153,7 @@
 <div class="footer-widget-area">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-6 col-sm-6" style="margin-top: 30px;">
                 <div class="single-footer-widget">
                     <h3>Liên hệ</h3>
                     <span><i class="fa fa-phone"></i>0961213356</span>
@@ -164,7 +162,7 @@
                     <span><i class="fa fa-map-marker"></i>08 Hà Văn Tính, Hòa Khánh Nam, Liêu Chiểu, Đà Nẵng</span>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-6">
+            <div class="col-md-6 col-sm-6" style="margin-top: 40px;">
                 <div class="single-footer-widget">
                     <h4>THỜI GIAN TIẾP NHẬN SINH VIÊN ĐK LƯU TRÚ</h4>
                     <ul>
