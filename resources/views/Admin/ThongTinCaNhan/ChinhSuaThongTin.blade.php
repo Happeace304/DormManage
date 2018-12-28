@@ -15,6 +15,12 @@
             <form class="x_content" action="{{route('SaveProfile')}}" method="post">
                 @csrf
                 @method('PUT')
+
+                @if($errors->any())
+                    @foreach ($errors->all() as $error)
+                        {{$error}}
+                    @endforeach
+                @endif
                 <div class="row">
                     <input class="hidden" name="userId" value="{{$user->userId}}"/>
                         <div class="col-xs-12 col-sm-12">

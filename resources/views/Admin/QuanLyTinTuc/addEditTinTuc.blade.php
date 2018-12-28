@@ -15,26 +15,35 @@
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{$action}}" enctype="multipart/form-data">
                         @csrf
-                        @if(isset($user)) @method('PUT') @endif
+                        @if(isset($news)) @method('PUT') @endif
+                        @if($errors->any())
+                            @foreach ($errors->all() as $error)
+                                {{$error}}
+                            @endforeach
+                        @endif
+                        <input type="text" id="newsId"  name="newsId"
+                               value="{{ isset($news)?$news->newsId:''}}" hidden>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tiêu đề <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" id="title" name="title" required="required" class="form-control col-md-7 col-xs-12"
-                                       value="{{ isset($user)?$user->title:''}}">
+                                       value="{{ isset($news)?$news->title:''}}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Ảnh bìa</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="file" id="image" name="image" class="form-control col-md-7 col-xs-12">
-                                @if(isset($user))<input type="text" hidden name="old_image" value="{{$user->imgLink}}"> @endif
+                                @if(isset($news))<input type="text" hidden name="old_image" value="{{$news->imgLink}}"> @endif
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Nội dung  <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
+                                <textarea class="form-control" id="summary-ckeditor" name="content" >
+                                    {{ isset($news)?$news->content:''}}
+                                </textarea>
                             </div>
                         </div>
                         <input type="text" hidden name='userId' value="{{\Illuminate\Support\Facades\Auth::user()->userId}}">
@@ -42,13 +51,8 @@
                          <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                @if(isset($user))
-                                <form method="post" action="{{route('XoaTinTuc',['id'=> $item->newsId])}}">
-                                    @method('delete')
-                                    @csrf
-                                    <button class="btn btn-danger" type="button">Xóa tin tức</button>
-                                </form>
-                                @endif
+                                <button class="btn btn-danger" type="button"
+                                        onclick="history.go(-1);">Trở lại</button>
                                 <button type="submit" class="btn btn-success" style="float: right;">Lưu thông tin tin tức</button>
                             </div>
                         </div>

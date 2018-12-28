@@ -12,10 +12,17 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <br />
+
+
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{$action}}" enctype="multipart/form-data">
                         @if(isset($user)) @method('PUT') @endif
                         @csrf
+
+                            @if($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    {{$error}}
+                                @endforeach
+                            @endif
                         <input type="text" id="userId"  name="userId"
                                value="{{ isset($user)?$user->userId:''}}" hidden>
                         <div class="form-group">

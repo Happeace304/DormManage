@@ -17,6 +17,11 @@
                     @csrf
                    @if(isset($user)) @method('PUT') @endif
 
+                    @if($errors->any())
+                        @foreach ($errors->all() as $error)
+                            {{$error}}
+                        @endforeach
+                    @endif
                     <input type="text" id="userId"  name="userId"
                            value="{{ isset($user)?$user->userId:''}}" hidden>
                     <div class="form-group">
