@@ -114,7 +114,7 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="#"> Trang cá nhân</a></li>
+                                <li><a href="{{route('Profile')}}"> Trang cá nhân</a></li>
 
                                 <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

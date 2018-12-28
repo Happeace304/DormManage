@@ -24,7 +24,6 @@ Auth::routes();
 Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
 
     Route::get('/home', 'HomeController@index')->name('Admin.home');
-    Route::get('/profile', 'HomeController@profile')->name('Admin.profile');
     Route::group(['prefix'=> 'user'], function (){
 
         Route::get('/DanhSachSinhVien', 'Admin\UserController@ListStudent')->name('DanhSachSinhVien');
@@ -42,8 +41,11 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
         Route::put('/SaveEditNhanVien', 'Admin\UserController@SaveEditNhanVien')->name('SaveEditNhanVien');
 
         Route::delete('/XoaUser/{id}', 'Admin\UserController@Delete')->name('XoaUser');
+//        Route::post('/XoanhieuUser', 'Admin\UserController@MassDelete')->name('MassDel');
 
         Route::put('/GiaHan/{id}','Admin\UserController@Recharge')->name('User.Recharge');
+        Route::get('/Profile','Admin\UserController@Profile')->name('Profile');
+        Route::put('/SaveProfile','Admin\UserController@SaveProfile')->name('SaveProfile');
     });
     Route::group(['prefix'=> 'room'], function (){
         Route::get('/DanhSachPhong', 'Admin\RoomController@List')->name('DanhSachPhong');

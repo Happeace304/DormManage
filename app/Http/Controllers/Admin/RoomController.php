@@ -36,13 +36,11 @@ class RoomController extends Controller
         if($tinhtrang == 'true') $cmp='=';
             else if($tinhtrang == 'false') $cmp= '<';
 
-
-
     }else $cmp= '<=';
 
 
     $room = Room::where('roomName','like','%'.$phong.'%')->where('peopleCount', $cmp, 4)->paginate(10);
     $room->appends(['Phong' =>$phong, 'TinhTrang'=> $tinhtrang]);
-        return view('Admin.QuanLyPhong.DanhSachPhong',compact('room'));
+        return view('Admin.QuanLyPhong.danhSachPhong',compact('room'));
     }
 }

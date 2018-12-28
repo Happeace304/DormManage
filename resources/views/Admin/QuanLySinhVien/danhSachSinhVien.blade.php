@@ -62,7 +62,7 @@
                             <thead>
                             <tr>
                                 <th class="text-center col-checkbox">
-                                    <input type="checkbox" id="check-all" class="flat">
+                                    <input type="checkbox" id="check-all" class="flat" onclick="checkAll();">
                                 </th>
                                 <th class="text-center">Sửa</th>
                                 <th class="text-center">Tên sinh viên</th>
@@ -83,7 +83,7 @@
                                     <tr>
                                 @endif
                                     <td class="text-center middle col-checkbox">
-                                        <input type="checkbox" class="flat check-item" name="check-remove" id-del="">
+                                        <input type="checkbox" class="flat check-item" name="check-remove" id="{{$item->userId}}">
                                     </td>
                                     <td class="text-center middle">
                                         <a href="{{route('EditFormSinhVien',['id'=>$item->userId])}}" onclick="event.preventDefault();
@@ -123,7 +123,7 @@
 
                                     </td>
                                     <td class="text-center middle">
-                                        <form method="post" action="{{route('XoaUser',['id'=> $item->userId])}}">
+                                        <form method="post" id='del#{{$item->userId}}'action="{{route('XoaUser',['id'=> $item->userId])}}">
                                             @method('delete')
                                             @csrf
                                             <button class="btn btn-xs btn-danger btn-delete" >
@@ -138,7 +138,7 @@
 
                     </div>
                         <div class="col-xs-3 pl-0">
-                            <button type="button" class="btn btn-danger btn-delete-selected">Xóa các mục đã chọn</button>
+                            <button type="button" class="btn btn-danger btn-delete-selected" onclick="deleteSelected();">Xóa các mục đã chọn</button>
                         </div>
                         <div class="col-xs-9 pr-0">
                             <div  style="float:right;">
@@ -150,5 +150,31 @@
                 </div>
             </div>
         </div>
+        <form method="post" id="massdel" action="{{route('MassDel}}">
+            <input type="text" id="array">
+        </form>
     </div>
+    <script>
+        var checkboxes = document.querySelectorAll("input[type=checkbox]");
+        var result;
+        function checkAll() {
+
+            var bool = checkboxes[0].checked;
+            for(var i=1; i< checkboxes.length; i++){
+                checkboxes[i].checked=bool;
+            }
+        }
+        // function deleteSelected() {
+        //     var array=[];
+        //     for(var i=1; i< checkboxes.length; i++){
+        //        if(checkboxes[i].checked==true) {
+        //            var id= checkboxes[i].id;
+        //            array[i-1]= id;
+        //
+        //        }
+        //     }
+        //     result.join(",");
+        //     document.getElementById("array").value= result;
+        // }
+    </script>
 @endsection
