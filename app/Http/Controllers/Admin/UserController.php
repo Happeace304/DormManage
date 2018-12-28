@@ -20,7 +20,8 @@ class UserController extends Controller
 
     function Delete(Request $request){
         $user = User::findOrFail($request->id);
-        if($user->delete())
+        $user->state= 0;
+        if($user->save())
         {
             $this->UpdateRoomCount();
         }
@@ -133,10 +134,10 @@ class UserController extends Controller
     function  UpdateRoomCount(){
         $room= Room::get();
         foreach ($room as $item){
-            $item->peopleCount = User::where('roomId',$item->roomId)->count();
+            $item->peopleCount = User::where('roomId',$item->roomId)->where('state',1)->count();
             $item->save();
         }
-
+        return;
     }
     function SaveSinhVien(Request $request){
         $request->validate([
@@ -300,9 +301,11 @@ class UserController extends Controller
 
         $user = User::whereIn('userId',$res)->get();
         foreach ($user as $item){
-            $item->delete();
+            $item->state=0;
+            $item->save();
         }
         $this->UpdateRoomCount();
         return redirect()->back();
     }
+
 }
