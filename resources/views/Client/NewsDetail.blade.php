@@ -29,13 +29,19 @@
                         <div class="single-latest-item">
                             <img src="{{ asset('public/image/news/1.jpg') }}" alt="" style="width:100%;">
                             <div class="single-latest-text">
-                                <h3>Tiêu đề</h3>
+                                <h3>Ngày hội hiến máu nhân đạo tại Ký túc xá </h3>
                                 <div class="single-item-content" style="margin-bottom:0px;">
                                     <div class="single-item-comment-view">
-                                        <span><i class="zmdi zmdi-calendar-check"></i>Ngày đăng</span>
+                                        <span><i class="zmdi zmdi-calendar-check"></i>20/12/2018</span>
                                 </div>
                                 <div>
-                                    Nội dung
+                                    “Một giọt máu đào, gởi trao hi vọng” đó là tinh thần, là ý nghĩa nhân văn mà mỗi năm 2 lần tại 2 khu KTX sinh viên Thành phố Đà Nẵng luôn tổ chức đều đặn cho các bạn sinh viên tại 2 khu KTX tham gia.
+<br>
+                                    Thông qua chương trình mỗi năm huy động một lượng máu đáng kể góp phần giúp đỡ bệnh nhân nghèo giảm bớt gánh lo viện phí đồng thời qua đó hướng các bạn sinh viên biết sống vì cộng đồng, biết góp nhặt yêu thương để chia sẽ với xã hội.
+<br>
+                                    Hằng năm, Ban lãnh đạo KTX phối hợp với Hội chữ thập đỏ Thành Phố Đà Nẵng, Ban vận động Hiến máu quận Liên Chiểu tổ chức chương trình hiến máu thường niên, tiếp tục thu hút đông đảo sinh viên, cán bộ của 2 khu KTX tham gia.
+                               <br>
+                                    Biết được tầm quan trọng và ý nghĩa to lớn của việc làm này nên các bạn sinh viên cũng như cán bộ KTX đã tham gia rất đông, nụ cười rạng rỡ trên khuôn mặt mỗi người khi nhìn thấy dòng máu nóng của mình đang chảy ra, mang hơi ấm đến cộng đồng, xua tan bớt lo âu mệt mỏi cho những người bệnh đang ngày đêm vật lộn với sự sống. Ở đâu đó các bạn sẽ cảm nhận được những giọt máu của mình đang mang sự sống đến cho người khác, niềm tự hào khi biết dòng máu của mình đang chảy trên cơ thể một ai đó, giúp họ tiếp tục cuộc sống này, giúp họ có thêm những ngày tươi đẹp bên gia đình, được viết tiếp ước mơ còn giang dỡ, được thực hiện những hoài bảo tưởng chừng như đóng lại sau cánh cổng bệnh viện.
                                 </div>
                             </div>
                         </div>

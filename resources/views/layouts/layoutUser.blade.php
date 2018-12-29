@@ -79,12 +79,12 @@
                     <div class="header-top-right">
                         <div class="content"><a href="#"> Đăng nhập</a>
                         </div>
-                        <div class="content"><a href="#"><i class="fa fa-user"></i> Họ tên</a>
-                            <ul class="account-dropdown">
-                                <li><a href="#">Trang cá nhân</a></li>
-                                <li><a href="#">Đăng xuất</a></li>
-                            </ul>
-                        </div>
+                        {{--<div class="content"><a href="#"><i class="fa fa-user"></i> Họ tên</a>--}}
+                            {{--<ul class="account-dropdown">--}}
+                                {{--<li><a href="#">Trang cá nhân</a></li>--}}
+                                {{--<li><a href="#">Đăng xuất</a></li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
             </div>

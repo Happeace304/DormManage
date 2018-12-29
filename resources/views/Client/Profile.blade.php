@@ -26,7 +26,7 @@
                                 <div class="row">
                                     <div class="col-sm-7 avatar">
                                         <div>
-                                            <img id="imgPreview0" class="img-preview" src="{{ asset('public/image/user.png') }}" />
+                                            <img id="imgPreview0" class="img-preview" src="{{ asset('public/image/avatar/1.jpg') }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -49,11 +49,11 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label for="ho" class="white-label text-mul">Họ tên <span class="text-required">*</span></label>
-                                        <input type="text" name="ho" id="ho" class="required mb-5" maxlength="50" tabindex="1" value="" />
+                                        <input type="text" name="ho" id="ho" class="required mb-5" maxlength="50" tabindex="1" value="Trâm" />
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="ten" class="white-label text-mul">Email </label>
-                                        <input type="text" readonly="readonly" name="ten" id="ten" class="required mb-5" maxlength="50" tabindex="2" value="" />
+                                        <input type="text" readonly="readonly" name="ten" id="ten" class="required mb-5" maxlength="50" tabindex="2" value="DieuTram123@gmail.com" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -61,37 +61,34 @@
                                         <label for="GioiTinh" class="white-label text-mul">Giới tính</label>
                                         <select name="GioiTinh" id="GioiTinh" class="required mb-5" tabindex="3">
                                             <option value="true" >Nam</option>
-                                            <option value="false">Nữ</option>
+                                            <option value="false" selected="selected">Nữ</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-6">
-                                        <label for="NgaySinh" class="white-label text-mul">Ngày sinh </label>
+                                        <label for="NgaySinh" class="white-label text-mul">Ngày sinh <span class="text-required">*</span></label>
                                         <div class="input-group datetimepicker mb-5">
-                                            <input type="tel" class="date  " id="NgaySinh" name="NgaySinh" maxlength="8" tabindex="4" value="" />
-                                            <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
+                                            <input type="date" class="date  " id="NgaySinh" name="NgaySinh" maxlength="8" tabindex="4" value="30/10/1997" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <label for="sdt" class="white-label text-mul">Số điện thoại </label>
-                                        <input type="tel" name="sdt" id="sdt" maxlength="15" tabindex="5" class=" numeric mb-5" value="" />
+                                        <label for="sdt" class="white-label text-mul">Số điện thoại <span class="text-required">*</span></label>
+                                        <input type="tel" name="sdt" id="sdt" maxlength="15" tabindex="5" class=" numeric mb-5" value="0961213356" />
                                     </div>
                                     <div class="col-sm-6">
-                                        <label for="cmnd" class="white-label text-mul">Địa chỉ </label>
-                                        <input type="text" name="address" maxlength="255" id="address" tabindex="6" class=" numeric mb-5" value="" />
+                                        <label for="cmnd" class="white-label text-mul">Địa chỉ <span class="text-required">*</span></label>
+                                        <input type="text" name="address" maxlength="255" id="address" tabindex="6" class=" numeric mb-5" value="122 Nguyễn Lương Bằng" />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label for="sdt" class="white-label text-mul">Phòng </label>
-                                        <input type="text" readonly="readonly" name="sdt" id="sdt" maxlength="15" tabindex="5" class=" numeric mb-5" value="" />
+                                        <input type="text" readonly="readonly" name="sdt" id="sdt" maxlength="15" tabindex="5" class=" numeric mb-5" value="A420" />
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="cmnd" class="white-label text-mul">Ngày hết hạn </label>
-                                        <input type="text" readonly="readonly" name="address" maxlength="255" id="address" tabindex="6" class=" numeric mb-5" value="" />
+                                        <input type="text" readonly="readonly" name="address" maxlength="255" id="address" tabindex="6" class=" numeric mb-5" value="05/01/2019" />
                                     </div>
                                 </div>
                                 <div class="row">
