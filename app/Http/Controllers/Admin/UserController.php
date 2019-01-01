@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
@@ -256,9 +257,28 @@ class UserController extends Controller
         return view('Admin.ThongTinCaNhan.ChinhSuaThongTin',compact('user'));
     }
     function SaveProfile(Request $request){
+        dd(File::exists(asset('public/image').'/'.$request->old_image));
         $user = User::findorfail($request->userId);
-        if($request->savebtn == 'information'){
+        if ($request->savebtn == 'avatar'){
             $request->validate([
+            'imglink' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|required',
+            ]);
+            $imageName = time().'.'.request()->imglink->getClientOriginalExtension();
+            $request->file('imglink')->move(public_path('image'), $imageName);
+            $user->imgLink= $imageName;
+
+            if($user->save()){
+                if(File::exists(asset('public/image').'/'.$request->old_image))
+                {
+                    unlink(asset('public/image').'/'.$request->old_image);
+                }
+            }
+
+        }
+
+        else if($request->savebtn == 'information'){
+            $request->validate([
+
                 'name' => 'required|string|max:30',
                 'birthday'=> 'required',
                 'phone'=> 'max:20',

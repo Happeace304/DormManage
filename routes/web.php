@@ -15,59 +15,61 @@ Route::get('/', function () {
     return view('Client.home');
 })->name('client');
 //Route::get('/index','HomeController@List' );
-Route::get('/DangNhap','HomeController@Dangnhap' );
-Route::get('/Profile','HomeController@Profile' );
-Route::get('/DanhSachTinTuc','HomeController@ListOfNews' );
-Route::get('/ChiTietTinTuc','HomeController@NewsDetail' );
-Route::get('/BangGia','HomeController@BangGia' );
+Route::get('login','\App\Http\Controllers\Auth\LoginController@showLoginForm' )->name('login');
+Route::get('/profile','HomeController@Profile' );
+Route::get('/danhsachtintuc','HomeController@ListOfNews' );
+Route::get('/chitiettintuc','HomeController@NewsDetail' );
+Route::get('/banggia','HomeController@BangGia' );
 Route::get('/news/{slug}','HomeController@GetNews' );
 
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 Auth::routes();
 //'middleware'=>['admin']
 Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
 
-    Route::get('/home', 'HomeController@index')->name('Admin.home');
+    Route::get('/',function (){
+        return redirect()->route('DanhSachTinTuc');
+    })->name('Admin.home');
     Route::group(['prefix'=> 'user'], function (){
 
-        Route::get('/DanhSachSinhVien', 'Admin\UserController@ListStudent')->name('DanhSachSinhVien');
-        Route::get('/DanhSachNhanVien', 'Admin\UserController@ListNhanVien')->name('DanhSachNhanVien');
-        Route::get('/ThemSinhVien', 'Admin\UserController@AddSinhVien')->name('ThemSinhVien');
-        Route::get('/ThemNhanVien', 'Admin\UserController@AddNhanVien')->name('ThemNhanVien');
-        Route::get('timNV', 'Admin\UserController@SearchNhanVien')->name('NhanVien.Search');
-        Route::get('timSV', 'Admin\UserController@SearchSinhVien')->name('SinhVien.Search');
-        Route::post('/SaveNhanVien', 'Admin\UserController@SaveNhanVien')->name('SaveNhanVien');
-        Route::post('/SaveSinhVien', 'Admin\UserController@SaveSinhVien')->name('SaveSinhVien');
+        Route::get('danhsachsinhvien', 'Admin\UserController@ListStudent')->name('DanhSachSinhVien');
+        Route::get('danhsachnhanvien', 'Admin\UserController@ListNhanVien')->name('DanhSachNhanVien');
+        Route::get('themsinhvien', 'Admin\UserController@AddSinhVien')->name('ThemSinhVien');
+        Route::get('themnhanvien', 'Admin\UserController@AddNhanVien')->name('ThemNhanVien');
+        Route::get('timnv', 'Admin\UserController@SearchNhanVien')->name('NhanVien.Search');
+        Route::get('timsv', 'Admin\UserController@SearchSinhVien')->name('SinhVien.Search');
+        Route::post('savenhanvien', 'Admin\UserController@SaveNhanVien')->name('SaveNhanVien');
+        Route::post('savesinhvien', 'Admin\UserController@SaveSinhVien')->name('SaveSinhVien');
 
-        Route::get('/EditFormSinhVien/{id}', 'Admin\UserController@EditFormSinhVien')->name('EditFormSinhVien');
-        Route::get('/EditFormNhanVien/{id}', 'Admin\UserController@EditFormNhanVien')->name('EditFormNhanVien');
-        Route::put('/SaveEditSinhVien', 'Admin\UserController@SaveEditSinhVien')->name('SaveEditSinhVien');
-        Route::put('/SaveEditNhanVien', 'Admin\UserController@SaveEditNhanVien')->name('SaveEditNhanVien');
+        Route::get('editformsinhvien/{id}', 'Admin\UserController@EditFormSinhVien')->name('EditFormSinhVien');
+        Route::get('editformnhanvien/{id}', 'Admin\UserController@EditFormNhanVien')->name('EditFormNhanVien');
+        Route::put('saveeditsinhvien', 'Admin\UserController@SaveEditSinhVien')->name('SaveEditSinhVien');
+        Route::put('saveeditnhanvien', 'Admin\UserController@SaveEditNhanVien')->name('SaveEditNhanVien');
 
-        Route::delete('/XoaUser/{id}', 'Admin\UserController@Delete')->name('XoaUser');
-        Route::delete('XoanhieuUser', 'Admin\UserController@MassDelete')->name('MassDel');
+        Route::delete('/xoauser/{id}', 'Admin\UserController@Delete')->name('XoaUser');
+        Route::delete('xoanhieuuser', 'Admin\UserController@MassDelete')->name('MassDel');
 
-        Route::put('/GiaHan/{id}','Admin\UserController@Recharge')->name('User.Recharge');
-        Route::get('/Profile','Admin\UserController@Profile')->name('Profile');
-        Route::put('/SaveProfile','Admin\UserController@SaveProfile')->name('SaveProfile');
+        Route::put('giahan/{id}','Admin\UserController@Recharge')->name('User.Recharge');
+        Route::get('/profile','Admin\UserController@Profile')->name('Profile');
+        Route::put('/saveprofile','Admin\UserController@SaveProfile')->name('SaveProfile');
     });
     Route::group(['prefix'=> 'room'], function (){
-        Route::get('/DanhSachPhong', 'Admin\RoomController@List')->name('DanhSachPhong');
-        Route::get('/XemChiTietPhong/{id}', 'Admin\RoomController@Detail')->name('XemChiTietPhong');
-        Route::get('timPhong', 'Admin\RoomController@SearchPhong')->name('Phong.Search');
+        Route::get('danhSachPhong', 'Admin\RoomController@List')->name('DanhSachPhong');
+        Route::get('/xemchitietphong/{id}', 'Admin\RoomController@Detail')->name('XemChiTietPhong');
+        Route::get('timphong', 'Admin\RoomController@SearchPhong')->name('Phong.Search');
 
     });
     Route::group(['prefix'=> 'news'], function (){
-        Route::get('/ThemTinTuc', 'Admin\NewsController@AddTinTuc')->name('ThemTinTuc');
-        Route::get('/DanhSachTinTuc', 'Admin\NewsController@List')->name('DanhSachTinTuc');
-        Route::get('timTinTuc', 'Admin\NewsController@SearchTinTuc')->name('TinTuc.Search');
-        Route::post('SaveTinTuc', 'Admin\NewsController@SaveTinTuc')->name('SaveTinTuc');
-        Route::delete('XoaTinTuc/{id}', 'Admin\NewsController@Delete')->name('XoaTinTuc');
+        Route::get('themtintuc', 'Admin\NewsController@AddTinTuc')->name('ThemTinTuc');
+        Route::get('danhsachtintuc', 'Admin\NewsController@List')->name('DanhSachTinTuc');
+        Route::get('timtintuc', 'Admin\NewsController@SearchTinTuc')->name('TinTuc.Search');
+        Route::post('savetintuc', 'Admin\NewsController@SaveTinTuc')->name('SaveTinTuc');
+        Route::delete('xoatintuc/{id}', 'Admin\NewsController@Delete')->name('XoaTinTuc');
 
-        Route::get('EditFormTinTuc/{id}', 'Admin\NewsController@EditFormTinTuc')->name('EditFormTinTuc');
-        Route::put('SaveEditTinTuc', 'Admin\NewsController@SaveEdit')->name('SaveEditTinTuc');
-        Route::delete('XoanhieuTinTuc', 'Admin\NewsController@MassDelete')->name('MassDelTinTuc');
+        Route::get('editformtintuc/{id}', 'Admin\NewsController@EditFormTinTuc')->name('EditFormTinTuc');
+        Route::put('saveedittintuc', 'Admin\NewsController@SaveEdit')->name('SaveEditTinTuc');
+        Route::delete('xoanhieutintuc', 'Admin\NewsController@MassDelete')->name('MassDelTinTuc');
     });
     Route::group(['prefix'=> 'bill'], function ()
     {

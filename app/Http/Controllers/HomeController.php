@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Model\News;
+use App\Model\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -12,20 +14,11 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('Admin.dashboard');
-    }
 
     public function dangnhap()
     {
@@ -33,8 +26,11 @@ class HomeController extends Controller
     }
 
     public function Profile()
-    {
-        return view('Client.profile');
+    {   $user= Auth::user();
+
+        $room= Room::where('peopleCount','<',4)->orwhere('roomId',$user->roomId)
+            ->orderby('roomId')->get();
+        return view('Client.profile',compact(['user','room']));
     }
 
     public function ListOfNews()

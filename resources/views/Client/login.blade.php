@@ -18,7 +18,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <form id="form-login" action="#" method="post">
+                    <form id="form-login" action="{{url('login')}}" method="post">
+                        @csrf
                     <div class="form-container">
                         <div class="box-select">
                             <div class="row">

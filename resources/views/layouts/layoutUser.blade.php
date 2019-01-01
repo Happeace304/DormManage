@@ -77,14 +77,17 @@
                 </div>
                 <div class="col-lg-5 col-md-6 col-sm-7 col-xs-12">
                     <div class="header-top-right">
-                        <div class="content"><a href="#"> Đăng nhập</a>
+                        @guest
+                        <div class="content"><a href="{{route('login')}}"> Đăng nhập</a>
                         </div>
-                        <div class="content"><a href="#"><i class="fa fa-user"></i> Họ tên</a>
+                        @else
+                        <div class="content"><a href="#"><i class="fa fa-user"></i> {{\Illuminate\Support\Facades\Auth::user()->name}}</a>
                             <ul class="account-dropdown">
-                                <li><a href="#">Trang cá nhân</a></li>
-                                <li><a href="#">Đăng xuất</a></li>
+                                <li><a href="{{url('profile')}}">Trang cá nhân</a></li>
+                                <li><a href="{{url('logout')}}">Đăng xuất</a></li>
                             </ul>
                         </div>
+                            @endif
                     </div>
                 </div>
             </div>
@@ -103,8 +106,8 @@
                         <div class="mainmenu">
                             <nav>
                                 <ul id="nav">
-                                    <li class="current"><a href="#">Trang chủ</a></li>
-                                    <li><a href="#">Bảng giá</a></li>
+                                    <li class="current"><a href="{{route('client')}}">Trang chủ</a></li>
+                                    <li><a href="{{url('banggia')}}">Bảng giá</a></li>
                                     <li><a href="#">Liên hệ</a></li>
                                 </ul>
                             </nav>

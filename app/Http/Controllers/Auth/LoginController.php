@@ -29,6 +29,10 @@ class LoginController extends Controller
      */
         protected $redirectTo= '/';
 
+    public function showLoginForm()
+    {
+        return view('Client.login');
+    }
     protected function authenticated(Request $request, $user)
     {
         if ( Auth::user()->role !=2 ) {

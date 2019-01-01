@@ -21,11 +21,12 @@
                         <img style="margin-top: 5px; margin-bottom: 10px;" class="img-preview" @if(Auth::user()->imgLink == null) src="{{ asset('public/image/user.png') }}"
                              @else src="{{asset('public/image').'/'.Auth::user()->imgLink}}"
                              @endif
-                             alt="..." class="img-circle profile_img">
+                             alt="..." class="img-circle profile_img" id="img_preview">
                         <div class="input-group">
                                 <span class="input-group-btn">
                                     <input class="form-control" type="file" style="width: 96%; display: none;" name="imglink" id="imglink"
-                                    onchange="document.getElementById('fake').value=document.getElementById('imglink').value"/>
+                                    onchange="loadFile();"/>
+                                    @if(isset($user))<input type="text" hidden name="old_image" value="{{$user->imgLink}}"> @endif
                                     <input class="form-control" type="text" id="fake" disabled>
                                     <a href="javascript:document.getElementById('imglink').click(); " id="btn-anh" class="btn btn-primary">
                                         <i class="fa fa-upload" aria-hidden="true" ></i>
@@ -36,7 +37,7 @@
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <button type="submit" class="btn-success btn btn-sm"  name="avabtn" value="information" />
+                        <button type="submit" class="btn-success btn btn-sm"  name="savebtn" value="avatar" />
                         Lưu
                     </div>
                 </div>
@@ -168,4 +169,10 @@
         </div>
     </div>
 </div>
+    <script>
+        function loadFile() {
+            document.getElementById('fake').value=document.getElementById('imglink').files.item(0).name;
+            document.getElementById('img_preview').src = URL.createObjectURL(document.getElementById('imglink').files.item(0));
+        }
+    </script>
 @endsection

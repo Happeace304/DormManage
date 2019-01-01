@@ -9,8 +9,8 @@
                         <h1 class="text-center">Bảng giá lưu trú</h1>
                         <div class="breadcrumb-bar">
                             <ul class="breadcrumb">
-                                <li><a href="#">Trang chủ</a></li>
-                                <li><a href="#">Bảng giá lưu trú</a></li>
+                                <li><a href="{{url('/')}}">Trang chủ</a></li>
+                                <li><a href="{{url('banggia')}}">Bảng giá lưu trú</a></li>
                             </ul>
                         </div>
                     </div>
