@@ -49,28 +49,46 @@
             <div class="row">
                 {{--@foreach (TinTuc tintuc in listTinTuc)--}}
                     {{--{--}}
-                @for( $i=0;$i<9;$i++)
+                {{--@for( $i=0;$i<9;$i++)--}}
                     <div class="col-md-6">
                         <div class="single-latest-item">
                             <div class="single-latest-image">
                                 <a href="#"><img src="{{ asset('public/image/news/1.jpg') }}" style="height:235px;width:235px;" alt=""></a>
                             </div>
                             <div class="single-latest-text" style="height: 235px;">
-                                <a href="#"><h3>Tiêu đề</h3></a>
+                                <a href="#"><h3>Ngày hội hiến máu nhân đạo tại Ký túc xá</h3></a><br>
                                 <div class="single-item-content" style="margin-bottom:0px;">
                                     <div class="single-item-comment-view">
-                                        <span><i class="zmdi zmdi-calendar-check"></i>Ngày đăng</span>
+                                        <span><i class="zmdi zmdi-calendar-check"></i>20/12/2018</span>
                                     </div>
                                 </div>
                                 <div class="content-tintuc">
-                                    Tóm tắt
+                                    “Một giọt máu đào, gởi trao hi vọng” đó là tinh thần, là ý nghĩa nhân văn...
                                 </div>
-                                <br />
                                 <a href="#" class="button-default">Xem chi tiết</a>
                             </div>
                         </div>
                     </div>
-                    @endfor
+                <div class="col-md-6">
+                    <div class="single-latest-item">
+                        <div class="single-latest-image">
+                            <a href="#"><img src="{{ asset('public/image/news/4.jpg') }}" style="height:235px;width:235px;" alt=""></a>
+                        </div>
+                        <div class="single-latest-text" style="height: 235px;">
+                            <a href="#"><h3>Hội thi tiếng hát Karaoke “Chào mừng ngày nhà giáo Việt Nam 20/11”</h3></a>
+                            <div class="single-item-content" style="margin-bottom:0px;">
+                                <div class="single-item-comment-view">
+                                    <span><i class="zmdi zmdi-calendar-check"></i>20/11/2018</span>
+                                </div>
+                            </div>
+                            <div class="content-tintuc">
+                                Cứ mỗi mùa hiến chương đến là lời bài hát này lại vang lên như một nốt trầm đẹp đẽ giữa bao nhiêu xô bồ của cuộc sống...
+                            </div>
+                            <a href="#" class="button-default">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+                    {{--@endfor--}}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="pagination-content">

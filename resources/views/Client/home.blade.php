@@ -17,8 +17,8 @@
                         <div class="col-md-12">
                             <div class="text-content-wrapper">
                                 <div class="text-content">
-                                    <h1 class="title1 wow fadeInUp" data-wow-duration="2000ms" data-wow-delay="0s">Tiêu đề</h1>
-                                    <p class="sub-title wow fadeInUp hidden-xs" data-wow-duration="2900ms" data-wow-delay=".5s"> Nội dung</p>
+                                    <h1 class="title1 wow fadeInUp" data-wow-duration="2000ms" data-wow-delay="0s">Ngày hội hiến máu<br> nhân đạo<br> tại Ký túc xá </h1>
+                                    <p class="sub-title wow fadeInUp hidden-xs" data-wow-duration="2900ms" data-wow-delay=".5s"> “Một giọt máu đào, gởi trao hi vọng” đó là tinh thần,<br> là ý nghĩa nhân văn mà mỗi năm 2 lần tại 2 khu KTX sinh viên.....</p>
                                     <div class="banner-readmore wow fadeInUp" data-wow-duration="3600ms" data-wow-delay=".6s">
                                         <a class="button-default" href="#">Xem chi tiết</a>
                                     </div>

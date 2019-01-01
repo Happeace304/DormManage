@@ -71,7 +71,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-6">
-                                        <label for="NgaySinh" class="white-label text-mul">Ngày sinh </label>
+                                        <label for="NgaySinh" class="white-label text-mul">Ngày sinh <span class="text-required">*</span></label>
                                         <div class="input-group datetimepicker mb-5">
                                             <input type="tel" class="date  " id="NgaySinh" name="NgaySinh" maxlength="8" tabindex="4" value="{{$user->birthday}}" />
                                             <span class="input-group-addon">
