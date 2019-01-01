@@ -7,47 +7,39 @@
 <div class="slider-area">
     <div class="preview-2">
         <div id="nivoslider" class="slides">
-            <img src="{{ asset('public/image/news/1.jpg') }}" alt="" title="#slider-1-caption1"/>
-            <img src="{{ asset('public/image/news/3.jpg') }}" alt="" title="#slider-1-caption2"/>
+
+            @foreach($feature as $item)
+                <img src="{{ asset('public/image/news').'/'.$item->imgLink }}" alt="" title="#slider-1-caption1"/>
+                @endforeach
+            {{--<img src="{{ asset('public/image/news/1.jpg') }}" alt="" title="#slider-1-caption1"/>--}}
+            {{--<img src="{{ asset('public/image/news/3.jpg') }}" alt="" title="#slider-1-caption1"/>--}}
         </div>
+        @foreach($feature as $index=>$item1)
         <div id="slider-1-caption1" class="nivo-html-caption nivo-caption">
             <div class="banner-content slider-1">
                 <div class="container">
                     <div class="row">
+
                         <div class="col-md-12">
                             <div class="text-content-wrapper">
                                 <div class="text-content">
-                                    <h1 class="title1 wow fadeInUp" data-wow-duration="2000ms" data-wow-delay="0s">Ngày hội hiến máu<br> nhân đạo<br> tại Ký túc xá </h1>
-                                    <p class="sub-title wow fadeInUp hidden-xs" data-wow-duration="2900ms" data-wow-delay=".5s"> “Một giọt máu đào, gởi trao hi vọng” đó là tinh thần,<br> là ý nghĩa nhân văn mà mỗi năm 2 lần tại 2 khu KTX sinh viên.....</p>
+                                    <h2 class="title1 wow fadeInUp" data-wow-duration="2000ms" data-wow-delay="0s">{{$item1->title}}</h2>
+                                    <p class="sub-title wow fadeInUp hidden-xs" data-wow-duration="2900ms" data-wow-delay=".5s"> "{{$item1->sentence}}" </p>
                                     <div class="banner-readmore wow fadeInUp" data-wow-duration="3600ms" data-wow-delay=".6s">
-                                        <a class="button-default" href="#">Xem chi tiết</a>
+                                        <a class="button-default" href="{{route('xemNews',['slug'=>$item1->slug])}}">Xem chi tiết</a>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
-        <div id="slider-1-caption2" class="nivo-html-caption nivo-caption">
-            <div class="banner-content slider-2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="text-content-wrapper">
-                                <div class="text-content slide-2">
-                                    <h1 class="title1 wow rotateInDownLeft" data-wow-duration="1000ms" data-wow-delay="0s">Tiêu đề</h1>
-                                    <p class="sub-title wow rotateInDownLeft hidden-xs" data-wow-duration="1800ms" data-wow-delay="0s"> Nội dung</p>
-                                    <div class="banner-readmore wow rotateInDownLeft" data-wow-duration="1800ms" data-wow-delay="0s">
-                                        <a class="button-default" href="#">Xem chi tiết</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
     </div>
 </div>
 <!--End of Slider Area-->
@@ -91,68 +83,25 @@
             </div>
         </div>
         <div class="row">
+            @foreach($news as $item2)
             <div class="col-md-6">
                 <div class="single-latest-item">
                     <div class="single-latest-image">
-                        <a href="#"><img src="{{ asset('public/image/news/1.jpg') }}" alt=""></a>
+                        <a href="{{route('xemNews',['slug'=>$item2->slug])}}"><img src="{{ asset('public/image/news').'/'.$item2->imgLink }}" alt=""></a>
                     </div>
                     <div class="single-latest-text">
-                        <h3><a href="#">Tiêu đề</a></h3>
+                        <h3><a href="#">{{$item2->title}}</a></h3>
                         <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>Ngày tạo</span>
+                            <span><i class="zmdi zmdi-calendar-check"></i>{{$item2->created_at}}</span>
                         </div>
-                        <p>Nội dung</p>
-                        <a href="#" class="button-default">Xem thêm</a>
+                        <p>{{strip_tags($item2->content)}}</p>
+                        <a href="{{route('xemNews',['slug'=>$item2->slug])}}" class="button-default">Xem thêm</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="single-latest-item">
-                    <div class="single-latest-image">
-                        <a href="#"><img src="{{ asset('public/image/news/1.jpg') }}" alt=""></a>
-                    </div>
-                    <div class="single-latest-text">
-                        <h3><a href="#">Tiêu đề</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>Ngày tạo</span>
-                        </div>
-                        <p>Nội dung</p>
-                        <a href="#" class="button-default">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="single-latest-item">
-                    <div class="single-latest-image">
-                        <a href="#"><img src="{{ asset('public/image/news/1.jpg') }}" alt=""></a>
-                    </div>
-                    <div class="single-latest-text">
-                        <h3><a href="#">Tiêu đề</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>Ngày tạo</span>
-                        </div>
-                        <p>Nội dung</p>
-                        <a href="#" class="button-default">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="single-latest-item">
-                    <div class="single-latest-image">
-                        <a href="#"><img src="{{ asset('public/image/news/1.jpg') }}" alt=""></a>
-                    </div>
-                    <div class="single-latest-text">
-                        <h3><a href="#">Tiêu đề</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>Ngày tạo</span>
-                        </div>
-                        <p>Nội dung</p>
-                        <a href="#" class="button-default">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
             <div class="col-md-12 col-sm-12 text-center">
-                <a href="#" class="button-default button-large">Tất cả tin tức<i class="zmdi zmdi-chevron-right"></i></a>
+                <a href="{{route('ListNews')}}" class="button-default button-large">Tất cả tin tức</a>
             </div>
         </div>
     </div>

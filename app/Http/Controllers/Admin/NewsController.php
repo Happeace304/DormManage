@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\News;
 use App\Model\User;
+use Illuminate\Support\Facades\File;
 use \Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -28,14 +29,14 @@ class NewsController extends Controller
     }
     function SaveTinTuc(Request $request){
         $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|required',
             'title' => 'required|max:255|string',
             'content' => 'required|max:1000|min:3',
         ]);
 
         if($request->hasFile('image')){
             $filename = time().".".$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('image'), $filename);
+            $request->file('image')->move(public_path('image/news'), $filename);
         }else $filename='';
         $news = new News([
             'title'=> $request->input('title'),
@@ -61,14 +62,19 @@ class NewsController extends Controller
 
         if($request->hasFile('image')){
             $filename = time().".".$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('image'), $filename);
+            $request->file('image')->move(public_path('image/news'), $filename);
+
         }else $filename= $request->old_image;
        $news=News::findorfail($request->newsId);
        $news->title= $request->title;
        $news->content= $request->input('content');
        $news->slug= str_slug($request->title,'-');
         $news->imgLink= $filename;
-        if($news->save())
+        if($news->save()){
+            if (File::exists(public_path('image/avatar') . '/' . $request->old_image)) {
+                File::delete(public_path('image/avatar') . '/' . $request->old_image);
+            }
+        }
             return redirect()->route('DanhSachTinTuc');
     }
     function SearchTinTuc(Request $request){

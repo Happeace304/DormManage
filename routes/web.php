@@ -11,16 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('Client.home');
-})->name('client');
+Route::get('/','HomeController@Home')->name('client');
 //Route::get('/index','HomeController@List' );
 Route::get('login','\App\Http\Controllers\Auth\LoginController@showLoginForm' )->name('login');
-Route::get('/profile','HomeController@Profile' );
-Route::get('/danhsachtintuc','HomeController@ListOfNews' );
+
+Route::get('/danhsachtintuc','HomeController@ListOfNews' )->name('ListNews');
 Route::get('/chitiettintuc','HomeController@NewsDetail' );
 Route::get('/banggia','HomeController@BangGia' );
-Route::get('/news/{slug}','HomeController@GetNews' );
+
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
@@ -75,6 +73,12 @@ Route::group(['prefix'=> 'admin','middleware'=>['admin'] ], function (){
     {
         Route::put('thanhtoan/{id}', 'Admin\BillController@ThanhToan')->name('ThanhToanHoaDon');
     });
+});
+Route::group(['prefix'=> ''],function (){
+    Route::get('/profile','Client\UserController@Profile' );
+    Route::put('/saveprofile','Client\UserController@SaveProfile')->name('SaveClientProfile');
+    Route::get('/xem/{slug}','HomeController@GetNews')->name('xemNews');
+
 });
 
 

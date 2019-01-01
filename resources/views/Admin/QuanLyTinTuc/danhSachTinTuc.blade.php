@@ -57,6 +57,7 @@
                                     <th class="text-center">Nội dung</th>
                                     <th class="text-center">Người viết</th>
                                     <th class="text-center">Ngày viết</th>
+                                    <th class="text-center">Lần sửa cuối</th>
                                     <th class="text-center">Xóa</th>
                                 </tr>
                                 </thead>
@@ -82,6 +83,9 @@
                                         </td>
                                         <td class="text-center middle">
                                             {{$item->created_at}}
+                                        </td>
+                                        <td class="text-center middle">
+                                            {{$item->updated_at}}
                                         </td>
                                         <td class="text-center middle">
                                             <form method="post" action="{{route('XoaTinTuc',['id'=> $item->newsId])}}">

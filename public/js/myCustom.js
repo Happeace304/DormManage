@@ -25,3 +25,8 @@ function deleteSelected() {
     document.getElementById("massdel").submit();
 
 }
+function loadFile() {
+    document.getElementById('fake').value=document.getElementById('imglink').files.item(0).name;
+    document.getElementById('img_preview').src = URL.createObjectURL(document.getElementById('imglink').files.item(0));
+
+}

@@ -81,11 +81,13 @@
                         <div class="content"><a href="{{route('login')}}"> Đăng nhập</a>
                         </div>
                         @else
-                        <div class="content"><a href="#"><i class="fa fa-user"></i> {{\Illuminate\Support\Facades\Auth::user()->name}}</a>
+                        <div class="content"><a @if(\Illuminate\Support\Facades\Auth::user()->role <=1)href="{{route('Admin.home')}}" @endif><i class="fa fa-user"></i> {{\Illuminate\Support\Facades\Auth::user()->name}}</a>
+                           @if(\Illuminate\Support\Facades\Auth::user()->role ==2)
                             <ul class="account-dropdown">
                                 <li><a href="{{url('profile')}}">Trang cá nhân</a></li>
                                 <li><a href="{{url('logout')}}">Đăng xuất</a></li>
                             </ul>
+                               @endif
                         </div>
                             @endif
                     </div>
@@ -239,5 +241,8 @@
 <!-- main JS
 ============================================ -->
 <script src="{{ asset('public/assets/js/main.js') }}"></script>
+
+<!-- Nhat's js-->
+<script src="{{ asset('public/js/myCustom.js')}}"></script>
 </body>
 </html>

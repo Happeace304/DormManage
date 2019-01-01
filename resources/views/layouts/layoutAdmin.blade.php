@@ -39,8 +39,8 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img @if(Auth::user()->imgLink == null) src="{{ asset('public/image/user.png') }}"
-                             @else src="{{asset('public/image').'/'.Auth::user()->imgLink}}"
+                        <img @if(Auth::user()->imgLink == null) src="{{ asset('public/image/avatar/user.png') }}"
+                             @else src="{{asset('public/image/avatar').'/'.Auth::user()->imgLink}}"
                              @endif
                              alt="..." class="img-circle profile_img">
                     </div>
@@ -109,8 +109,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img @if(Auth::user()->imgLink == null) src="{{ asset('public/image/user.png') }}"
-                                     @else src="{{asset('public/image').'/'.Auth::user()->imgLink}}"
+                                <img @if(Auth::user()->imgLink == null) src="{{ asset('public/image/avatar/user.png') }}"
+                                     @else src="{{asset('public/image/avatar').'/'.Auth::user()->imgLink}}"
                                      @endif
                                         alt="">{{ Auth::user()->name }}
                                 <span class=" fa fa-angle-down"></span>
@@ -146,8 +146,8 @@
         <!-- /footer content -->
     </div>
 </div>
-<!-- Xoa Nhieu-->
-<script src="{{ asset('public/js/xoaNhieu.js')}}"></script>
+<!-- Nhat's js-->
+<script src="{{ asset('public/js/myCustom.js')}}"></script>
 <!-- jQuery -->
 <script src="{{ asset('public/assets/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap -->

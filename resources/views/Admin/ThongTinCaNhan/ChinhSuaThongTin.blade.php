@@ -18,8 +18,8 @@
                 <input class="hidden" name="userId" value="{{$user->userId}}"/>
                 <div class="col-xs-12 col-md-3">
                     <div class="form-group">
-                        <img style="margin-top: 5px; margin-bottom: 10px;" class="img-preview" @if(Auth::user()->imgLink == null) src="{{ asset('public/image/user.png') }}"
-                             @else src="{{asset('public/image').'/'.Auth::user()->imgLink}}"
+                        <img style="margin-top: 5px; margin-bottom: 10px;" class="img-preview" @if(Auth::user()->imgLink == null) src="{{ asset('public/image/avatar/user.png') }}"
+                             @else src="{{asset('public/image/avatar').'/'.Auth::user()->imgLink}}"
                              @endif
                              alt="..." class="img-circle profile_img" id="img_preview">
                         <div class="input-group">
@@ -169,10 +169,4 @@
         </div>
     </div>
 </div>
-    <script>
-        function loadFile() {
-            document.getElementById('fake').value=document.getElementById('imglink').files.item(0).name;
-            document.getElementById('img_preview').src = URL.createObjectURL(document.getElementById('imglink').files.item(0));
-        }
-    </script>
 @endsection
