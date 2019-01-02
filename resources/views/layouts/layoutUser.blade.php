@@ -141,7 +141,7 @@
                             <ul>
                                 <li class="current"><a href="{{route('client')}}">Trang chủ</a></li>
                                 <li><a href="{{route('banggia')}}">Bảng giá</a></li>
-                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="{{route('LienHe')}}">Liên hệ</a></li>
                             </ul>
                         </nav>
                     </div>

@@ -3,7 +3,7 @@ $(document).ready(function () {
     var json= $.ajax({
         type: 'get',
         dataType: "json",
-        url: window.location.origin +'/get-notification',
+        // url: window.location.origin +'/get-notification',
         success: function (data) {
             if(data.count >0)
             {
