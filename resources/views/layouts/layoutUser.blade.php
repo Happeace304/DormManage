@@ -139,9 +139,9 @@
                     <div class="mobile-menu">
                         <nav id="dropdown">
                             <ul>
-                                <li class="current"><a href="#">Trang chủ</a></li>
-                                <li><a href="#">Bảng giá</a></li>
-                                <li><a href="#">Liên hệ</a></li>
+                                <li class="current"><a href="{{route('client')}}">Trang chủ</a></li>
+                                <li><a href="{{route('banggia')}}">Bảng giá</a></li>
+                                <li><a href="{{route('LienHe')}}">Liên hệ</a></li>
                             </ul>
                         </nav>
                     </div>
