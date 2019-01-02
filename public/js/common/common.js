@@ -90,8 +90,6 @@ $(document).ready(function () {
     $('.money').trigger('blur');
     //Khởi tạo sự kiện cho các input nhập số thực
     $('.decimal').trigger('blur');
-    //khởi tạo ckeditor
-    InitCkeditor();
 
 });
 /*

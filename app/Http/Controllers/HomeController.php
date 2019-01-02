@@ -21,10 +21,6 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function dangnhap()
-    {
-        return view('Client.login');
-    }
 
     public function Home()
     {
@@ -50,6 +46,11 @@ class HomeController extends Controller
     public function BangGia()
     {
         return view('Client.BangGia');
+    }
+
+    public function LienHe()
+    {
+        return view('Client.contact');
     }
 
     function List()

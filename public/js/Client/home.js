@@ -3,9 +3,12 @@ $(document).ready(function () {
     var json= $.ajax({
         type: 'get',
         dataType: "json",
-        url: window.location+'/get-notification',
+        url: window.location.origin +'/get-notification',
         success: function (data) {
-            $('#badge').text(data.count+'');
+            if(data.count >0)
+            {
+                $('#badge').text(data.count+'');
+            }
             if (data.isExpired != null) {
                 $('#li-room').show();
                 var time = new Date(data.expire.date);

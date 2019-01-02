@@ -20,6 +20,8 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name(
 // Client
 Route::get('/','HomeController@Home')->name('client');
 Route::get('/bang-gia','HomeController@BangGia' )->name('banggia');
+Route::get('/lien-he','HomeController@LienHe' )->name('LienHe');
+
 //Tin tức Client
 Route::get('/danh-sach-tin-tuc','HomeController@ListOfNews' )->name('ListNews');
 Route::get('tim-tin-tuc', 'HomeController@SearchNews')->name('timNews');
