@@ -19,7 +19,7 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name(
 
 // Client
 Route::get('/','HomeController@Home')->name('client');
-Route::get('/bang-gia','HomeController@BangGia' );
+Route::get('/bang-gia','HomeController@BangGia' )->name('banggia');
 //Tin tức Client
 Route::get('/danh-sach-tin-tuc','HomeController@ListOfNews' )->name('ListNews');
 Route::get('/chi-tiet-tin-tuc','HomeController@NewsDetail' );
@@ -30,7 +30,7 @@ Route::group(['prefix'=> ''],function (){
     Route::get('/xem/{slug}','HomeController@GetNews')->name('xemNews');
 
 });
-
+Route::get('get-notification','HomeController@GetNotification')->name('notification');
 Auth::routes();
 //'middleware'=>['admin']
 

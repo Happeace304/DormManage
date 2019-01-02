@@ -83,11 +83,12 @@
                         </div>
                         @else
                             @if(\Illuminate\Support\Facades\Auth::user()->role ==2)
+
                                 <div class="content">
-                                    <i class="fa fa-bell icon-notification"></i> <span class="badge span-notification">2</span>
-                                    <ul class="account-dropdown ul-notification">
-                                        <li class="li-notification"><a href="javascript:void(0)"><span class="span-content-notification">Bạn sắp hết hạn phòng, cần gia hạn ngay. Hạn cuối là: .....</span></a></li>
-                                        <li class="li-notification"><a href="javascript:void(0)"><span class="span-content-notification">Tiền điện tháng này là: .... bạn vẫn chưa nộp. Hạn cuối là...</span></a></li>
+                                    <i class="fa fa-bell icon-notification"></i> <span class="badge span-notification" id="badge"></span>
+                                    <ul class="account-dropdown ul-notification" id="noti-drop" >
+                                        <li class="li-notification" id="li-room" style="display: none;"><a href="javascript:void(0)"><span class="span-content-notification" id="noti-room">Bạn  hạn phòng, cần gia hạn ngay. Hạn cuối là: </span></a></li>
+                                        <li class="li-notification" id="li-bill" style="display: none;"><a href="javascript:void(0)"><span class="span-content-notification" id="noti-bill">Tiền điện tháng này là:  VNĐ bạn vẫn chưa nộp. Hạn cuối là </span></a></li>
                                     </ul>
                                 </div>
                             @endif
@@ -105,6 +106,7 @@
             </div>
         </div>
     </div>
+
     <div class="header-logo-menu sticker">
         <div class="container">
             <div class="row">
@@ -119,7 +121,7 @@
                             <nav>
                                 <ul id="nav">
                                     <li class="current"><a href="{{route('client')}}">Trang chủ</a></li>
-                                    <li><a href="{{url('banggia')}}">Bảng giá</a></li>
+                                    <li><a href="{{route('banggia')}}">Bảng giá</a></li>
                                     <li><a href="#">Liên hệ</a></li>
                                 </ul>
                             </nav>
@@ -257,5 +259,7 @@
 
 <!-- common js-->
 <script src="{{ asset('public/js/common/common.js')}}"></script>
+
+<script src="{{ asset('public/js/client/home.js')}}"></script>
 </body>
 </html>

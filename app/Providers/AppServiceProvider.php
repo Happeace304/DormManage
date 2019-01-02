@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Controller;
+use App\Model\Bill;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
