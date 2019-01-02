@@ -1449,6 +1449,7 @@ body {
 .box-select input[type="password"],
 .box-select input[type="email"],
 .box-select input[type="tel"],
+.box-select input[type="date"],
 .box-select input[type="cmnd"],
 .box-select select {
     background: #fff none repeat scroll 0 0;

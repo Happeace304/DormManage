@@ -4,27 +4,26 @@
 <!--Cái này cho vòng for, lấy ra 2 tin tức mà ngày tạo sớm nhất, lưu ý id ="slider-1-caption1" phải khác nhau, class cũng vậy, có mấy
  cái như slider-1 thì mình có thể +id sau nó cũng đc-->
 
-<div class="slider-area">
+<div class="slider-area" >
     <div class="preview-2">
-        <div id="nivoslider" class="slides">
-
-            @foreach($feature as $item)
-                <img src="{{ asset('public/image/news').'/'.$item->imgLink }}" alt="" title="#slider-1-caption1"/>
-                @endforeach
-            {{--<img src="{{ asset('public/image/news/1.jpg') }}" alt="" title="#slider-1-caption1"/>--}}
-            {{--<img src="{{ asset('public/image/news/3.jpg') }}" alt="" title="#slider-1-caption1"/>--}}
+        {{--<div id="nivoslider" class="slides" style="height: 600px; width: 100%">--}}
+        <div id="nivoslider" class="slides" style="height: 600px; width: 100%">
+            @foreach($feature as $index=>$item)
+                {{--<img src="{{ asset('public/image/news').'/'.$item->imgLink }}" alt="" title="#slider_{{$index}}" style="min-height: 680px; max-height: 680px; width: 100%"/>--}}
+                <img src="{{ asset('public/image/news').'/'.$item->imgLink }}" alt="" title="#slider_{{$index}}"/>
+            @endforeach
         </div>
         @foreach($feature as $index=>$item1)
-        <div id="slider-1-caption1" class="nivo-html-caption nivo-caption">
-            <div class="banner-content slider-1">
+        <div id="slider_{{$index}}" class="nivo-html-caption nivo-caption">
+            <div class="banner-content slider-{{$index}}">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-md-12">
                             <div class="text-content-wrapper">
                                 <div class="text-content">
                                     <h2 class="title1 wow fadeInUp" data-wow-duration="2000ms" data-wow-delay="0s">{{$item1->title}}</h2>
-                                    <p class="sub-title wow fadeInUp hidden-xs" data-wow-duration="2900ms" data-wow-delay=".5s"> "{{strip_tags($item1->sentence)}}" </p>
+                                    <p class="sub-title wow fadeInUp hidden-xs" data-wow-duration="2900ms" data-wow-delay=".5s">
+                                        @if(strlen($item1->content) >80) {{strip_tags(str_limit($item1->content, 80))}}@else {{strip_tags($item1->content)}} @endif</p>
                                     <div class="banner-readmore wow fadeInUp" data-wow-duration="3600ms" data-wow-delay=".6s">
                                         <a class="button-default" href="{{route('xemNews',['slug'=>$item1->slug])}}">Xem chi tiết</a>
                                     </div>
@@ -36,10 +35,8 @@
                     </div>
                 </div>
             </div>
-            @endforeach
         </div>
-
-
+        @endforeach
     </div>
 </div>
 <!--End of Slider Area-->
@@ -84,21 +81,25 @@
         </div>
         <div class="row">
             @foreach($news as $item2)
-            <div class="col-md-6">
-                <div class="single-latest-item">
-                    <div class="single-latest-image">
-                        <a href="{{route('xemNews',['slug'=>$item2->slug])}}"><img src="{{ asset('public/image/news').'/'.$item2->imgLink }}" alt=""></a>
-                    </div>
-                    <div class="single-latest-text">
-                        <h3><a href="#">{{$item2->title}}</a></h3>
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-calendar-check"></i>{{$item2->created_at}}</span>
+                <div class="col-md-6">
+                    <div class="single-latest-item">
+                        <div class="single-latest-image">
+                            <a href="{{route('xemNews',['slug'=>$item2->slug])}}"><img src="{{ asset('public/image/news').'/'.$item2->imgLink }}" style="height:235px;width:235px;" alt=""></a>
                         </div>
-                        <p>{{strip_tags($item2->content)}}</p>
-                        <a href="{{route('xemNews',['slug'=>$item2->slug])}}" class="button-default">Xem thêm</a>
+                        <div class="single-latest-text" style="height: 235px;">
+                            <a href="{{route('xemNews',['slug'=>$item2->slug])}}"><h3 style="min-height: 47px;">{{$item2->title}}</h3></a>
+                            <div class="single-item-content" style="margin-bottom:0px;">
+                                <div class="single-item-comment-view">
+                                    <span><i class="zmdi zmdi-calendar-check"></i>{{$item2->created_at}}</span>
+                                </div>
+                            </div>
+                            <div class="content-tintuc">
+                                @if(strlen($item2->content) >80) {{strip_tags(str_limit($item2->content, 80))}}@else {{strip_tags($item2->content)}} @endif
+                            </div>
+                            <a href="{{route('xemNews',['slug'=>$item2->slug])}}" class="button-default">Xem chi tiết</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
             <div class="col-md-12 col-sm-12 text-center">
                 <a href="{{route('ListNews')}}" class="button-default button-large">Tất cả tin tức</a>
