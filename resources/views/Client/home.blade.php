@@ -24,7 +24,7 @@
                             <div class="text-content-wrapper">
                                 <div class="text-content">
                                     <h2 class="title1 wow fadeInUp" data-wow-duration="2000ms" data-wow-delay="0s">{{$item1->title}}</h2>
-                                    <p class="sub-title wow fadeInUp hidden-xs" data-wow-duration="2900ms" data-wow-delay=".5s"> "{{$item1->sentence}}" </p>
+                                    <p class="sub-title wow fadeInUp hidden-xs" data-wow-duration="2900ms" data-wow-delay=".5s"> "{{strip_tags($item1->sentence)}}" </p>
                                     <div class="banner-readmore wow fadeInUp" data-wow-duration="3600ms" data-wow-delay=".6s">
                                         <a class="button-default" href="{{route('xemNews',['slug'=>$item1->slug])}}">Xem chi tiết</a>
                                     </div>
