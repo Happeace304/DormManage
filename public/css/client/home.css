@@ -1,0 +1,26 @@
+.icon-notification{
+    margin-right: 0px !important;
+}
+.span-notification{
+    padding: 3px 5px !important;
+    background-color: #DF0101;
+}
+.li-notification{
+    background: #F2F2F2;
+    border-bottom-color: #0f0f0f;
+    border-bottom-width: 0.5px;
+    border-bottom-style: solid;
+}
+.span-content-notification{
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #FE2E2E;
+}
+
+.li-notification:hover{
+    background: #E6E6E6;
+}
+.ul-notification{
+    width: 300px !important;
+    padding: 0px !important;
+}

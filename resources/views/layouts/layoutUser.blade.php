@@ -60,6 +60,7 @@
 
     <link rel="stylesheet" href="{{ asset('public/assets/montserrat/css/material-design-iconic-font.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('public/css/client/home.css') }}">
 
     <!-- Modernizr JS
     ============================================ -->
@@ -81,6 +82,15 @@
                         <div class="content"><a href="{{route('login')}}"> Đăng nhập</a>
                         </div>
                         @else
+                            @if(\Illuminate\Support\Facades\Auth::user()->role ==2)
+                                <div class="content">
+                                    <i class="fa fa-bell icon-notification"></i> <span class="badge span-notification">2</span>
+                                    <ul class="account-dropdown ul-notification">
+                                        <li class="li-notification"><a href="javascript:void(0)"><span class="span-content-notification">Bạn sắp hết hạn phòng, cần gia hạn ngay. Hạn cuối là: .....</span></a></li>
+                                        <li class="li-notification"><a href="javascript:void(0)"><span class="span-content-notification">Tiền điện tháng này là: .... bạn vẫn chưa nộp. Hạn cuối là...</span></a></li>
+                                    </ul>
+                                </div>
+                            @endif
                         <div class="content"><a @if(\Illuminate\Support\Facades\Auth::user()->role <=1)href="{{route('Admin.home')}}" @endif><i class="fa fa-user"></i> {{\Illuminate\Support\Facades\Auth::user()->name}}</a>
                            @if(\Illuminate\Support\Facades\Auth::user()->role ==2)
                             <ul class="account-dropdown">
