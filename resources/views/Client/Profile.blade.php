@@ -27,13 +27,8 @@
                             <div class="box-select">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        @if($errors->any())
-                                            @foreach ($errors->all() as $error)
-                                                {{$error}}
-                                            @endforeach
-                                        @endif
-                                        <div class="row">
 
+                                        <div class="row">
                                             <div class="col-sm-7 avatar">
                                                 <div>
                                                     <img id="img_preview" class="img-preview"
@@ -73,6 +68,14 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-8">
+                                        <div class="row">
+                                            <p style="padding-left: 10px; font-size: 14px; color: #FE2E2E"> @if($errors->any())
+                                                    @foreach ($errors->all() as $error)
+                                                        {{$error}}
+                                                    @endforeach
+                                                @endif</p>
+
+                                        </div>
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <label for="ho" class="white-label text-mul">Họ tên <span

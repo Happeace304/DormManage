@@ -20,6 +20,7 @@
     <!-- bootstrap-wysiwyg -->
     <link href="{{ asset('public/assets/google-code-prettify/bin/prettify.min.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('public/css/admin/common.css') }}" rel="stylesheet">
     <!-- Custom styling plus plugins -->
     <link href="{{ asset('public/css/custom.min.css') }}" rel="stylesheet">
 
@@ -120,7 +121,7 @@
 
                                 <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                        <i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>

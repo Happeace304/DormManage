@@ -16,13 +16,21 @@
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{$action}}" enctype="multipart/form-data">
                         @csrf
                         @if(isset($news)) @method('PUT') @endif
-                        @if($errors->any())
-                            @foreach ($errors->all() as $error)
-                                {{$error}}
-                            @endforeach
-                        @endif
-                        <input type="text" id="newsId"  name="newsId"
+                    <div class="row">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
+                        <label class="error-list control-label col-md-8 col-sm-8 col-xs-12">
+                            @if($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    {{$error}}
+                                @endforeach
+                            @endif
+                        </label>
+                    </div>
+
+                <input type="text" id="newsId"  name="newsId"
                                value="{{ isset($news)?$news->newsId:''}}" hidden>
+                        <div class="row">
+
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tiêu đề <span class="required">*</span>
                             </label>
@@ -56,6 +64,8 @@
                                 <button type="submit" class="btn btn-success" style="float: right;">Lưu thông tin tin tức</button>
                             </div>
                         </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

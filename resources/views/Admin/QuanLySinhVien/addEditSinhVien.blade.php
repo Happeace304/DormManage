@@ -17,13 +17,19 @@
                     @csrf
                    @if(isset($user)) @method('PUT') @endif
 
-                    @if($errors->any())
-                        @foreach ($errors->all() as $error)
-                            {{$error}}
-                        @endforeach
-                    @endif
+                    <div class="row">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12"></label>
+                        <label class="error-list control-label col-md-8 col-sm-8 col-xs-12">
+                            @if($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    {{$error}}
+                                @endforeach
+                            @endif
+                        </label>
+                    </div>
                     <input type="text" id="userId"  name="userId"
                            value="{{ isset($user)?$user->userId:''}}" hidden>
+                    <div class="row">
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Tên <span class="required">*</span>
                         </label>
@@ -117,6 +123,7 @@
                                     onclick="history.go(-1);">Trở lại</button>
                             <button type="submit" class="btn btn-success" style="float: right;">Lưu thông tin sinh viên</button>
                         </div>
+                    </div>
                     </div>
                 </form>
             </div>

@@ -59,11 +59,15 @@
                 @csrf
                 @method('PUT')
 
-                @if($errors->any())
-                    @foreach ($errors->all() as $error)
-                        {{$error}}
-                    @endforeach
-                @endif
+                <div class="row">
+                    <label class="error-list control-label col-md-12 col-sm-12 col-xs-12">
+                        @if($errors->any())
+                            @foreach ($errors->all() as $error)
+                                {{$error}}
+                            @endforeach
+                        @endif
+                    </label>
+                </div>
 
                 <div class="row">
                     <input class="hidden" name="userId" value="{{$user->userId}}"/>
