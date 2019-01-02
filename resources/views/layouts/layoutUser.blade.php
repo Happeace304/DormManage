@@ -254,5 +254,8 @@
 
 <!-- Nhat's js-->
 <script src="{{ asset('public/js/myCustom.js')}}"></script>
+
+<!-- common js-->
+<script src="{{ asset('public/js/common/common.js')}}"></script>
 </body>
 </html>

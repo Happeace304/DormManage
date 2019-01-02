@@ -26,7 +26,7 @@ Route::get('/chi-tiet-tin-tuc','HomeController@NewsDetail' );
 //Quản lý thông tin cá nhân_Client
 Route::group(['prefix'=> ''],function (){
     Route::get('/profile','Client\UserController@Profile' );
-    Route::put('/savep-rofile','Client\UserController@SaveProfile')->name('SaveClientProfile');
+    Route::put('/save-profile','Client\UserController@SaveProfile')->name('SaveClientProfile');
     Route::get('/xem/{slug}','HomeController@GetNews')->name('xemNews');
 
 });
