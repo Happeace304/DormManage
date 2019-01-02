@@ -83,11 +83,12 @@
                         </div>
                         @else
                             @if(\Illuminate\Support\Facades\Auth::user()->role ==2)
+
                                 <div class="content">
-                                    <i class="fa fa-bell icon-notification"></i> <span class="badge span-notification">2</span>
-                                    <ul class="account-dropdown ul-notification">
-                                        <li class="li-notification"><a href="javascript:void(0)"><span class="span-content-notification">Bạn sắp hết hạn phòng, cần gia hạn ngay. Hạn cuối là: .....</span></a></li>
-                                        <li class="li-notification"><a href="javascript:void(0)"><span class="span-content-notification">Tiền điện tháng này là: .... bạn vẫn chưa nộp. Hạn cuối là...</span></a></li>
+                                    <i class="fa fa-bell icon-notification"></i> <span class="badge span-notification" id="badge"></span>
+                                    <ul class="account-dropdown ul-notification" id="noti-drop" >
+                                        <li class="li-notification" id="li-room" style="display: none;"><a href="javascript:void(0)"><span class="span-content-notification" id="noti-room">Bạn  hạn phòng, cần gia hạn ngay. Hạn cuối là: </span></a></li>
+                                        <li class="li-notification" id="li-bill" style="display: none;"><a href="javascript:void(0)"><span class="span-content-notification" id="noti-bill">Tiền điện tháng này là:  VNĐ bạn vẫn chưa nộp. Hạn cuối là </span></a></li>
                                     </ul>
                                 </div>
                             @endif
@@ -105,6 +106,7 @@
             </div>
         </div>
     </div>
+
     <div class="header-logo-menu sticker">
         <div class="container">
             <div class="row">
@@ -119,7 +121,7 @@
                             <nav>
                                 <ul id="nav">
                                     <li class="current"><a href="{{route('client')}}">Trang chủ</a></li>
-                                    <li><a href="{{url('banggia')}}">Bảng giá</a></li>
+                                    <li><a href="{{route('banggia')}}">Bảng giá</a></li>
                                     <li><a href="#">Liên hệ</a></li>
                                 </ul>
                             </nav>
@@ -254,5 +256,41 @@
 
 <!-- Nhat's js-->
 <script src="{{ asset('public/js/myCustom.js')}}"></script>
+
+<script>
+    $(document).ready(function () {
+
+        var json= $.ajax({
+            type: 'get',
+            dataType: "json",
+            url: window.location+'/get-notification',
+            success: function (data) {
+                $('#badge').text(data.count+'');
+                if (data.isExpired != null) {
+                    $('#li-room').show();
+                    var time = new Date(data.expire.date);
+                    var month= ("0" + (time.getMonth() + 1)).slice(-2);
+                    var year = time.getFullYear();
+                    var day= ("0" + (time.getDay() )).slice(-2);
+                    if(data.isExpired == '0')
+                        $('#noti-room').text("Bạn đã hết hạn phòng, cần gia hạn ngay. Hạn cuối là: "+ day+'/'+month+'/'+year);
+                    if(data.isExpired == '1')
+                        $('#noti-room').text("Bạn sắp hết hạn phòng, cần gia hạn ngay. Hạn cuối là: "+ day+'/'+month+'/'+year);
+                }
+                if(data.money){
+                    $('#li-bill').show();
+                    var now = new Date();
+                    var month= ("0" + (now.getMonth() + 1)).slice(-2);
+                    var year =now.getFullYear();
+                    $('#noti-bill').text('Tiền điện tháng này là: '+ data.money.total+' VNĐ bạn vẫn chưa nộp. Hạn cuối là 25/'+month+'/'+year);
+                }
+
+
+            }
+        });
+
+    });
+
+</script>
 </body>
 </html>

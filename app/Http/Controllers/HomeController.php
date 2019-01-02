@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Bill;
 use App\Model\News;
 use App\Model\Room;
 use Illuminate\Http\Request;
@@ -66,5 +67,24 @@ class HomeController extends Controller
         $slug = $request->slug;
         $news = News::where('slug', $slug)->first();
         return view('Client.newsDetail', compact('news'));
+    }
+    function GetNotification(){
+        $money = Bill::where('roomId', Auth::user()->roomId)->where('state', 1)->orderby('month', 'desc')->first();
+        $expire= new \Illuminate\Support\Carbon(Auth::user()->expire_date);
+        $now =\Illuminate\Support\Carbon::now();
+
+        $count=0;
+        if($money !=null ){$count++;}
+        $isExpired=null ;
+        if ($now<=$expire&&$now->diffinDays($expire)<7)  {
+            $isExpired=1;
+            $count++;
+        }
+        if($now>$expire ){
+            $isExpired=0;
+            $count++;
+        }
+
+        return compact(['money','isExpired','count','expire']);
     }
 }
