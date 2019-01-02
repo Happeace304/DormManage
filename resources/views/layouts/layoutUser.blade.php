@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- favicon
+        <!-- favicon
     ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/favicon.ico') }}">
 
@@ -139,8 +139,8 @@
                     <div class="mobile-menu">
                         <nav id="dropdown">
                             <ul>
-                                <li class="current"><a href="#">Trang chủ</a></li>
-                                <li><a href="#">Bảng giá</a></li>
+                                <li class="current"><a href="{{route('client')}}">Trang chủ</a></li>
+                                <li><a href="{{route('banggia')}}">Bảng giá</a></li>
                                 <li><a href="#">Liên hệ</a></li>
                             </ul>
                         </nav>
@@ -258,12 +258,13 @@
 <script src="{{ asset('public/js/myCustom.js')}}"></script>
 
 <script>
+    var APP_URL = {!! json_encode(url('/')) !!}
     $(document).ready(function () {
 
         var json= $.ajax({
             type: 'get',
             dataType: "json",
-            url: window.location+'/get-notification',
+            url: APP_URL+'/get-notification',
             success: function (data) {
                 $('#badge').text(data.count+'');
                 if (data.isExpired != null) {
