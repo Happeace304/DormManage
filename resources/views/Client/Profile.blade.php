@@ -101,13 +101,8 @@
                                             <div class="col-sm-6">
                                                 <label for="NgaySinh" class="white-label text-mul">Ngày sinh <span
                                                             class="text-required">*</span></label>
-                                                <div class="input-group datetimepicker mb-5">
-                                                    <input type="date" class="date" id="birthday" name="birthday"
-                                                           maxlength="8" tabindex="4" value="{{$user->birthday}}"/>
-                                                    <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                                </div>
+                                                <input type="date" class="date numeric mb-5" id="birthday" name="birthday"
+                                                       maxlength="8" tabindex="4" value="{{$user->birthday}}"/>
                                             </div>
                                         </div>
                                         <div class="row">

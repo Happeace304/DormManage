@@ -18,7 +18,7 @@
                 <input class="hidden" name="userId" value="{{$user->userId}}"/>
                 <div class="col-xs-12 col-md-3">
                     <div class="form-group">
-                        <img style="margin-top: 5px; margin-bottom: 10px;" class="img-preview" @if(Auth::user()->imgLink == null) src="{{ asset('public/image/avatar/user.png') }}"
+                        <img style="margin-top: 5px; margin-bottom: 10px; max-width: 235px;" class="img-preview" @if(Auth::user()->imgLink == null) src="{{ asset('public/image/avatar/user.png') }}"
                              @else src="{{asset('public/image/avatar').'/'.Auth::user()->imgLink}}"
                              @endif
                              alt="..." class="img-circle profile_img" id="img_preview">
