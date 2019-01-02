@@ -116,20 +116,20 @@
                                                 <label for="cmnd" class="white-label text-mul">Địa chỉ <span
                                                             class="text-required">*</span></label>
                                                 <input type="text" name="address" id="address" tabindex="6"
-                                                       class=" numeric mb-5" value="{{$user->address}}"/>
+                                                       class=" mb-5" value="{{$user->address}}"/>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <label for="room" class="white-label text-mul">Phòng </label>
                                                 <input type="text" disabled name="room" id="room" tabindex="5"
-                                                       class=" numeric mb-5" value="{{$room->roomName}}">
+                                                       class=" mb-5" value="{{$room->roomName}}">
                                             </div>
                                             <div class="col-sm-6">
                                                 <label for="expire_date" class="white-label text-mul">Ngày hết
                                                     hạn </label>
                                                 <input type="tel" class="date" readonly="readonly" name="expire_date"
-                                                       id="expire_date" tabindex="6" class=" numeric mb-5"
+                                                       id="expire_date" tabindex="6" class=" mb-5"
                                                        value="{{$user->expire_date}}"/>
                                             </div>
                                         </div>
