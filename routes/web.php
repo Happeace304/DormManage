@@ -22,12 +22,13 @@ Route::get('/','HomeController@Home')->name('client');
 Route::get('/bang-gia','HomeController@BangGia' )->name('banggia');
 //Tin tức Client
 Route::get('/danh-sach-tin-tuc','HomeController@ListOfNews' )->name('ListNews');
-Route::get('/chi-tiet-tin-tuc','HomeController@NewsDetail' );
+Route::get('tim-tin-tuc', 'HomeController@SearchNews')->name('timNews');
+Route::get('/xem/{slug}','HomeController@GetNews')->name('xemNews');
+
 //Quản lý thông tin cá nhân_Client
 Route::group(['prefix'=> ''],function (){
     Route::get('/profile','Client\UserController@Profile' );
     Route::put('/savep-rofile','Client\UserController@SaveProfile')->name('SaveClientProfile');
-    Route::get('/xem/{slug}','HomeController@GetNews')->name('xemNews');
 
 });
 Route::get('get-notification','HomeController@GetNotification')->name('notification');

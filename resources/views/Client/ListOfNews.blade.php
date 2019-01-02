@@ -9,8 +9,8 @@
                     <h1 class="text-center">Danh sách tin tức</h1>
                     <div class="breadcrumb-bar">
                         <ul class="breadcrumb">
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Tin tức</a></li>
+                            <li><a href="{{route('client')}}">Trang chủ</a></li>
+                            <li><a href="{{route('ListNews')}}">Tin tức</a></li>
                         </ul>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
 <!--End of Breadcrumb Banner Area-->
 <!--Search Area Start-->
 <div class="container area-search" id="condition-search">
-    <form id="form-search" action="" accept-charset="UTF-8" method="get">
+    <form id="form-search" action="{{route('timNews')}}" accept-charset="UTF-8" method="get">
         <div class="area-search">
             <div class="row">
                 <div class="row col-md-offset-3" style="margin-top: 50px">
@@ -31,10 +31,9 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-success" id="btn-search" link-search="#" tabindex="6">Tìm kiếm</button>
+                        <button type="submit" class="btn btn-success" id="btn-search" link-search="#" tabindex="6">Tìm kiếm</button>
                     </div>
-                    <input type="hidden" name="CurrentPage" id="CurrentPage" value="@data.Paging.CurrentPage" />
-                    <input type="hidden" name="PageSize" id="PageSize" value="@data.Condition.PageSize" />
+
                 </div>
             </div>
         </div>
@@ -47,52 +46,32 @@
     <div class="container">
         <div class="row" id="news-area" link-tin-tuc="#">
             <div class="row">
-                {{--@foreach (TinTuc tintuc in listTinTuc)--}}
-                    {{--{--}}
-                {{--@for( $i=0;$i<9;$i++)--}}
+                @foreach($news as $item)
                     <div class="col-md-6">
                         <div class="single-latest-item">
                             <div class="single-latest-image">
-                                <a href="#"><img src="{{ asset('public/image/news/1.jpg') }}" style="height:235px;width:235px;" alt=""></a>
+                                <a href="{{route('xemNews',['slug'=>$item->slug])}}"><img src="{{ asset('public/image/news').'/'.$item->imgLink }}" style="height:235px;width:235px;" alt=""></a>
                             </div>
                             <div class="single-latest-text" style="height: 235px;">
-                                <a href="#"><h3>Ngày hội hiến máu nhân đạo tại Ký túc xá</h3></a><br>
+                                <a href="{{route('xemNews',['slug'=>$item->slug])}}"><h3>{{$item->title}}</h3></a><br>
                                 <div class="single-item-content" style="margin-bottom:0px;">
                                     <div class="single-item-comment-view">
-                                        <span><i class="zmdi zmdi-calendar-check"></i>20/12/2018</span>
+                                        <span><i class="zmdi zmdi-calendar-check"></i>{{\Illuminate\Support\Carbon::parse($item->created_at)->format('d-m-Y')}}</span>
                                     </div>
                                 </div>
                                 <div class="content-tintuc">
-                                    “Một giọt máu đào, gởi trao hi vọng” đó là tinh thần, là ý nghĩa nhân văn...
+                                    @if(strlen($item->content) >80) {{strip_tags(str_limit($item->content, 80))}}@else {{strip_tags($item->content)}} @endif
                                 </div>
-                                <a href="#" class="button-default">Xem chi tiết</a>
+                                <a href="{{route('xemNews',['slug'=>$item->slug])}}" class="button-default">Xem chi tiết</a>
                             </div>
                         </div>
                     </div>
-                <div class="col-md-6">
-                    <div class="single-latest-item">
-                        <div class="single-latest-image">
-                            <a href="#"><img src="{{ asset('public/image/news/4.jpg') }}" style="height:235px;width:235px;" alt=""></a>
-                        </div>
-                        <div class="single-latest-text" style="height: 235px;">
-                            <a href="#"><h3>Hội thi tiếng hát Karaoke “Chào mừng ngày nhà giáo Việt Nam 20/11”</h3></a>
-                            <div class="single-item-content" style="margin-bottom:0px;">
-                                <div class="single-item-comment-view">
-                                    <span><i class="zmdi zmdi-calendar-check"></i>20/11/2018</span>
-                                </div>
-                            </div>
-                            <div class="content-tintuc">
-                                Cứ mỗi mùa hiến chương đến là lời bài hát này lại vang lên như một nốt trầm đẹp đẽ giữa bao nhiêu xô bồ của cuộc sống...
-                            </div>
-                            <a href="#" class="button-default">Xem chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                    {{--@endfor--}}
+
+                    @endforeach
                     <div class="row">
                         <div class="col-md-12">
                             <div class="pagination-content">
-                                <ul class="pagination"></ul>
+                               {{$news->links()}}
                             </div>
                         </div>
                     </div>

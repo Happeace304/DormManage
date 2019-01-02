@@ -42,14 +42,10 @@ class HomeController extends Controller
     }
 
     public function ListOfNews()
-    {
-        return view('Client.ListOfNews');
+    {   $news= News::where('state',1)->orderBy('created_at','desc')->paginate(10);
+        return view('Client.ListOfNews', compact('news'));
     }
 
-    public function NewsDetail()
-    {
-        return view('Client.NewsDetail');
-    }
 
     public function BangGia()
     {
@@ -66,7 +62,8 @@ class HomeController extends Controller
     {
         $slug = $request->slug;
         $news = News::where('slug', $slug)->first();
-        return view('Client.newsDetail', compact('news'));
+        $relate= News::where('state',1)->where('created_at','<',$news->created_at)->orderBy('created_at','desc')->take(2)->get();
+        return view('Client.newsDetail', compact(['news','relate']));
     }
     function GetNotification(){
         $money = Bill::where('roomId', Auth::user()->roomId)->where('state', 1)->orderby('month', 'desc')->first();
@@ -86,5 +83,10 @@ class HomeController extends Controller
         }
 
         return compact(['money','isExpired','count','expire']);
+    }
+    function SearchNews(Request $request){
+        $title= $request->TieuDe;
+        $news = News::where('state',1)->where('title','like','%'.$title.'%')->orderBy('created_at', 'DESC')->paginate(10);
+        return view('Client.ListOfNews', compact('news'));
     }
 }
