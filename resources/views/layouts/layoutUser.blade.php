@@ -122,7 +122,7 @@
                                 <ul id="nav">
                                     <li class="current"><a href="{{route('client')}}">Trang chủ</a></li>
                                     <li><a href="{{route('banggia')}}">Bảng giá</a></li>
-                                    <li><a href="#">Liên hệ</a></li>
+                                    <li><a href="{{route('LienHe')}}">Liên hệ</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -293,5 +293,9 @@
     });
 
 </script>
+<!-- common js-->
+<script src="{{ asset('public/js/common/common.js')}}"></script>
+
+<script src="{{ asset('public/js/Client/home.js')}}"></script>
 </body>
 </html>

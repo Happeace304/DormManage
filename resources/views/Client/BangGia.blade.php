@@ -46,7 +46,7 @@
                             <div class="duration-text">
                                 <div class="text"><span style="text-align: left">Phí lưu trú phòng </span> <span class="text-right">85.000đ/người/tháng</span></div>
                                 <div class="text"><span style="text-align: left">Phí tiền nước</span> <span class="text-right">25.000đ/người/tháng</span></div>
-                                <div class="text"><span style="text-align: left">Tiền điện</span> <span class="text-right">Tính theo chỉ số sử dụng và theo đơn giá quy định</span></div>
+                                <div class="text" style="padding-bottom: 23px;"><span style="text-align: left">Tiền điện</span> <span class="text-right">Tính theo chỉ số sử dụng và theo đơn giá quy định</span></div>
                             </div>
                         </div>
 

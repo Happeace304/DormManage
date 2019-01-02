@@ -162,6 +162,8 @@
 <script src="{{ asset('public/assets/google-code-prettify/src/prettify.js')}}"></script>
 <!-- Custom Theme Scripts -->
 <script src="{{ asset('public/js/custom.min.js')}}"></script>
+<!-- common js-->
+<script src="{{ asset('public/js/common/common.js')}}"></script>
 
 </body>
 </html>

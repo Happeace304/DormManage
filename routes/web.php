@@ -20,6 +20,8 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name(
 // Client
 Route::get('/','HomeController@Home')->name('client');
 Route::get('/bang-gia','HomeController@BangGia' )->name('banggia');
+Route::get('/lien-he','HomeController@LienHe' )->name('LienHe');
+
 //Tin tức Client
 Route::get('/danh-sach-tin-tuc','HomeController@ListOfNews' )->name('ListNews');
 Route::get('tim-tin-tuc', 'HomeController@SearchNews')->name('timNews');
@@ -28,7 +30,7 @@ Route::get('/xem/{slug}','HomeController@GetNews')->name('xemNews');
 //Quản lý thông tin cá nhân_Client
 Route::group(['prefix'=> ''],function (){
     Route::get('/profile','Client\UserController@Profile' );
-    Route::put('/savep-rofile','Client\UserController@SaveProfile')->name('SaveClientProfile');
+    Route::put('/save-profile','Client\UserController@SaveProfile')->name('SaveClientProfile');
 
 });
 Route::get('get-notification','HomeController@GetNotification')->name('notification');
